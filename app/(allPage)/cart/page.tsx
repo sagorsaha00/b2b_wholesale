@@ -66,7 +66,7 @@ export default function CartPage() {
     );
   };
 
-  /* ================= REMOVE ================= */
+
 
   const removeProduct = (id: string | number) => {
     setCartItems((items) => {
