@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 534 540" width="100%" height="100%">
+  <g clip-path="url(#d3c0e69c82)">
+    <g clip-path="url(#bab6485d85)">
+      <g transform="matrix(1, 0, 0, 1, 163, 110)">
+        <g clip-path="url(#5bc86b986e)">
+          <g clip-path="url(#4b0b98da14)">
+            <g clip-path="url(#96216db7ca)">
+              <path fill="#ffc23d" d="M 0.488281 0.367188 L 512.21875 0.367188 L 512.21875 425.699219 L 0.488281 425.699219 Z M 0.488281 0.367188 " fill-opacity="1" fill-rule="nonzero"/>
+            </g>
+          </g>
+        </g>
+      </g>
+    </g>
+  </g>
+  <path stroke-linecap="butt" transform="matrix(-0.00796285, -0.749958, 0.749958, -0.00796285, 415.603102, 152.35602)" fill="none" stroke-linejoin="miter" d="M -0.000147372 4.4982 L 55.945718 4.498435 " stroke="#ffffff" stroke-width="9" stroke-opacity="1" stroke-miterlimit="4"/>
+  <g transform="matrix(1, 0, 0, 1, 161, 72)">
+    <g fill="#0358f9" fill-opacity="1">
+      <g transform="translate(0.923423, 424.996631)">
+        <path d="M 41.875 0 L 41.875 -304.984375 L 134.640625 -304.984375 L 272.96875 -112.46875 L 276.65625 -106.3125 L 280.34375 -112.46875 L 418.265625 -304.984375 L 511.4375 -304.984375 L 511.4375 0 L 437.15625 0 L 437.15625 -214.265625 L 437.5625 -219.59375 L 435.09375 -215.5 L 310.3125 -47.203125 L 243 -47.203125 L 118.21875 -215.5 L 115.75 -219.59375 L 116.15625 -214.265625 L 116.15625 0 Z M 41.875 0 "/>
+      </g>
+    </g>
+  </g>
+</svg>
