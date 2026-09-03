@@ -59,3 +59,44 @@ export const products: Product[] = [
     sale: true,
   },
 ];
+
+export const SingleProduct = {
+  name: "Fresh For The Bold Ground Amazon",
+  price: "$12.00",
+  image: "/product/product3.png",
+  description:
+    "Discover premium quality products from trusted suppliers. Perfect for businesses looking for reliable wholesale products at competitive prices.",
+  sku: "BF002-1-1",
+  category: "Organic Foods",
+  supplier: "Markood Verified Supplier",
+  companyName: "Sagor Company",
+};
+
+export const priceTiers = [
+  {
+    quantity: "< 10",
+    price: "$12.00",
+  },
+  {
+    quantity: "10 - 19",
+    price: "$11.40",
+  },
+  {
+    quantity: "20 - 49",
+    price: "$10.80",
+  },
+  {
+    quantity: "50 - 99",
+    price: "$9.60",
+  },
+  {
+    quantity: "100+",
+    price: "$9.00",
+  },
+];
+export const thumbnails = [
+  "/product/product1.png",
+  "/product/product2.png",
+  "/product/product3.png",
+  "/product/product4.png",
+];

@@ -4,7 +4,6 @@ import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
 import {
-  ArrowLeft,
   ArrowRight,
   Check,
   Heart,
@@ -13,105 +12,33 @@ import {
   Search,
   ShieldCheck,
   ShoppingCart,
-  Star,
   Truck,
+  BuildingIcon,
 } from "lucide-react";
-
-const product = {
-  name: "Fresh For The Bold Ground Amazon",
-  price: "$12.00",
-  image: "/product/product3.png",
-  description:
-    "Discover premium quality products from trusted suppliers. Perfect for businesses looking for reliable wholesale products at competitive prices.",
-  sku: "BF002-1-1",
-  category: "Organic Foods",
-  supplier: "Markood Verified Supplier",
-};
-
-const thumbnails = [
-  "/product/product1.png",
-  "/product/product2.png",
-  "/product/product3.png",
-  "/product/product4.png",
-];
-
-const priceTiers = [
-  {
-    quantity: "< 10",
-    price: "$12.00",
-  },
-  {
-    quantity: "10 - 19",
-    price: "$11.40",
-  },
-  {
-    quantity: "20 - 49",
-    price: "$10.80",
-  },
-  {
-    quantity: "50 - 99",
-    price: "$9.60",
-  },
-  {
-    quantity: "100+",
-    price: "$9.00",
-  },
-];
-
-function Rating({ rating = 4 }: { rating?: number }) {
-  return (
-    <div className="flex items-center gap-1">
-      {[1, 2, 3, 4, 5].map((star) => (
-        <Star
-          key={star}
-          className={`h-4 w-4 ${
-            star <= rating ? "fill-[#FBBF24] text-[#FBBF24]" : "text-gray-300"
-          }`}
-        />
-      ))}
-    </div>
-  );
-}
+import ProductRating from "../../../../lib/ui/ratingCard";
+import {
+  priceTiers,
+  SingleProduct,
+  thumbnails,
+} from "../../../../lib/constant/dummyProduct";
 
 export default function ProductDetails() {
-  const [selectedImage, setSelectedImage] = useState(product.image);
+  const [selectedImage, setSelectedImage] = useState(SingleProduct.image);
+
+  {
+    /**
+     *here fetch data and all dynamic
+     **/
+  }
+
   const [quantity, setQuantity] = useState(1);
   const [liked, setLiked] = useState(false);
 
   return (
     <main className="bg-white">
-      {/* Breadcrumb */}
-      <div className="border-b border-gray-100 bg-gray-50">
-        <div className="mx-auto flex max-w-7xl items-center gap-2 px-4 py-4 text-sm sm:px-6 lg:px-8">
-          <Link
-            href="/products"
-            className="text-gray-500 transition hover:text-[#2563EB]"
-          >
-            Products
-          </Link>
-
-          <span className="text-gray-300">/</span>
-
-          <Link
-            href="/categories"
-            className="text-gray-500 transition hover:text-[#2563EB]"
-          >
-            Organic Foods
-          </Link>
-
-          <span className="text-gray-300">/</span>
-
-          <span className="truncate font-medium text-[#0F172A]">
-            {product.name}
-          </span>
-        </div>
-      </div>
-
-      {/* Main Product Section */}
       <section className="py-10 sm:py-14 lg:py-16">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 gap-8 xl:grid-cols-[minmax(0,1fr)_minmax(0,1.2fr)_280px] xl:gap-10">
-            {/* ================= PRODUCT GALLERY ================= */}
             <div>
               <div className="group relative flex h-[400px] items-center justify-center overflow-hidden rounded-2xl border border-gray-200 bg-gray-50 sm:h-[480px] lg:h-[520px]">
                 {/* Search */}
@@ -137,7 +64,7 @@ export default function ProductDetails() {
 
                 <Image
                   src={selectedImage}
-                  alt={product.name}
+                  alt={SingleProduct.name}
                   width={520}
                   height={520}
                   priority
@@ -160,7 +87,7 @@ export default function ProductDetails() {
                   >
                     <Image
                       src={image}
-                      alt={`${product.name} ${index + 1}`}
+                      alt={`${SingleProduct.name} ${index + 1}`}
                       width={100}
                       height={100}
                       className="h-full w-full object-contain"
@@ -183,11 +110,11 @@ export default function ProductDetails() {
               </div>
 
               <h1 className="max-w-2xl text-3xl font-black leading-tight tracking-tight text-[#0F172A] sm:text-4xl lg:text-[42px]">
-                {product.name}
+                {SingleProduct.name}
               </h1>
 
               <div className="mt-4 flex flex-wrap items-center gap-4">
-                <Rating rating={4} />
+                <ProductRating rating={4} />
 
                 <span className="text-sm text-gray-400">24 Reviews</span>
 
@@ -201,7 +128,7 @@ export default function ProductDetails() {
               {/* Price */}
               <div className="mt-6 flex items-end gap-3">
                 <span className="text-3xl font-black text-[#2563EB] sm:text-4xl">
-                  {product.price}
+                  {SingleProduct.price}
                 </span>
 
                 <span className="mb-1 text-sm font-medium text-gray-400">
@@ -211,7 +138,7 @@ export default function ProductDetails() {
 
               {/* Description */}
               <p className="mt-5 max-w-2xl text-sm leading-7 text-gray-500 sm:text-base">
-                {product.description}
+                {SingleProduct.description}
               </p>
 
               {/* Features */}
@@ -247,7 +174,6 @@ export default function ProductDetails() {
                 </div>
               </div>
 
-              {/* ================= PRICE TABLE ================= */}
               <div className="mt-8 overflow-hidden rounded-xl border border-gray-200">
                 <div className="grid grid-cols-2 bg-gray-50 px-4 py-3 text-xs font-black uppercase tracking-wider text-[#0F172A]">
                   <span>Quantity</span>
@@ -278,7 +204,6 @@ export default function ProductDetails() {
                 ))}
               </div>
 
-              {/* Quantity + Cart */}
               <div className="mt-7">
                 <div className="mb-3 flex items-center justify-between">
                   <span className="text-sm font-bold text-[#0F172A]">
@@ -291,7 +216,6 @@ export default function ProductDetails() {
                 </div>
 
                 <div className="flex flex-col gap-3 sm:flex-row">
-                  {/* Counter */}
                   <div className="flex h-12 items-center justify-between rounded-xl border border-gray-200 bg-white sm:w-36">
                     <button
                       type="button"
@@ -316,7 +240,6 @@ export default function ProductDetails() {
                     </button>
                   </div>
 
-                  {/* Cart */}
                   <button
                     type="button"
                     className="flex h-12 flex-1 items-center justify-center gap-2 rounded-xl bg-[#2563EB] px-6 text-sm font-black text-white transition hover:bg-[#1D4ED8]"
@@ -339,27 +262,25 @@ export default function ProductDetails() {
                 </div>
               </div>
 
-              {/* Meta */}
               <div className="mt-7 border-t border-gray-100 pt-5">
                 <div className="grid grid-cols-1 gap-2 text-xs sm:grid-cols-2">
                   <p className="text-gray-500">
                     SKU:{" "}
                     <span className="font-semibold text-[#0F172A]">
-                      {product.sku}
+                      {SingleProduct.sku}
                     </span>
                   </p>
 
                   <p className="text-gray-500">
                     Category:{" "}
                     <span className="font-semibold text-[#2563EB]">
-                      {product.category}
+                      {SingleProduct.category}
                     </span>
                   </p>
                 </div>
               </div>
             </div>
 
-            {/* ================= RIGHT SIDEBAR ================= */}
             <aside className="space-y-3">
               <div className="rounded-xl border border-gray-200 bg-gray-50 p-5">
                 <div className="flex items-center gap-4">
@@ -424,11 +345,11 @@ export default function ProductDetails() {
                 </p>
 
                 <h3 className="mt-2 text-base font-black text-[#0F172A]">
-                  {product.supplier}
+                  {SingleProduct.supplier}
                 </h3>
 
                 <div className="mt-3 flex items-center gap-2">
-                  <Rating rating={5} />
+                  <ProductRating rating={5} />
 
                   <span className="text-xs text-gray-500">4.9</span>
                 </div>
@@ -439,6 +360,14 @@ export default function ProductDetails() {
                 >
                   View Supplier
                   <ArrowRight className="h-3.5 w-3.5" />
+                </Link>
+
+                <Link
+                  href="/providers"
+                  className="mt-3 inline-flex items-center gap-2 text-base font-black text-black hover:underline"
+                >
+                  <BuildingIcon className="h-4 w-4 shrink-0" />
+                  <span>{SingleProduct?.companyName}</span>
                 </Link>
               </div>
             </aside>
