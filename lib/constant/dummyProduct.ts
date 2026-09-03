@@ -70,6 +70,7 @@ export const SingleProduct = {
   category: "Organic Foods",
   supplier: "Markood Verified Supplier",
   companyName: "Sagor Company",
+  CompanyLogo:'/logo/fevicon.svg'
 };
 
 export const priceTiers = [
