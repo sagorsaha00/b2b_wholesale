@@ -92,7 +92,7 @@ export default function Footer() {
 
               <div className="flex gap-3">
                 <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-[#FFF8E1]">
-                  <span className="text-sm font-black text-[#FBBF24]">✓</span>
+                  <span className="text-sm font-black text-green-600">✓</span>
                 </div>
 
                 <div>

@@ -4,7 +4,6 @@ import HandpickedItems from "@/components/layout/mainHeroSection/productSection"
 import OrganicBanner from "@/components/layout/mainHeroSection/banner";
 import SpecialOffer from "@/components/layout/mainHeroSection/specialOffer";
 import B2BMarketplace from "@/components/layout/b2bSection/b2bMarketPlace";
-import Footer from "@/components/layout/footerSection/b2bFootr";
 
 export default function Home() {
   return (
@@ -15,7 +14,6 @@ export default function Home() {
       <B2BMarketplace />
       <OrganicBanner />
       <SpecialOffer />
-      <Footer />
     </>
   );
 }
