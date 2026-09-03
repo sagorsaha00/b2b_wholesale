@@ -27,7 +27,7 @@ export default function CartPage() {
     })),
   );
 
-  /* ================= PAGINATION ================= */
+ 
 
   const totalPages = Math.ceil(cartItems.length / ITEMS_PER_PAGE);
 
@@ -38,7 +38,7 @@ export default function CartPage() {
     return cartItems.slice(startIndex, endIndex);
   }, [cartItems, currentPage]);
 
-  /* ================= QUANTITY ================= */
+  
 
   const increaseQuantity = (id: string | number) => {
     setCartItems((items) =>

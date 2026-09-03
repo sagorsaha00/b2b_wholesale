@@ -597,7 +597,7 @@ export default function Navbar() {
                       </div>
                     )}
 
-                  {/* Mobile Providers */}
+               
                   {item.megaMenu === "providers" &&
                     mobileMegaOpen === item.label && (
                       <div className="pb-4 pl-2">
