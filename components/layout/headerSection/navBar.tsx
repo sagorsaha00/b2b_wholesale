@@ -28,9 +28,9 @@ export default function Navbar() {
 
   return (
     <nav className="border-b border-gray-200 bg-white">
-      {/* ================= DESKTOP NAVBAR ================= */}
+     
       <div className="mx-auto hidden max-w-7xl items-center px-4 lg:flex">
-        {/* All Categories */}
+     
         <div className="group relative">
           <button
             type="button"
