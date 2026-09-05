@@ -70,7 +70,7 @@ export const SingleProduct = {
   category: "Organic Foods",
   supplier: "Markood Verified Supplier",
   companyName: "Sagor Company",
-  CompanyLogo:'/logo/fevicon.svg'
+  CompanyLogo: "/logo/fevicon.svg",
 };
 
 export const priceTiers = [
@@ -100,4 +100,61 @@ export const thumbnails = [
   "/product/product2.png",
   "/product/product3.png",
   "/product/product4.png",
+];
+
+export const PROVIDERS = [
+  {
+    name: "Tech World BD",
+    category: "Electronics",
+    location: "Dhaka, Bangladesh",
+    rating: "4.8",
+    products: 245,
+    orders: "1.2K+",
+    verified: true,
+  },
+  {
+    name: "Fresh Supply Co.",
+    category: "Food & Grocery",
+    location: "Chattogram, Bangladesh",
+    rating: "4.7",
+    products: 180,
+    orders: "950+",
+    verified: true,
+  },
+  {
+    name: "Style Hub",
+    category: "Fashion & Apparel",
+    location: "Dhaka, Bangladesh",
+    rating: "4.6",
+    products: 320,
+    orders: "2.1K+",
+    verified: true,
+  },
+  {
+    name: "Home Essentials",
+    category: "Home & Living",
+    location: "Narayanganj, Bangladesh",
+    rating: "4.5",
+    products: 156,
+    orders: "780+",
+    verified: false,
+  },
+  {
+    name: "Agro Trade BD",
+    category: "Agriculture",
+    location: "Rajshahi, Bangladesh",
+    rating: "4.8",
+    products: 210,
+    orders: "1.5K+",
+    verified: true,
+  },
+  {
+    name: "Auto Parts Center",
+    category: "Automotive",
+    location: "Dhaka, Bangladesh",
+    rating: "4.6",
+    products: 198,
+    orders: "890+",
+    verified: true,
+  },
 ];

@@ -293,48 +293,7 @@ export default function Navbar() {
                         />
                       </div>
 
-                      <div className="mt-7 border-t border-gray-100 pt-6">
-                        <p className="mb-4 text-sm font-bold text-gray-900">
-                          Popular Providers
-                        </p>
-
-                        <div className="grid grid-cols-3 gap-3">
-                          {[
-                            "ABC Trading",
-                            "Global Foods",
-                            "Prime Electronics",
-                          ].map((provider) => (
-                            <Link
-                              key={provider}
-                              href="#"
-                              className="
-                                rounded-lg
-                                border border-gray-100
-                                p-4
-                                transition
-                                hover:border-blue-200
-                                hover:bg-blue-50
-                              "
-                            >
-                              <div className="flex items-center gap-3">
-                                <div className="flex h-9 w-9 items-center justify-center rounded-full bg-blue-100">
-                                  <Store className="h-4 w-4 text-blue-600" />
-                                </div>
-
-                                <div>
-                                  <p className="text-sm font-bold text-gray-900">
-                                    {provider}
-                                  </p>
-
-                                  <p className="text-xs text-gray-500">
-                                    View Store
-                                  </p>
-                                </div>
-                              </div>
-                            </Link>
-                          ))}
-                        </div>
-                      </div>
+                      
                     </div>
                   </div>
                 )}
@@ -372,25 +331,25 @@ export default function Navbar() {
                         <DealItem
                           title="Bulk Purchase Deals"
                           description="Save when buying larger quantities"
-                          href="/"
+                          href="/deal/BulkPurchaseDeals"
                         />
 
                         <DealItem
                           title="Provider Offers"
                           description="Special offers from providers"
-                          href="/"
+                          href="/deal/ProviderOffers"
                         />
 
                         <DealItem
                           title="Clearance"
                           description="Limited stock at lower prices"
-                          href="/"
+                          href="/deal/Clearance"
                         />
 
                         <DealItem
                           title="New Buyer Offers"
                           description="Special deals for new buyers"
-                          href="/"
+                          href="/deal/NewBuyerOffers"
                         />
                       </div>
 
@@ -622,64 +581,37 @@ export default function Navbar() {
                           Verified Providers
                         </Link>
 
-                        <div className="mt-2 rounded-lg bg-blue-50 p-3">
-                          <p className="mb-2 text-xs font-bold text-gray-900">
-                            Popular Providers
-                          </p>
-
-                          {[
-                            "ABC Trading",
-                            "Global Foods",
-                            "Prime Electronics",
-                          ].map((provider) => (
-                            <Link
-                              key={provider}
-                              href="#"
-                              className="
-                                flex items-center gap-2
-                                rounded-md
-                                px-2 py-2
-                                text-sm text-gray-600
-                                hover:bg-white
-                                hover:text-blue-600
-                              "
-                            >
-                              <Store className="h-4 w-4 text-blue-600" />
-
-                              {provider}
-                            </Link>
-                          ))}
-                        </div>
+                        
                       </div>
                     )}
 
-                  {/* Mobile Deals */}
+               
                   {item.megaMenu === "deals" &&
                     mobileMegaOpen === item.label && (
                       <div className="pb-4 pl-2">
                         <Link
-                          href="/"
+                          href="/deal/BulkPurchaseDeals"
                           className="block rounded-lg px-3 py-3 text-sm text-gray-600 hover:bg-yellow-50 hover:text-yellow-600"
                         >
                           Bulk Purchase Deals
                         </Link>
 
                         <Link
-                          href="/"
+                          href="/deal/ProviderOffers"
                           className="block rounded-lg px-3 py-3 text-sm text-gray-600 hover:bg-yellow-50 hover:text-yellow-600"
                         >
                           Provider Offers
                         </Link>
 
                         <Link
-                          href="/"
+                          href="/deal/Clearance"
                           className="block rounded-lg px-3 py-3 text-sm text-gray-600 hover:bg-yellow-50 hover:text-yellow-600"
                         >
                           Clearance
                         </Link>
 
                         <Link
-                          href="/"
+                          href="/deal/NewBuyerOffers"
                           className="block rounded-lg px-3 py-3 text-sm text-gray-600 hover:bg-yellow-50 hover:text-yellow-600"
                         >
                           New Buyer Offers

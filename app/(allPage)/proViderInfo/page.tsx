@@ -24,7 +24,7 @@ const providers = [
     id: 1,
     name: "FreshMart Wholesale",
     slug: "freshmart-wholesale",
-    logo: "/images/store-logo.png",
+    logo: "/icon/image.png",
     location: "Stockholm, Sweden",
     description:
       "Premium food and grocery supplier for restaurants, retailers and businesses.",
@@ -42,7 +42,7 @@ const providers = [
     id: 2,
     name: "Nordic Food Suppliers",
     slug: "nordic-food-suppliers",
-    logo: "/images/store-logo-2.png",
+    logo: "/icon/image.png",
     location: "Gothenburg, Sweden",
     description:
       "Reliable wholesale supplier providing quality food products at competitive prices.",
@@ -60,7 +60,7 @@ const providers = [
     id: 3,
     name: "Global Grocery Hub",
     slug: "global-grocery-hub",
-    logo: "/images/store-logo-3.png",
+    logo: "/icon/image.png",
     location: "Malmö, Sweden",
     description:
       "Large-scale grocery distributor serving retailers, hotels and restaurants.",
@@ -78,7 +78,7 @@ const providers = [
     id: 4,
     name: "Scandinavian Fresh",
     slug: "scandinavian-fresh",
-    logo: "/images/store-logo-4.png",
+    logo: "/icon/image.png",
     location: "Uppsala, Sweden",
     description:
       "Fresh and organic products supplied directly to businesses and retailers.",
@@ -96,7 +96,7 @@ const providers = [
     id: 5,
     name: "Stockholm Business Foods",
     slug: "stockholm-business-foods",
-    logo: "/images/store-logo-5.png",
+    logo: "/icon/image.png",
     location: "Stockholm, Sweden",
     description:
       "Business-focused food supplier with flexible wholesale pricing.",
@@ -114,7 +114,7 @@ const providers = [
     id: 6,
     name: "Euro Wholesale Market",
     slug: "euro-wholesale-market",
-    logo: "/images/store-logo-6.png",
+    logo: "/icon/image.png",
     location: "Västerås, Sweden",
     description:
       "International wholesale provider offering a wide range of business products.",
@@ -445,7 +445,7 @@ export default function AllWholesaleProviders() {
                   {/* Actions */}
                   <div className="mt-4 grid grid-cols-[1fr_auto] gap-2">
                     <Link
-                      href={`/provider/${provider.slug}`}
+                      href={`/storeFront`}
                       className="
                         flex h-10 items-center justify-center gap-2
                         rounded-lg bg-blue-600
