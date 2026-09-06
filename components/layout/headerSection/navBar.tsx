@@ -179,12 +179,7 @@ export default function Navbar() {
                           href="/products/newArrivals"
                         />
 
-                        <MegaMenuItem
-                          icon={<Star />}
-                          title="Best Sellers"
-                          description="Popular business products"
-                          href="/products/bestSellers"
-                        />
+                      
 
                         <MegaMenuItem
                           icon={<Store />}
