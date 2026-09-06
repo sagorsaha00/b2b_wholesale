@@ -190,14 +190,14 @@ export default function Navbar() {
                           icon={<Store />}
                           title="Top Product"
                           description="Top selling products from providers"
-                          href="/providers/topProduct"
+                          href="/products/topProduct"
                         />
 
                         <MegaMenuItem
                           icon={<Star />}
                           title="Highly Rated"
                           description="Top reviewed products"
-                          href="/"
+                          href="/products/highlyRated"
                         />
                       </div>
 

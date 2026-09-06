@@ -20,8 +20,8 @@ export function ProductItem({ product }: { product: Product }) {
       {/* Product Image */}
       <div className="relative flex h-24 w-24 shrink-0 items-center justify-center sm:h-28 sm:w-28">
         <Image
-          src={product.image}
-          alt={product.name}
+          src={product.image ?? ""}
+          alt={product.name ? "" + product.name : "Product Image"}
           width={120}
           height={120}
           className="h-full w-full object-contain transition-transform duration-300 group-hover:scale-105"
@@ -34,7 +34,7 @@ export function ProductItem({ product }: { product: Product }) {
           {product.name}
         </h3>
 
-        <ProductRating rating={product.rating} />
+        <ProductRating rating={product.rating ?? 0} reviews={product.reviews} />
 
         <div className="mt-2 flex items-center gap-2">
           {product.oldPrice && (
@@ -116,8 +116,8 @@ export function SpecialProDuctItem({ product }: { product: Product }) {
 
       <div className="relative flex h-[220px] w-full items-center justify-center border-b border-[#eeeeee] p-6">
         <Image
-          src={product.image}
-          alt={product.name}
+          src={product.image ?? ""}
+          alt={product.name ? "" + product.name : "Product Image"}
           width={220}
           height={220}
           className="h-full w-full object-contain transition-transform duration-500 group-hover:scale-105"
@@ -129,7 +129,7 @@ export function SpecialProDuctItem({ product }: { product: Product }) {
           {product.name}
         </h3>
 
-        <ProductRating rating={product.rating} />
+        <ProductRating rating={product.rating ?? 0} reviews={product.reviews} />
 
         <div className="mt-3 flex items-center gap-2">
           {product.oldPrice && (
