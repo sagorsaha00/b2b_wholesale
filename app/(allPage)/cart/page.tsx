@@ -177,8 +177,8 @@ export default function CartPage() {
                         <div className="flex min-w-0 items-center gap-3">
                           <div className="relative flex h-20 w-20 shrink-0 items-center justify-center overflow-hidden rounded-xl border border-gray-200 bg-gray-50 sm:h-24 sm:w-24">
                             <Image
-                              src={product.image}
-                              alt={product.name}
+                              src={product.image || ""}
+                              alt={product.name || ""}
                               fill
                               sizes="96px"
                               className="object-contain p-2"

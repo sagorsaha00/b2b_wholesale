@@ -68,8 +68,8 @@ export default function ProductCardSection({ product }: { product: Product }) {
         )}
 
         <Image
-          src={product.image}
-          alt={product.name}
+          src={product.image || ""}
+          alt={product.name || ""}
           width={220}
           height={220}
           className="h-full w-full object-contain transition-transform duration-500 group-hover:scale-105"
@@ -81,7 +81,7 @@ export default function ProductCardSection({ product }: { product: Product }) {
           {product.name}
         </h3>
 
-        <ProductRating rating={product.rating} />
+        <ProductRating rating={product.rating ||  0 } reviews={product.reviews} />
 
         <div className="mt-2 flex items-center gap-2">
           {product.oldPrice && (
@@ -147,7 +147,11 @@ export function SpecialProDuctItem({ product }: { product: Product }) {
   );
 }
 
-export function B2bMarketPlaceCard({ section }: { section: MarketplaceSection }) {
+export function B2bMarketPlaceCard({
+  section,
+}: {
+  section: MarketplaceSection;
+}) {
   const SectionIcon = section.icon;
   const isYellow = section.type === "yellow";
 
@@ -180,8 +184,6 @@ export function B2bMarketPlaceCard({ section }: { section: MarketplaceSection })
           backgroundColor: isYellow ? "#febb13" : "#0055ff",
         }}
       />
-
-       
 
       {/* Header */}
       <div className="mb-7 flex items-start gap-4 pt-2">

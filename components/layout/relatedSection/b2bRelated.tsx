@@ -16,14 +16,14 @@ export default function B2BRelated() {
       <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6">
         {products.map((product) => (
           <article
-            onClick={routerPush(product.id)}
+            onClick={routerPush(product.id as number)}
             key={product.id}
             className="group cursor-pointer flex flex-col overflow-hidden rounded-lg border border-gray-200 bg-white p-3 transition-shadow hover:shadow-md  "
           >
             <div className="relative aspect-square w-full overflow-hidden rounded-md bg-gray-100 ">
               <Image
-                src={product.image}
-                alt={product.name}
+                src={product.image || ""}
+                alt={product.name || ""}
                 fill
                 sizes="(max-width: 640px) 50vw, (max-width: 768px) 33vw, (max-width: 1024px) 25vw, 16vw"
                 className="object-cover transition-transform duration-300 group-hover:scale-105"

@@ -76,8 +76,8 @@ function SpecialOffer({ product }: { product: Product }) {
 
       <div className="relative mx-auto mt-8 flex h-[330px] w-full items-center justify-center px-10">
         <Image
-          src={product.image}
-          alt={product.name}
+          src={product.image || ""}
+          alt={product.name || ""}
           width={360}
           height={360}
           className="h-full w-full object-contain transition-transform duration-500 group-hover:scale-105"

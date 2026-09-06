@@ -12,7 +12,6 @@ import {
   List,
   MapPin,
   MessageCircle,
-  Package,
   Search,
   ShieldCheck,
   Star,
