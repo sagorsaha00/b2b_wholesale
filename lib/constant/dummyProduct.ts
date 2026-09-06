@@ -1,4 +1,4 @@
-import { AllProduct, Product } from "./product.type";
+import { AllProduct, Filters, Product } from "./product.type";
 
 export const products: Product[] = [
   // B2C Retail Products
@@ -311,11 +311,13 @@ export const Allproducts: AllProduct[] = [
     supplier: "GreenField Agro Traders",
     supplierImage: "/suppliers/greenfield.jpg",
     years: 4,
+    isTopProduct: true,
   },
   {
     id: "p2",
     name: "Wireless Bluetooth Earbuds — OEM Custom Branding",
     image: "/products/earbuds.jpg",
+    isBestSeller: true,
     price: "BDT 620.00",
     oldPrice: "BDT 780.00",
     sale: true,
@@ -328,6 +330,7 @@ export const Allproducts: AllProduct[] = [
     supplier: "Shenzhen Voxtech Electronics",
     supplierImage: "/suppliers/voxtech.jpg",
     years: 8,
+    isTopProduct: true,
   },
   {
     id: "p3",
@@ -359,6 +362,7 @@ export const Allproducts: AllProduct[] = [
     supplier: "Precision Tools Manufacturing",
     supplierImage: "/suppliers/precision-tools.jpg",
     years: 15,
+    isTopProduct: true,
   },
   {
     id: "p5",
@@ -372,6 +376,7 @@ export const Allproducts: AllProduct[] = [
     category: "home-kitchen",
     countryCode: "in",
     verified: true,
+    isBestSeller: true,
     moq: "Min. order: 50 sets",
     supplier: "Homeline Kitchenware Co.",
     supplierImage: "/suppliers/homeline.jpg",
@@ -392,12 +397,14 @@ export const Allproducts: AllProduct[] = [
     supplier: "AgroChem Solutions",
     supplierImage: "/suppliers/agrochem.jpg",
     years: 9,
+    isTopProduct: true,
   },
   {
     id: "p7",
     name: "LED Headlight Assembly — Universal Fit Auto Parts",
     image: "/products/headlight.jpg",
     price: "BDT 1,120.00",
+    isBestSeller: true,
     rating: 4.6,
     reviews: 23,
     category: "automotive",
@@ -424,3 +431,12 @@ export const Allproducts: AllProduct[] = [
     years: 3,
   },
 ];
+
+export const initialFilters: Filters = {
+  countryCodes: [],
+  categorySlug: null,
+  verifiedOnly: false,
+  minRating: null,
+  minPrice: "",
+  maxPrice: "",
+};

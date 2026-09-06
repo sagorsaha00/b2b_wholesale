@@ -1,38 +1,60 @@
+"use client";
+
+import { useState, useMemo } from "react";
+import ProductsAside from "@/components/product/allProductaSide";
 import ProductCardSection from "@/components/product/productCard";
-import { Allproducts } from "@/lib/constant/dummyProduct";
+import { Allproducts, initialFilters } from "@/lib/constant/dummyProduct";
+import { Filters } from "@/lib/constant/product.type";
 
 export default function TopProductGrid() {
-  const curated = Allproducts.filter((p) => p.isTopProduct);
+  const [filters, setFilters] = useState<Filters>(initialFilters);
 
-  // Fallback: if nothing is explicitly curated yet, show the most-reviewed
-  // products so the shelf is never empty.
-  const items =
-    curated.length > 0
-      ? curated
-      : [...Allproducts]
-          .sort((a, b) => (b.reviews ?? 0) - (a.reviews ?? 0))
-          .slice(0, 4);
+  const filteredItems = useMemo(() => {
+    return Allproducts.filter((p) => {
+      if (!p.isNew) return false;
+
+      if (
+        filters.categories?.length > 0 &&
+        !filters.categories.includes(p.category)
+      ) {
+        return false;
+      }
+
+      if (filters.minPrice && p.price < filters.minPrice) return false;
+      if (filters.maxPrice && p.price > filters.maxPrice) return false;
+
+      return true;
+    });
+  }, [filters]);
 
   return (
     <section className="mx-auto max-w-[1400px] px-6 py-10 md:px-8">
       <div className="mb-6">
-        <h2 className="text-xl font-bold text-gray-900">Top Products</h2>
+        <h2 className="text-xl font-bold text-gray-900">New Arrivals</h2>
         <p className="mt-1 text-sm text-gray-500">
-          Best-selling picks trusted by the most buyers.
+          The latest products added by our suppliers.
         </p>
       </div>
 
-      {items.length === 0 ? (
-        <div className="border border-dashed border-gray-300 py-20 text-center text-sm text-gray-400">
-          No top products yet.
-        </div>
-      ) : (
-        <div className="grid grid-cols-2 gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
-          {items.map((p) => (
-            <ProductCardSection key={p.id} product={p} />
-          ))}
-        </div>
-      )}
+      <div className="flex flex-col gap-8 lg:flex-row">
+        <aside className="w-full shrink-0 lg:w-64">
+          <ProductsAside onChange={setFilters} />
+        </aside>
+
+        <main className="flex-1">
+          {filteredItems.length === 0 ? (
+            <div className="rounded-lg border border-dashed border-gray-300 py-20 text-center text-sm text-gray-400">
+              No new arrivals match your filters.
+            </div>
+          ) : (
+            <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-4">
+              {filteredItems.map((p) => (
+                <ProductCardSection key={p.id} product={p} />
+              ))}
+            </div>
+          )}
+        </main>
+      </div>
     </section>
   );
 }

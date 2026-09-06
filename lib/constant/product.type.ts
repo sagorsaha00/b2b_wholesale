@@ -51,4 +51,15 @@ export type AllProduct = {
   buyable?: boolean;
   isNew?: boolean;
   isTopProduct?: boolean;
+  isBestSeller?: boolean;
+};
+
+export type Filters = {
+  countryCodes: string[];
+  categorySlug: string | null;
+  verifiedOnly: boolean;
+  minRating: number | null;
+  minPrice: string;
+  maxPrice: string;
+  categories: string;
 };

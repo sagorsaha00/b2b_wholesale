@@ -1,26 +1,12 @@
 "use client";
 
-import { categories, countries } from "@/lib/constant/dummyProduct";
+import {
+  categories,
+  countries,
+  initialFilters,
+} from "@/lib/constant/dummyProduct";
+import { Filters } from "@/lib/constant/product.type";
 import { useState } from "react";
-
-
-export type Filters = {
-  countryCodes: string[];
-  categorySlug: string | null;
-  verifiedOnly: boolean;
-  minRating: number | null;
-  minPrice: string;
-  maxPrice: string;
-};
-
-const initialFilters: Filters = {
-  countryCodes: [],
-  categorySlug: null,
-  verifiedOnly: false,
-  minRating: null,
-  minPrice: "",
-  maxPrice: "",
-};
 
 export default function ProductsAside({
   onChange,
