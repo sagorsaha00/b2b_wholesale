@@ -511,12 +511,7 @@ export default function Navbar() {
                           New Arrivals
                         </Link>
 
-                        <Link
-                          href="/"
-                          className="block rounded-lg px-3 py-3 text-sm text-gray-600 hover:bg-blue-50 hover:text-blue-600"
-                        >
-                          Best Sellers
-                        </Link>
+                        
 
                         <Link
                           href="/"

@@ -4,8 +4,7 @@ import { Allproducts } from "@/lib/constant/dummyProduct";
 export default function BestSellersGrid() {
   const curated = Allproducts.filter((p) => p.isBestSeller);
 
-  // Fallback: if nothing is explicitly curated yet, show the most-reviewed
-  // products so the shelf is never empty.
+  
   const items =
     curated.length > 0
       ? curated
