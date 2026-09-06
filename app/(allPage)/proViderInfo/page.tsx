@@ -159,54 +159,7 @@ export default function AllWholesaleProviders() {
   return (
     <section className="min-h-screen bg-[#f8fafc] px-4 py-8 sm:px-6 lg:px-8">
       <div className="mx-auto max-w-[1250px]">
-        {/* =====================================================
-            PAGE HEADER
-        ===================================================== */}
-        <div className="mb-6">
-          <div className="flex items-center gap-2 text-xs text-gray-500">
-            <Link href="/" className="hover:text-blue-600">
-              Home
-            </Link>
-
-            <span>/</span>
-
-            <Link href="/wholesale" className="hover:text-blue-600">
-              Wholesale
-            </Link>
-
-            <span>/</span>
-
-            <span className="font-medium text-gray-900">Providers</span>
-          </div>
-
-          <div className="mt-5 flex flex-col gap-4 lg:flex-row lg:items-end lg:justify-between">
-            <div>
-              <div className="flex items-center gap-2">
-                <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-blue-50 text-blue-600">
-                  <Building2 size={21} />
-                </div>
-
-                <h1 className="text-2xl font-bold text-gray-900">
-                  Wholesale Providers
-                </h1>
-              </div>
-
-              <p className="mt-2 max-w-2xl text-sm text-gray-500">
-                Discover verified wholesale providers and find the right
-                business supplier for your bulk purchasing needs.
-              </p>
-            </div>
-
-            <div className="rounded-lg border border-gray-200 bg-white px-4 py-3">
-              <p className="text-[11px] text-gray-400">Available Providers</p>
-
-              <p className="text-lg font-bold text-gray-900">
-                {filteredProviders.length}
-              </p>
-            </div>
-          </div>
-        </div>
-
+        
         {/* =====================================================
             FILTER BAR
         ===================================================== */}

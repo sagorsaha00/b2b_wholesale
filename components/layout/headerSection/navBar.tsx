@@ -10,11 +10,8 @@ import {
   Star,
   Store,
   ShoppingBag,
-  Percent,
 } from "lucide-react";
-
 import { NAVIGATION_ITEMS, categories } from "@/lib/constant/navigation";
-
 import { DealItem, MegaMenuItem } from "../../../lib/ui/item";
 
 export default function Navbar() {
@@ -28,9 +25,7 @@ export default function Navbar() {
 
   return (
     <nav className="border-b border-gray-200 bg-white">
-     
       <div className="mx-auto hidden max-w-7xl items-center px-4 lg:flex">
-     
         <div className="group relative">
           <button
             type="button"
@@ -174,35 +169,28 @@ export default function Navbar() {
                           icon={<ShoppingBag />}
                           title="All Products"
                           description="Browse all products"
-                          href="/"
+                          href="/products/allProduct"
                         />
 
                         <MegaMenuItem
                           icon={<ShoppingBag />}
                           title="New Arrivals"
                           description="Recently added products"
-                          href="/"
+                          href="/products/newArrivals"
                         />
 
                         <MegaMenuItem
                           icon={<Star />}
                           title="Best Sellers"
                           description="Popular business products"
-                          href="/"
-                        />
-
-                        <MegaMenuItem
-                          icon={<Percent />}
-                          title="Wholesale Deals"
-                          description="Products at better prices"
-                          href="/"
+                          href="/products/bestSellers"
                         />
 
                         <MegaMenuItem
                           icon={<Store />}
-                          title="Top Providers"
-                          description="Products from trusted providers"
-                          href="/providers"
+                          title="Top Product"
+                          description="Top selling products from providers"
+                          href="/providers/topProduct"
                         />
 
                         <MegaMenuItem
@@ -275,25 +263,23 @@ export default function Navbar() {
                           icon={<Store />}
                           title="All Providers"
                           description="Browse every provider"
-                          href="/providers"
+                          href="/provider/AllProviders"
                         />
 
                         <MegaMenuItem
                           icon={<Star />}
                           title="Top Rated"
                           description="Highest rated providers"
-                          href="/providers/top-rated"
+                          href="/provider/TopRatedProviders"
                         />
 
                         <MegaMenuItem
                           icon={<Star />}
                           title="Verified Providers"
                           description="Trusted businesses"
-                          href="/providers/verified"
+                          href="/provider/VerifiedProviders"
                         />
                       </div>
-
-                      
                     </div>
                   </div>
                 )}
@@ -459,7 +445,6 @@ export default function Navbar() {
         </div>
       )}
 
-    
       {mobileMenuOpen && (
         <div className="border-t border-gray-200 bg-white lg:hidden">
           <div className="max-h-[calc(100vh-56px)] overflow-y-auto px-4 py-3">
@@ -556,7 +541,6 @@ export default function Navbar() {
                       </div>
                     )}
 
-               
                   {item.megaMenu === "providers" &&
                     mobileMegaOpen === item.label && (
                       <div className="pb-4 pl-2">
@@ -580,12 +564,9 @@ export default function Navbar() {
                         >
                           Verified Providers
                         </Link>
-
-                        
                       </div>
                     )}
 
-               
                   {item.megaMenu === "deals" &&
                     mobileMegaOpen === item.label && (
                       <div className="pb-4 pl-2">
