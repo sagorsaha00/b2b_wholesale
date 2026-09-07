@@ -1,7 +1,8 @@
 "use client";
 
 import Link from "next/link";
-import { Heart, MapPin, Truck } from "lucide-react";
+
+import { Heart, MapPin, Store, Truck } from "lucide-react"; 
 
 export default function TopBar() {
   return (
@@ -33,6 +34,19 @@ export default function TopBar() {
 
         
         <div className="flex shrink-0 items-center gap-4 lg:gap-6">
+          <Link
+            href="/seller"
+            className="flex items-center gap-1.5 whitespace-nowrap text-blue-600 font-semibold transition hover:text-blue-700"
+          >
+            <Store className="h-4 w-4 shrink-0" />
+            <span>Seller Portal</span>
+            <span className="rounded-full bg-blue-100 px-1.5 py-0.2 text-[10px] font-bold text-blue-700">
+              Admin
+            </span>
+          </Link>
+
+          <span className="h-4 w-px shrink-0 bg-gray-200" />
+
           <Link
             href="#"
             className="flex items-center gap-2 whitespace-nowrap transition hover:text-blue-600"

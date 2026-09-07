@@ -4,6 +4,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { ArrowRight, Mail, MapPin, Phone, Truck } from "lucide-react";
 import type { ReactNode } from "react";
+import { FooterLink, SocialButton } from "@/lib/ui/footerLink";
 
 export default function Footer() {
   return (
@@ -61,7 +62,9 @@ export default function Footer() {
 
             <div className="mt-5 space-y-3">
               <FooterLink href="/products/allProduct">All Products</FooterLink>
-              <FooterLink href="/provider/AllProviders">Find Suppliers</FooterLink>
+              <FooterLink href="/provider/AllProviders">
+                Find Suppliers
+              </FooterLink>
               <FooterLink href="/category">Categories</FooterLink>
               <FooterLink href="/deal/Clearance">Wholesale Deals</FooterLink>
             </div>
@@ -108,7 +111,6 @@ export default function Footer() {
             </div>
           </div>
 
-          
           <div className="lg:col-span-2">
             <h3 className="text-sm font-black uppercase tracking-wider text-[#0F172A]">
               Support
@@ -122,7 +124,6 @@ export default function Footer() {
             </div>
           </div>
 
-          
           <div className="lg:col-span-2">
             <h3 className="text-sm font-black uppercase tracking-wider text-[#0F172A]">
               Business
@@ -141,14 +142,12 @@ export default function Footer() {
         </div>
       </div>
 
-     
       <div className="border-t border-gray-200 bg-gray-50">
         <div className="mx-auto flex max-w-7xl flex-col gap-5 px-4 py-6 sm:px-6 md:flex-row md:items-center md:justify-between lg:px-8">
           <p className="text-xs text-gray-500">
             © {new Date().getFullYear()} Markood. All rights reserved.
           </p>
 
-          
           <div className="flex items-center gap-2">
             <SocialButton>
               <span className="text-xs font-black">f</span>
@@ -177,31 +176,5 @@ export default function Footer() {
         </div>
       </div>
     </footer>
-  );
-}
-
-/* Footer Link */
-function FooterLink({ href, children }: { href: string; children: ReactNode }) {
-  return (
-    <Link
-      href={href}
-      className="group flex items-center gap-1 text-sm text-gray-500 transition-all duration-200 hover:translate-x-1 hover:text-[#2563EB]"
-    >
-      <ArrowRight className="h-3 w-3 opacity-0 transition-all duration-200 group-hover:opacity-100" />
-
-      {children}
-    </Link>
-  );
-}
-
-/* Social Button */
-export function SocialButton({ children }: { children: ReactNode }) {
-  return (
-    <button
-      type="button"
-      className="flex h-9 w-9 items-center justify-center rounded-lg border border-gray-200 bg-white text-gray-500 transition-all duration-200 hover:border-[#2563EB] hover:bg-[#2563EB] hover:text-white"
-    >
-      {children}
-    </button>
   );
 }
