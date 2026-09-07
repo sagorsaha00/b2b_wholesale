@@ -31,7 +31,7 @@ export default function TopBar() {
           </span>
         </div>
 
-        {/* Right Section */}
+        
         <div className="flex shrink-0 items-center gap-4 lg:gap-6">
           <Link
             href="#"

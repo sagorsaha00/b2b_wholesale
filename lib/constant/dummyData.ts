@@ -1,4 +1,5 @@
 import {
+  AllCategory,
   AllProduct,
   Filters,
   Product,
@@ -625,4 +626,30 @@ export const wishlistItems: WishlistItem[] = [
     supplier: "Precision Tools Manufacturing",
     inStock: false,
   },
+];
+
+
+ 
+
+export const Allcategories: AllCategory[] = [
+  { slug: "electronics", name: "Electronics", icon: "Cpu" },
+  { slug: "food-beverage", name: "Food & Beverage", icon: "UtensilsCrossed" },
+  { slug: "fashion-apparel", name: "Fashion & Apparel", icon: "Shirt" },
+  { slug: "home-kitchen", name: "Home & Kitchen", icon: "Sofa" },
+  { slug: "beauty-personal-care", name: "Beauty & Personal Care", icon: "Sparkles" },
+  { slug: "agriculture", name: "Agriculture", icon: "Wheat" },
+  { slug: "automotive", name: "Automotive", icon: "Car" },
+  { slug: "machinery-tools", name: "Machinery & Tools", icon: "Cog" },
+  { slug: "construction-real-estate", name: "Construction & Real Estate", icon: "Building2" },
+  { slug: "furniture", name: "Furniture", icon: "Armchair" },
+  { slug: "health-medical", name: "Health & Medical", icon: "HeartPulse" },
+  { slug: "sports-outdoor", name: "Sports & Outdoor", icon: "Dumbbell" },
+  { slug: "toys-kids", name: "Toys & Kids", icon: "Baby" },
+  { slug: "jewelry-accessories", name: "Jewelry & Accessories", icon: "Gem" },
+  { slug: "packaging-printing", name: "Packaging & Printing", icon: "Package" },
+  { slug: "chemicals", name: "Chemicals", icon: "FlaskConical" },
+  { slug: "textiles-fabrics", name: "Textiles & Fabrics", icon: "Scissors" },
+  { slug: "office-supplies", name: "Office Supplies", icon: "Briefcase" },
+  { slug: "pet-supplies", name: "Pet Supplies", icon: "PawPrint" },
+  { slug: "books-stationery", name: "Books & Stationery", icon: "BookOpen" },
 ];

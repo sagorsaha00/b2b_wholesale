@@ -247,7 +247,7 @@ export default function B2BHero() {
             </div>
 
             <Link
-              href="/"
+              href="/category"
               className="
                 hidden
                 shrink-0

@@ -66,7 +66,7 @@ export default function ProductCardSection({
           </span>
         </div>
 
-        {/* Supplier / dealer row */}
+         
         {product.supplier && (
           <div className="mt-2.5 flex items-center gap-2">
             <Image
@@ -83,9 +83,7 @@ export default function ProductCardSection({
             </span>
           </div>
         )}
-
-        {/* Actions — stop propagation so a click here doesn't also trigger the
-            card's own onClick (e.g. navigating to the product detail page) */}
+ 
         <div className="relative z-30 mt-3 flex gap-2">
           {product.buyable !== false && (
             <button

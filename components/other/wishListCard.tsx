@@ -14,7 +14,7 @@ export default function WishlistCard({
 }) {
   return (
     <div className="mx-auto flex w-full max-w-4xl flex-col gap-4 rounded-xl border border-gray-200 bg-white p-4 sm:p-5 md:flex-row md:items-center md:gap-5">
-      {/* Product Image */}
+ 
       <div className="flex h-48 w-full shrink-0 items-center justify-center overflow-hidden rounded-lg bg-gray-50 md:h-28 md:w-28">
         <Image
           src={item.image || "/product/product1.png"}
@@ -25,7 +25,7 @@ export default function WishlistCard({
         />
       </div>
 
-      {/* Product Information */}
+    
       <div className="min-w-0 flex-1">
         <h3 className="line-clamp-2 text-sm font-bold leading-snug text-[#0F172A] md:text-base">
           {item.name}
@@ -35,7 +35,7 @@ export default function WishlistCard({
           {item.supplier}
         </p>
 
-        {/* Rating */}
+      
         <div className="mt-2 flex items-center gap-2">
           <StarRow rating={item.rating} size={13} />
 
@@ -44,7 +44,7 @@ export default function WishlistCard({
           )}
         </div>
 
-        {/* Price */}
+       
         <div className="mt-2 flex flex-wrap items-center gap-2">
           {item.oldPrice && (
             <span className="text-xs font-medium text-gray-400 line-through">
@@ -57,7 +57,7 @@ export default function WishlistCard({
           </span>
         </div>
 
-        {/* Stock Status */}
+        
         {!item.inStock && (
           <div className="mt-2">
             <span className="inline-block rounded-full bg-red-50 px-2.5 py-1 text-[11px] font-bold text-red-600">
@@ -67,7 +67,7 @@ export default function WishlistCard({
         )}
       </div>
 
-      {/* Provider Information */}
+      
       <div className="shrink-0 border-t border-gray-100 pt-3 md:min-w-[150px] md:border-t-0 md:border-l md:pl-5 md:pt-0">
         <h2 className="text-sm font-bold text-[#0F172A]">Provider Name</h2>
 
@@ -78,9 +78,9 @@ export default function WishlistCard({
         </p>
       </div>
 
-      {/* Actions */}
+  
       <div className="flex w-full shrink-0 gap-2 md:w-auto md:flex-col">
-        {/* Add To Cart */}
+        
         <button
           type="button"
           disabled={!item.inStock}
@@ -90,7 +90,7 @@ export default function WishlistCard({
           <span>Add to cart</span>
         </button>
 
-        {/* Remove */}
+       
         <button
           type="button"
           onClick={() => onRemove?.(item.id)}

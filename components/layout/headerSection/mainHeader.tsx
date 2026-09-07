@@ -22,6 +22,7 @@ import {
 } from "../../../lib/ui/transaction";
 import { categories, recentSearches } from "@/lib/constant/navigation";
 import HeaderCart from "@/lib/ui/headerCart";
+import { Allcategories } from "@/lib/constant/dummyData";
 
 export default function MainHeader() {
   const [searchOpen, setSearchOpen] = useState(false);
@@ -163,9 +164,7 @@ export default function MainHeader() {
             </button>
           </div>
 
-          {/* =====================================================
-              MOBILE SEARCH
-          ===================================================== */}
+           
 
           <button
             type="button"
@@ -294,7 +293,7 @@ export default function MainHeader() {
                         "
                       />
 
-                      {/* Clear */}
+                     
 
                       <AnimatePresence>
                         {searchValue && (
@@ -341,7 +340,7 @@ export default function MainHeader() {
                       </AnimatePresence>
                     </div>
 
-                    {/* Category */}
+                     
 
                     <div className="hidden sm:block">
                       <select
@@ -361,7 +360,7 @@ export default function MainHeader() {
                           focus:border-blue-500
                         "
                       >
-                        {categories.map((category) => (
+                        {Allcategories.map((category) => (
                           <option key={"id"}>{category.name}</option>
                         ))}
                       </select>

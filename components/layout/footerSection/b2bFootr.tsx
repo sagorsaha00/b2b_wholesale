@@ -108,7 +108,7 @@ export default function Footer() {
             </div>
           </div>
 
-          {/* Support */}
+          
           <div className="lg:col-span-2">
             <h3 className="text-sm font-black uppercase tracking-wider text-[#0F172A]">
               Support
@@ -122,7 +122,7 @@ export default function Footer() {
             </div>
           </div>
 
-          {/* Business */}
+          
           <div className="lg:col-span-2">
             <h3 className="text-sm font-black uppercase tracking-wider text-[#0F172A]">
               Business
@@ -141,14 +141,14 @@ export default function Footer() {
         </div>
       </div>
 
-      {/* Bottom Footer */}
+     
       <div className="border-t border-gray-200 bg-gray-50">
         <div className="mx-auto flex max-w-7xl flex-col gap-5 px-4 py-6 sm:px-6 md:flex-row md:items-center md:justify-between lg:px-8">
           <p className="text-xs text-gray-500">
             © {new Date().getFullYear()} Markood. All rights reserved.
           </p>
 
-          {/* Social */}
+          
           <div className="flex items-center gap-2">
             <SocialButton>
               <span className="text-xs font-black">f</span>
