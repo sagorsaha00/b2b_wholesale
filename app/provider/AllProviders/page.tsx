@@ -33,7 +33,7 @@ const providers: Provider[] = [
     name: "Fresh Foods Ltd.",
     slug: "fresh-foods-ltd",
     image: "/providers/fresh-foods.png",
-    location: "Dhaka, Bangladesh",
+    location: "  Sweden",
     rating: 4.9,
     reviews: 128,
     products: 245,
@@ -46,7 +46,7 @@ const providers: Provider[] = [
     name: "Green Agro",
     slug: "green-agro",
     image: "/providers/green-agro.png",
-    location: "Gazipur, Bangladesh",
+    location: "  Sweden",
     rating: 4.8,
     reviews: 96,
     products: 180,
@@ -56,10 +56,10 @@ const providers: Provider[] = [
   },
   {
     id: 3,
-    name: "Dhaka Wholesale Mart",
-    slug: "dhaka-wholesale-mart",
-    image: "/providers/dhaka-wholesale.png",
-    location: "Dhaka, Bangladesh",
+    name: " Wholesale Mart",
+    slug: "-wholesale-mart",
+    image: "/providers/-wholesale.png",
+    location: " , Sweden",
     rating: 4.7,
     reviews: 74,
     products: 320,
@@ -72,7 +72,7 @@ const providers: Provider[] = [
     name: "Royal Fashion BD",
     slug: "royal-fashion-bd",
     image: "/providers/royal-fashion.png",
-    location: "Narayanganj, Bangladesh",
+    location: " , Sweden",
     rating: 4.8,
     reviews: 112,
     products: 195,
@@ -85,7 +85,7 @@ const providers: Provider[] = [
     name: "Prime Electronics",
     slug: "prime-electronics",
     image: "/providers/prime-electronics.png",
-    location: "Chattogram, Bangladesh",
+    location: "  Sweden",
     rating: 4.6,
     reviews: 58,
     products: 140,
@@ -98,7 +98,7 @@ const providers: Provider[] = [
     name: "United Traders",
     slug: "united-traders",
     image: "/providers/united-traders.png",
-    location: "Sylhet, Bangladesh",
+    location: "  Sweden",
     rating: 4.5,
     reviews: 42,
     products: 110,
@@ -126,9 +126,6 @@ export default function AllProviders() {
 
   return (
     <section className="min-h-screen bg-[#F8FAFC]">
-      
-
-      
       <div className="mx-auto max-w-7xl px-4 py-10 sm:px-6 lg:px-8">
         {filteredProviders.length > 0 ? (
           <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
@@ -146,9 +143,7 @@ export default function AllProviders() {
                   href={`/provider/${provider.slug}`}
                   className="group block h-full rounded-2xl border border-gray-100 bg-white p-5 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:border-[#2563EB]/20 hover:shadow-lg"
                 >
-                 
                   <div className="flex items-start gap-4">
-                   
                     <div className="relative h-16 w-16 shrink-0 overflow-hidden rounded-2xl border border-gray-100 bg-[#EFF6FF]">
                       <Image
                         src={provider.image}

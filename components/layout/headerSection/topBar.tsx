@@ -20,7 +20,7 @@ export default function TopBar() {
 
             <span className="truncate whitespace-nowrap">
               Deliver to{" "}
-              <span className="font-semibold text-gray-900">Bangladesh</span>
+              <span className="font-semibold text-gray-900">Sweden</span>
             </span>
           </div>
 
@@ -42,7 +42,7 @@ export default function TopBar() {
           </Link>
 
           <Link
-            href="#"
+            href="/wishList"
             className="flex items-center gap-2 whitespace-nowrap transition hover:text-blue-600"
           >
             <Heart className="h-4 w-4 shrink-0" />

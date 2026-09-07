@@ -118,7 +118,7 @@ export default function ProductsAside({
 
       {/* Price range */}
       <div className="mt-5 border-t border-gray-200 pt-5">
-        <h3 className="mb-3 text-sm font-semibold">Price range (BDT)</h3>
+        <h3 className="mb-3 text-sm font-semibold">Price range ($)</h3>
         <div className="flex items-center gap-2">
           <input
             type="text"

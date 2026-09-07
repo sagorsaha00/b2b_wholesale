@@ -49,7 +49,7 @@ export default function BusinessVerificationPage() {
     address: "",
     city: "",
     postalCode: "",
-    country: "Bangladesh",
+    country: "Sweden",
 
     representativeName: "",
     representativeEmail: "",
@@ -171,10 +171,7 @@ export default function BusinessVerificationPage() {
         </div>
       </header>
 
-    
       <main className="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8 lg:py-10">
-       
-
         <form onSubmit={handleSubmit}>
           <div className="grid grid-cols-1 gap-6 lg:grid-cols-3">
             {/* Left */}
@@ -565,7 +562,7 @@ export default function BusinessVerificationPage() {
                       onChange={handleChange}
                       className="w-full rounded-xl border border-gray-200 bg-white px-4 py-3 text-sm text-gray-800 outline-none transition focus:border-[#2563EB] focus:ring-2 focus:ring-[#2563EB]/10"
                     >
-                      <option value="Bangladesh">Bangladesh</option>
+                      <option value="Sweden">Sweden</option>
                       <option value="India">India</option>
                       <option value="Pakistan">Pakistan</option>
                       <option value="Nepal">Nepal</option>
@@ -903,8 +900,6 @@ export default function BusinessVerificationPage() {
                   </p>
                 </div>
               </motion.div>
-
-               
 
               {/* Verification Steps */}
               <motion.div

@@ -34,7 +34,7 @@ export default function Footer() {
                 <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-[#EFF6FF]">
                   <MapPin className="h-4 w-4 text-[#2563EB]" />
                 </div>
-                Bangladesh
+                Sweden
               </div>
 
               <div className="flex items-center gap-3 text-sm text-gray-600">
@@ -133,7 +133,7 @@ export default function Footer() {
 
               <FooterLink href="/orders">Order Tracking</FooterLink>
 
-              <FooterLink href="/wishlist">Wishlist</FooterLink>
+              <FooterLink href="/wishList">Wishlist</FooterLink>
 
               <FooterLink href="/about">About Markood</FooterLink>
             </div>
