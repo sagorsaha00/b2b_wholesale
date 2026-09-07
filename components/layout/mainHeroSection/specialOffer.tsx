@@ -15,6 +15,8 @@ const products: Product[] = [
     oldPrice: "$55.00",
     rating: 0,
     discount: 40,
+    sale: true,
+    description: "Save on Jack Link's Jerky, Teriyaki",
   },
   {
     id: 2,
@@ -24,6 +26,8 @@ const products: Product[] = [
     oldPrice: "$32.00",
     rating: 5,
     discount: 40,
+    sale: true,
+    description: "Save on Jack Link's Jerky, Teriyaki",
   },
   {
     id: 3,
@@ -33,6 +37,7 @@ const products: Product[] = [
     oldPrice: "$15.00",
     rating: 4,
     discount: 40,
+    description: "Save on Jack Link's Jerky, Teriyaki",
   },
   {
     id: 4,
@@ -42,6 +47,7 @@ const products: Product[] = [
     oldPrice: "$54.00",
     rating: 0,
     discount: 40,
+    description: "Save on Jack Link's Jerky, Teriyaki",
   },
   {
     id: 5,
@@ -51,6 +57,7 @@ const products: Product[] = [
     oldPrice: "$23.00",
     rating: 0,
     discount: 40,
+    description: "Save on Jack Link's Jerky, Teriyaki",
   },
   {
     id: 6,
@@ -60,6 +67,7 @@ const products: Product[] = [
     oldPrice: "$65.00",
     rating: 0,
     discount: 40,
+    description: "Save on Jack Link's Jerky, Teriyaki",
   },
 ];
 

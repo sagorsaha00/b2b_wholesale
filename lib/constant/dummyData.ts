@@ -74,7 +74,7 @@ export const products: Product[] = [
   },
   {
     id: "p1",
-    title: "Fresh Organic Carrots — Bulk Export Grade A",
+    name: "Fresh Organic Carrots — Bulk Export Grade A",
     price: "$ 38.00 / kg",
     image: "/product/product6.png",
     moq: "Min. order: 500 kg",
@@ -87,7 +87,7 @@ export const products: Product[] = [
   },
   {
     id: "p2",
-    title: "Wireless Bluetooth Earbuds — OEM Custom Branding",
+    name: "Wireless Bluetooth Earbuds — OEM Custom Branding",
     price: "$ 620.00",
     image: "/product/product6.png",
     oldPrice: "$ 780.00",
@@ -104,7 +104,7 @@ export const products: Product[] = [
   },
   {
     id: "p3",
-    title: "Cotton Woven Fabric Roll — Wholesale Textile Supply",
+    name: "Cotton Woven Fabric Roll — Wholesale Textile Supply",
     price: "$ 210.00 / m",
     image: "/product/product2.png",
     moq: "Min. order: 1,000 m",
@@ -119,7 +119,7 @@ export const products: Product[] = [
   },
   {
     id: "p4",
-    title: "Industrial CNC Milling Machine — Heavy Duty",
+    name: "Industrial CNC Milling Machine — Heavy Duty",
     price: "$ 1,240,000.00",
     image: "/product/product3.png",
     moq: "Min. order: 1 unit",
@@ -132,7 +132,7 @@ export const products: Product[] = [
   },
   {
     id: "p5",
-    title: "Non-Stick Cookware Set — 7 Piece Kitchen Bundle",
+    name: "Non-Stick Cookware Set — 7 Piece Kitchen Bundle",
     price: "$ 1,850.00",
     moq: "Min. order: 50 sets",
     supplier: "Homeline Kitchenware Co.",
@@ -147,7 +147,7 @@ export const products: Product[] = [
   },
   {
     id: "p6",
-    title: "NPK Fertilizer Granules — Agricultural Grade",
+    name: "NPK Fertilizer Granules — Agricultural Grade",
     price: "$ 42.00 / kg",
     moq: "Min. order: 2,000 kg",
     image: "/product/product5.png",
@@ -160,7 +160,7 @@ export const products: Product[] = [
   },
   {
     id: "p7",
-    title: "LED Headlight Assembly — Universal Fit Auto Parts",
+    name: "LED Headlight Assembly — Universal Fit Auto Parts",
     price: "$ 1,120.00",
     moq: "Min. order: 200 pieces",
     image: "/product/product3.png",
@@ -175,7 +175,7 @@ export const products: Product[] = [
   },
   {
     id: "p8",
-    title: "Herbal Face Serum — Private Label Skincare",
+    name: "Herbal Face Serum — Private Label Skincare",
     price: "$ 340.00",
     moq: "Min. order: 300 units",
     supplier: "Botanix Beauty Labs",

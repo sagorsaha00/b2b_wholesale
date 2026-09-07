@@ -5,12 +5,10 @@ import Link from "next/link";
 import Image from "next/image";
 import {
   Search,
-  ShoppingCart,
   User,
   ChevronDown,
   X,
   Clock3,
-  ArrowRight,
 } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import {

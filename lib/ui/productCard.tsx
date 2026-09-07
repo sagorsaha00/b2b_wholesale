@@ -67,9 +67,13 @@ export default function ProductCardSection({ product }: { product: Product }) {
   return (
     <div className="group relative flex min-w-0 cursor-pointer flex-col overflow-hidden border border-gray-100 bg-white transition-all duration-300 hover:-translate-y-1 hover:shadow-lg">
       <span className="ease absolute left-0 top-0 z-20 h-0 w-0 border-t-2 border-[#febb13] transition-all duration-200 group-hover:w-full" />
+
       <span className="ease absolute right-0 top-0 z-20 h-0 w-0 border-r-2 border-[#0055ff] transition-all duration-200 group-hover:h-full" />
+
       <span className="ease absolute bottom-0 right-0 z-20 h-0 w-0 border-b-2 border-[#febb13] transition-all duration-200 group-hover:w-full" />
+
       <span className="ease absolute bottom-0 left-0 z-20 h-0 w-0 border-l-2 border-[#0055ff] transition-all duration-200 group-hover:h-full" />
+
       <div className="relative flex h-[190px] items-center justify-center overflow-hidden bg-white p-5 sm:h-[210px]">
         {product.sale && (
           <span className="absolute right-3 top-3 z-10 rounded-sm bg-[#0055ff] px-2.5 py-1 text-[10px] font-bold uppercase tracking-wide text-white">
@@ -91,11 +95,11 @@ export default function ProductCardSection({ product }: { product: Product }) {
           {product.name}
         </h3>
 
-        {product.description && (
+        
           <p className="mt-1.5 line-clamp-2 text-xs leading-5 text-gray-500">
             {product.description}
           </p>
-        )}
+      
 
         <div className="mt-2">
           <ProductRating

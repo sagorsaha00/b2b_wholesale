@@ -53,6 +53,7 @@ export type AllProduct = {
   isNew?: boolean;
   isTopProduct?: boolean;
   isBestSeller?: boolean;
+  description?: string;
 };
 
 export type Filters = {
@@ -66,7 +67,7 @@ export type Filters = {
 };
 export type RatingSummary = {
   overall: number;
-  label: string; // "Satisfied", "Excellent" etc.
+  label: string;
   totalReviews: number;
   service: number;
   shipping: number;

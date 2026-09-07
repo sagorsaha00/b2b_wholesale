@@ -4,13 +4,7 @@ import React from "react";
 import {
   X,
   Printer,
-  Download,
   Building2,
-  CheckCircle2,
-  Calendar,
-  CreditCard,
-  Truck,
-  ShieldCheck,
 } from "lucide-react";
 import { SellerOrder } from "@/lib/constant/sellerData";
 

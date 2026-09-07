@@ -1,88 +1,9 @@
 "use client";
 
 import Image from "next/image";
-import { Star } from "lucide-react";
 import ProductRating from "@/lib/ui/ratingCard";
 import ProductCardSection from "@/lib/ui/productCard";
-type Product = {
-  id: number;
-  name: string;
-  image: string;
-  price: string;
-  oldPrice?: string;
-  rating: number;
-  sale?: boolean;
-  description?: string;
-};
-
-const products: Product[] = [
-  {
-    id: 1,
-    name: "Save on Jack Link's Jerky, Teriyaki",
-    image: "/product/product1.png",
-    price: "$250.00",
-    rating: 5,
-    description: "Save on Jack Link's Jerky, Teriyaki",
-  },
-  {
-    id: 2,
-    name: "Finders Keepers Chocolate",
-    image: "/product/product2.png",
-    price: "$45.00",
-    rating: 3,
-    description: "Save on Jack Link's Jerky, Teriyaki",
-  },
-  {
-    id: 3,
-    name: "Kitchens of India Paste Chicken",
-    image: "/product/product3.png",
-    price: "$150.00",
-    rating: 2,
-    description: "Save on Jack Link's Jerky, Teriyaki",
-  },
-  {
-    id: 4,
-    name: "Organic Earl Grey Loose Leaf Tea",
-    image: "/product/product4.png",
-    price: "$34.00",
-    oldPrice: "$35.00",
-    rating: 0,
-    sale: true,
-    description: "Save on Jack Link's Jerky, Teriyaki",
-  },
-  {
-    id: 5,
-    name: "Premium Fresh Vegetable Box",
-    image: "/product/product5.png",
-    price: "$65.00",
-    rating: 5,
-    description: "Save on Jack Link's Jerky, Teriyaki",
-  },
-  {
-    id: 6,
-    name: "Fresh Cherry Tomatoes",
-    image: "/product/product6.png",
-    price: "$45.00",
-    rating: 4,
-    description: "Save on Jack Link's Jerky, Teriyaki",
-  },
-  {
-    id: 7,
-    name: "Organic Cashew Nuts",
-    image: "/product/product7.png",
-    price: "$20.00",
-    rating: 5,
-    description: "Save on Jack Link's Jerky, Teriyaki",
-  },
-  {
-    id: 8,
-    name: "Premium Organic Snacks",
-    image: "/product/product3.png",
-    price: "$55.00",
-    rating: 4,
-    description: "Save on Jack Link's Jerky, Teriyaki",
-  },
-];
+import { products } from "@/lib/constant/dummyData";
 
 export default function HandpickedItems() {
   return (
@@ -118,8 +39,8 @@ export default function HandpickedItems() {
               </span>
 
               <Image
-                src={products[6].image}
-                alt={products[6].name}
+                src={products[6].image || ""}
+                alt={products[6].name || ""}
                 width={450}
                 height={450}
                 priority
@@ -128,7 +49,10 @@ export default function HandpickedItems() {
             </div>
 
             <div className="border-t border-gray-100 px-6 py-6 text-center sm:px-8">
-              <ProductRating rating={products[6].rating} />
+              <ProductRating
+                rating={products[6].rating ?? 0}
+                reviews={products[6].reviews}
+              />
 
               <h3 className="mt-3 text-base font-bold text-gray-900 sm:text-lg">
                 Healthy Snack Box Variety Pack

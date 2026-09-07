@@ -2,17 +2,7 @@
 
 import React, { useState } from "react";
 import Link from "next/link";
-import {
-  Menu,
-  X,
-  Bell,
-  Search,
-  Store,
-  ArrowLeft,
-  CheckCircle2,
-  Package,
-  Plus,
-} from "lucide-react";
+import { CheckCircle2 } from "lucide-react";
 import {
   initialSellerProducts,
   initialSellerOrders,
@@ -20,20 +10,24 @@ import {
   SellerProduct,
   SellerOrder,
 } from "@/lib/constant/sellerData";
-import SellerSidebar, { SellerTab } from "@/components/seller/SellerSidebar";
+import SellerSidebar from "@/components/seller/SellerSidebar";
 import SellerStatsOverview from "@/components/seller/SellerStatsOverview";
 import SellerProductList from "@/components/seller/SellerProductList";
 import SellerAddProductForm from "@/components/seller/SellerAddProductForm";
 import SellerOrdersList from "@/components/seller/SellerOrdersList";
 import SellerSettings from "@/components/seller/SellerSettings";
 import SellerInvoiceModal from "@/components/seller/SellerInvoiceModal";
+import { SellerTab } from "@/lib/constant/data.type";
 
 export default function SellerAdminPage() {
   const [activeTab, setActiveTab] = useState<SellerTab>("overview");
   const [sidebarOpen, setSidebarOpen] = useState(false);
-  const [products, setProducts] = useState<SellerProduct[]>(initialSellerProducts);
+  const [products, setProducts] = useState<SellerProduct[]>(
+    initialSellerProducts,
+  );
   const [orders, setOrders] = useState<SellerOrder[]>(initialSellerOrders);
-  const [selectedInvoiceOrder, setSelectedInvoiceOrder] = useState<SellerOrder | null>(null);
+  const [selectedInvoiceOrder, setSelectedInvoiceOrder] =
+    useState<SellerOrder | null>(null);
   const [toastMessage, setToastMessage] = useState<string | null>(null);
 
   const showToast = (msg: string) => {
@@ -64,10 +58,15 @@ export default function SellerAdminPage() {
           ? {
               ...p,
               stock: newStock,
-              stockStatus: newStock > 20 ? "In Stock" : newStock > 0 ? "Low Stock" : "Out of Stock",
+              stockStatus:
+                newStock > 20
+                  ? "In Stock"
+                  : newStock > 0
+                    ? "Low Stock"
+                    : "Out of Stock",
             }
-          : p
-      )
+          : p,
+      ),
     );
     showToast("Product inventory updated.");
   };
@@ -75,22 +74,26 @@ export default function SellerAdminPage() {
   // Handler to update order fulfillment status
   const handleUpdateOrderStatus = (
     orderId: string,
-    newStatus: SellerOrder["fulfillmentStatus"]
+    newStatus: SellerOrder["fulfillmentStatus"],
   ) => {
     setOrders((prev) =>
-      prev.map((o) => (o.id === orderId ? { ...o, fulfillmentStatus: newStatus } : o))
+      prev.map((o) =>
+        o.id === orderId ? { ...o, fulfillmentStatus: newStatus } : o,
+      ),
     );
 
     if (selectedInvoiceOrder && selectedInvoiceOrder.id === orderId) {
       setSelectedInvoiceOrder((prev) =>
-        prev ? { ...prev, fulfillmentStatus: newStatus } : null
+        prev ? { ...prev, fulfillmentStatus: newStatus } : null,
       );
     }
     showToast(`Order ${orderId} updated to "${newStatus}".`);
   };
 
   const pendingOrdersCount = orders.filter(
-    (o) => o.fulfillmentStatus === "Pending Review" || o.fulfillmentStatus === "Confirmed"
+    (o) =>
+      o.fulfillmentStatus === "Pending Review" ||
+      o.fulfillmentStatus === "Confirmed",
   ).length;
 
   const currentStats = {
@@ -120,8 +123,6 @@ export default function SellerAdminPage() {
         />
       )}
 
-      
-       
       {/* Main Layout Body */}
       <div className="flex">
         {/* Sidebar */}
@@ -176,4 +177,3 @@ export default function SellerAdminPage() {
     </div>
   );
 }
-
