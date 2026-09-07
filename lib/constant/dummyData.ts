@@ -1,6 +1,6 @@
 import {
-  AllCategory,
   AllProduct,
+  Category,
   Filters,
   Product,
   RatingSummary,
@@ -284,12 +284,6 @@ export const countries: Country[] = [
   { code: "th", name: "Thailand", flag: "🇹🇭", count: 64 },
   { code: "tr", name: "Turkey", flag: "🇹🇷", count: 41 },
 ];
-
-export type Category = {
-  slug: string;
-  name: string;
-  icon: string; // lucide-react icon name
-};
 
 export const categories: Category[] = [
   { slug: "vegetables", name: "Vegetables & Fruits", icon: "Carrot" },
@@ -628,19 +622,24 @@ export const wishlistItems: WishlistItem[] = [
   },
 ];
 
-
- 
-
-export const Allcategories: AllCategory[] = [
+export const Allcategories: Category[] = [
   { slug: "electronics", name: "Electronics", icon: "Cpu" },
   { slug: "food-beverage", name: "Food & Beverage", icon: "UtensilsCrossed" },
   { slug: "fashion-apparel", name: "Fashion & Apparel", icon: "Shirt" },
   { slug: "home-kitchen", name: "Home & Kitchen", icon: "Sofa" },
-  { slug: "beauty-personal-care", name: "Beauty & Personal Care", icon: "Sparkles" },
+  {
+    slug: "beauty-personal-care",
+    name: "Beauty & Personal Care",
+    icon: "Sparkles",
+  },
   { slug: "agriculture", name: "Agriculture", icon: "Wheat" },
   { slug: "automotive", name: "Automotive", icon: "Car" },
   { slug: "machinery-tools", name: "Machinery & Tools", icon: "Cog" },
-  { slug: "construction-real-estate", name: "Construction & Real Estate", icon: "Building2" },
+  {
+    slug: "construction-real-estate",
+    name: "Construction & Real Estate",
+    icon: "Building2",
+  },
   { slug: "furniture", name: "Furniture", icon: "Armchair" },
   { slug: "health-medical", name: "Health & Medical", icon: "HeartPulse" },
   { slug: "sports-outdoor", name: "Sports & Outdoor", icon: "Dumbbell" },

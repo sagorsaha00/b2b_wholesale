@@ -60,10 +60,10 @@ export default function Footer() {
             </h3>
 
             <div className="mt-5 space-y-3">
-              <FooterLink href="/products">All Products</FooterLink>
-              <FooterLink href="/providers">Find Suppliers</FooterLink>
-              <FooterLink href="/categories">Categories</FooterLink>
-              <FooterLink href="/deals">Wholesale Deals</FooterLink>
+              <FooterLink href="/products/allProduct">All Products</FooterLink>
+              <FooterLink href="/provider/AllProviders">Find Suppliers</FooterLink>
+              <FooterLink href="/category">Categories</FooterLink>
+              <FooterLink href="/deal/Clearance">Wholesale Deals</FooterLink>
             </div>
           </div>
 
@@ -115,10 +115,10 @@ export default function Footer() {
             </h3>
 
             <div className="mt-5 space-y-4">
-              <FooterLink href="/help">Help Center</FooterLink>
-              <FooterLink href="/contact">Contact Us</FooterLink>
-              <FooterLink href="/shipping">Shipping Information</FooterLink>
-              <FooterLink href="/returns">Returns & Refunds</FooterLink>
+              <FooterLink href="/ ">Help Center</FooterLink>
+              <FooterLink href="/ ">Contact Us</FooterLink>
+              <FooterLink href="/ ">Shipping Information</FooterLink>
+              <FooterLink href="/ ">Returns & Refunds</FooterLink>
             </div>
           </div>
 
@@ -170,7 +170,7 @@ export default function Footer() {
 
             <span className="h-3 w-px bg-gray-300" />
 
-            <Link href="/terms" className="transition hover:text-[#2563EB]">
+            <Link href="/ " className="transition hover:text-[#2563EB]">
               Terms
             </Link>
           </div>
@@ -195,7 +195,7 @@ function FooterLink({ href, children }: { href: string; children: ReactNode }) {
 }
 
 /* Social Button */
-function SocialButton({ children }: { children: ReactNode }) {
+export function SocialButton({ children }: { children: ReactNode }) {
   return (
     <button
       type="button"

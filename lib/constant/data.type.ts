@@ -85,8 +85,8 @@ export type WishlistItem = {
   supplier: string;
   inStock: boolean;
 };
-export type AllCategory = {
+export type Category = {
   slug: string;
   name: string;
-  icon: string;  
+  icon: string;
 };
