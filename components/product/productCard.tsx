@@ -1,10 +1,13 @@
 "use client";
 
 import { useState } from "react";
-import { AllProduct } from "@/lib/constant/product.type";
+import { AllProduct } from "@/lib/constant/data.type";
 import ProductRating from "@/lib/ui/ratingCard";
 import Image from "next/image";
-import { PRODUCT_IMAGE_FALLBACK, SUPPLIER_IMAGE_FALLBACK } from "@/lib/constant/imageFallBack";
+import {
+  PRODUCT_IMAGE_FALLBACK,
+  SUPPLIER_IMAGE_FALLBACK,
+} from "@/lib/constant/imageFallBack";
 export default function ProductCardSection({
   product,
   onAddToCart,

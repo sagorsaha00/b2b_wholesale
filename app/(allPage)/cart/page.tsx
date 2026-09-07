@@ -13,7 +13,7 @@ import {
   Trash2,
 } from "lucide-react";
 
-import { products } from "@/lib/constant/dummyProduct";
+import { products } from "@/lib/constant/dummyData";
 
 const ITEMS_PER_PAGE = 6;
 
@@ -27,8 +27,6 @@ export default function CartPage() {
     })),
   );
 
- 
-
   const totalPages = Math.ceil(cartItems.length / ITEMS_PER_PAGE);
 
   const currentProducts = useMemo(() => {
@@ -37,8 +35,6 @@ export default function CartPage() {
 
     return cartItems.slice(startIndex, endIndex);
   }, [cartItems, currentPage]);
-
-  
 
   const increaseQuantity = (id: string | number) => {
     setCartItems((items) =>
@@ -65,8 +61,6 @@ export default function CartPage() {
       ),
     );
   };
-
-
 
   const removeProduct = (id: string | number) => {
     setCartItems((items) => {

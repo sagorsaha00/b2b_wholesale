@@ -63,3 +63,25 @@ export type Filters = {
   maxPrice: string;
   categories: string;
 };
+export type RatingSummary = {
+  overall: number;
+  label: string; // "Satisfied", "Excellent" etc.
+  totalReviews: number;
+  service: number;
+  shipping: number;
+  quality: number;
+  withPhotosCount: number;
+  productReviewCount: number;
+  storeReviewCount: number;
+};
+export type WishlistItem = {
+  id: string;
+  name: string;
+  image: string;
+  price: string;
+  oldPrice?: string;
+  rating: number;
+  reviews?: number;
+  supplier: string;
+  inStock: boolean;
+};

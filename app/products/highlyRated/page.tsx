@@ -1,5 +1,5 @@
 import ProductCardSection from "@/components/product/productCard";
-import { Allproducts } from "@/lib/constant/dummyProduct";
+import { Allproducts } from "@/lib/constant/dummyData";
 
 const MIN_RATING = 4.5;
 

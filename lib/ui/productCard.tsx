@@ -1,6 +1,6 @@
 import Image from "next/image";
 import ProductRating from "./ratingCard";
-import { MarketplaceSection, Product } from "../constant/product.type";
+import { MarketplaceSection, Product } from "../constant/data.type";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 
@@ -81,7 +81,7 @@ export default function ProductCardSection({ product }: { product: Product }) {
           {product.name}
         </h3>
 
-        <ProductRating rating={product.rating ||  0 } reviews={product.reviews} />
+        <ProductRating rating={product.rating || 0} reviews={product.reviews} />
 
         <div className="mt-2 flex items-center gap-2">
           {product.oldPrice && (
@@ -138,7 +138,7 @@ export function SpecialProDuctItem({ product }: { product: Product }) {
             </span>
           )}
 
-          <span className="text-[18px] font-bold text-[#febb13]">
+          <span className="text-[18px] font-bold text-black">
             {product.price}
           </span>
         </div>

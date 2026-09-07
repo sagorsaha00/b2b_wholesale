@@ -4,8 +4,8 @@ import {
   categories,
   countries,
   initialFilters,
-} from "@/lib/constant/dummyProduct";
-import { Filters } from "@/lib/constant/product.type";
+} from "@/lib/constant/dummyData";
+import { Filters } from "@/lib/constant/data.type";
 import { useState } from "react";
 
 export default function ProductsAside({

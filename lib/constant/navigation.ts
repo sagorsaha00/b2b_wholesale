@@ -12,7 +12,7 @@ import {
   Building2,
   Store,
 } from "lucide-react";
-import { MarketplaceSection } from "./product.type";
+import { MarketplaceSection } from "./data.type";
 
 export const NAVIGATION_ITEMS = [
   {

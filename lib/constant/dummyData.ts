@@ -1,4 +1,10 @@
-import { AllProduct, Filters, Product } from "./product.type";
+import {
+  AllProduct,
+  Filters,
+  Product,
+  RatingSummary,
+  WishlistItem,
+} from "./data.type";
 
 export const products: Product[] = [
   // B2C Retail Products
@@ -436,7 +442,187 @@ export const initialFilters: Filters = {
   countryCodes: [],
   categorySlug: null,
   verifiedOnly: false,
+  categories: "",
   minRating: null,
   minPrice: "",
   maxPrice: "",
 };
+
+export type Review = {
+  id: string;
+  initial: string;
+  avatarColor: string;
+  maskedName: string;
+  country: string;
+  countryFlag: string;
+  verifiedPurchase: boolean;
+  repeatBuyer?: boolean;
+  rating: number;
+  date: string;
+  variantAttrs?: { label: string; value: string }[];
+  text: string;
+  photos?: string[];
+  helpfulCount: number;
+};
+
+export const ratingSummary: RatingSummary = {
+  overall: 3.6,
+  label: "Satisfied",
+  totalReviews: 166,
+  service: 3.5,
+  shipping: 3.7,
+  quality: 3.6,
+  withPhotosCount: 60,
+  productReviewCount: 0,
+  storeReviewCount: 166,
+};
+
+export const reviews: Review[] = [
+  {
+    id: "r1",
+    initial: "h",
+    avatarColor: "#C2410C",
+    maskedName: "h***a",
+    country: "United States",
+    countryFlag: "🇺🇸",
+    verifiedPurchase: true,
+    repeatBuyer: true,
+    rating: 5,
+    date: "Jan 24, 2026",
+    variantAttrs: [
+      { label: "color", value: "White" },
+      { label: "ram", value: "16g" },
+      { label: "storage capacity", value: "1TB" },
+    ],
+    text: "I like the curved screen shape, very good quality.",
+    helpfulCount: 0,
+  },
+  {
+    id: "r2",
+    initial: "M",
+    avatarColor: "#C2410C",
+    maskedName: "M***t",
+    country: "United States",
+    countryFlag: "🇺🇸",
+    verifiedPurchase: true,
+    rating: 5,
+    date: "Jan 21, 2026",
+    variantAttrs: [
+      { label: "color", value: "White" },
+      { label: "ram", value: "16g" },
+      { label: "storage capacity", value: "1TB" },
+    ],
+    text: "Looks like a nice device, but getting it to Congo wasn't easy — the logistics carrier chosen wasn't the best fit for my country.",
+    helpfulCount: 0,
+  },
+  {
+    id: "r3",
+    initial: "J",
+    avatarColor: "#C2410C",
+    maskedName: "J***n",
+    country: "United States",
+    countryFlag: "🇺🇸",
+    verifiedPurchase: true,
+    rating: 5,
+    date: "Jan 20, 2026",
+    variantAttrs: [
+      { label: "color", value: "Gray" },
+      { label: "ram", value: "16g" },
+      { label: "storage capacity", value: "1TB" },
+    ],
+    text: "Appearance 10, System 10, Camera 10, Performance 10, Battery 10 — exceeded my expectations for the price. It even came with headphones, a screen protector and a case, plus a charger!",
+    helpfulCount: 3,
+  },
+  {
+    id: "r4",
+    initial: "S",
+    avatarColor: "#0EA5E9",
+    maskedName: "S***k",
+    country: "United Kingdom",
+    countryFlag: "🇬🇧",
+    verifiedPurchase: true,
+    rating: 4,
+    date: "Jan 12, 2026",
+    variantAttrs: [
+      { label: "color", value: "Black" },
+      { label: "ram", value: "8g" },
+      { label: "storage capacity", value: "512GB" },
+    ],
+    text: "Solid build quality and fast shipping. Docked one star since the charger cable was a bit short.",
+    helpfulCount: 1,
+  },
+];
+export type KeyAttribute = {
+  label: string;
+  value: string;
+};
+
+export type GlanceItem = {
+  title: string;
+  description: string;
+};
+
+export const keyAttributes: KeyAttribute[] = [
+  { label: "Brand Name", value: "shengyouyuan" },
+  { label: "Place of Origin", value: "Shandong, China" },
+  { label: "NEDC Max. Range", value: "101~200 km" },
+  { label: "Total Motor Power (kW)", value: "≤50kW" },
+  { label: "Total Motor Torque (N.m)", value: "≤100Nm" },
+  { label: "Battery Energy (kWh)", value: "≤30kWh" },
+];
+
+export const atAGlance: GlanceItem[] = [
+  {
+    title: "Nedc Max Range 101-200km:",
+    description:
+      "A range of 101 to 200 kilometers on a single charge ensures the vehicle can cover a significant distance, making it suitable for daily commuting and short trips.",
+  },
+  {
+    title: "Total Motor Power 50kW:",
+    description:
+      "With a total motor power of up to 50kW, the vehicle provides sufficient power for smooth and efficient driving, even in urban and hilly terrains.",
+  },
+  {
+    title: "Battery Energy 30kWh:",
+    description:
+      "The 30kWh battery capacity offers a balance between performance and energy efficiency, ensuring a reliable and consistent driving experience.",
+  },
+  {
+    title: "Curb Weight 860kg:",
+    description:
+      "A curb weight of 860kg makes the vehicle lightweight and easy to maneuver, which can contribute to better handling and lower energy consumption.",
+  },
+];
+export const wishlistItems: WishlistItem[] = [
+  {
+    id: "w1",
+    name: "Shengyouyuan Chinese-made High-speed Mini EV Van 5-Door 4-seater",
+    image: "/products/ev-van.jpg",
+    price: "BDT 49,122.08–307,013",
+    rating: 3.6,
+    reviews: 154,
+    supplier: "Shengyouyuan (Heze) Electronic Technology Co., Ltd.",
+    inStock: true,
+  },
+  {
+    id: "w2",
+    name: "Wireless Bluetooth Earbuds — OEM Custom Branding",
+    image: "/products/earbuds.jpg",
+    price: "BDT 620.00",
+    oldPrice: "BDT 780.00",
+    rating: 4.7,
+    reviews: 132,
+    supplier: "Shenzhen Voxtech Electronics",
+    inStock: true,
+  },
+  {
+    id: "w3",
+    name: "Industrial CNC Milling Machine — Heavy Duty",
+    image: "/products/cnc-machine.jpg",
+    price: "BDT 1,240,000.00",
+    rating: 4.2,
+    reviews: 7,
+    supplier: "Precision Tools Manufacturing",
+    inStock: false,
+  },
+];

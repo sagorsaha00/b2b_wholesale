@@ -3,7 +3,7 @@
 import Image from "next/image";
 import { useState } from "react";
 import ProductRating from "@/lib/ui/ratingCard";
-import { Product } from "@/lib/constant/product.type";
+import { Product } from "@/lib/constant/data.type";
 import { SpecialProDuctItem } from "@/lib/ui/productCard";
 
 const products: Product[] = [
@@ -92,7 +92,7 @@ function SpecialOffer({ product }: { product: Product }) {
         </h3>
 
         <div className="mt-4">
-          <span className="text-[20px] font-bold text-[#febb13]">
+          <span className="text-[20px] font-bold text-black">
             {product.price}
           </span>
         </div>

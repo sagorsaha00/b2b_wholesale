@@ -1,8 +1,8 @@
 "use client";
 
-import { Allproducts } from "@/lib/constant/dummyProduct";
-import { Filters } from "./allProductaSide";
+import { Allproducts } from "@/lib/constant/dummyData";
 import ProductCardSection from "./productCard";
+import { Filters } from "@/lib/constant/data.type";
 
 export default function ProductGrid({ filters }: { filters: Filters }) {
   const filtered = Allproducts.filter((p) => {

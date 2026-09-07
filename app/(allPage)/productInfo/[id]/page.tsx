@@ -23,18 +23,13 @@ import {
   priceTiers,
   SingleProduct,
   thumbnails,
-} from "../../../../lib/constant/dummyProduct";
+} from "../../../../lib/constant/dummyData";
+import ReviewsSection from "@/components/review/ReviewsSection";
 
 export default function ProductDetails() {
   const [selectedImage, setSelectedImage] = useState(SingleProduct.image);
   const [quantity, setQuantity] = useState(1);
   const [liked, setLiked] = useState(false);
-
-  {
-    /**
-     * here fetch data and all dynamic
-     **/
-  }
 
   return (
     <>
@@ -554,6 +549,7 @@ export default function ProductDetails() {
       </main>
 
       <B2BRelated />
+      <ReviewsSection />
     </>
   );
 }

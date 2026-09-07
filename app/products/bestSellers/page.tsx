@@ -1,10 +1,9 @@
 import ProductCardSection from "@/components/product/productCard";
-import { Allproducts } from "@/lib/constant/dummyProduct";
+import { Allproducts } from "@/lib/constant/dummyData";
 
 export default function BestSellersGrid() {
   const curated = Allproducts.filter((p) => p.isBestSeller);
 
-  
   const items =
     curated.length > 0
       ? curated

@@ -1,6 +1,6 @@
 import React from "react";
 import Image from "next/image";
-import { products } from "@/lib/constant/dummyProduct";
+import { products } from "@/lib/constant/dummyData";
 import { useRouter } from "next/navigation";
 
 export default function B2BRelated() {

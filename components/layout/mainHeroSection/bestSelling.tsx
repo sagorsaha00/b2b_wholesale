@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import { ArrowRight } from "lucide-react";
-import { products } from "@/lib/constant/dummyProduct";
+import { products } from "@/lib/constant/dummyData";
 import { ProductItem } from "@/lib/ui/productCard";
 
 export default function BestSellingItems() {
