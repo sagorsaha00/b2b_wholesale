@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useMemo } from "react";
+import { useMemo, useState } from "react";
 import ProductsAside from "@/components/product/allProductaSide";
 import ProductCardSection from "@/components/product/productCard";
 import { Allproducts, initialFilters } from "@/lib/constant/dummyData";
@@ -11,8 +11,10 @@ export default function NewArrivalsGrid() {
 
   const filteredItems = useMemo(() => {
     return Allproducts.filter((p) => {
+      // Only show new arrival products
       if (!p.isNew) return false;
 
+      // Category filter
       if (
         filters.categories?.length > 0 &&
         !filters.categories.includes(p.category)
@@ -20,34 +22,56 @@ export default function NewArrivalsGrid() {
         return false;
       }
 
-      if (filters.minPrice && p.price < filters.minPrice) return false;
-      if (filters.maxPrice && p.price > filters.maxPrice) return false;
+      // Minimum price filter
+      if (filters.minPrice !== undefined && p.price < filters.minPrice) {
+        return false;
+      }
+
+      // Maximum price filter
+      if (filters.maxPrice !== undefined && p.price > filters.maxPrice) {
+        return false;
+      }
 
       return true;
     });
   }, [filters]);
 
   return (
-    <section className="mx-auto max-w-[1400px] px-6 py-10 md:px-8">
+    <section className="mx-auto w-full max-w-[1400px] px-4 py-8 sm:px-6 md:px-8 md:py-10">
+      {/* Header */}
       <div className="mb-6">
-        <h2 className="text-xl font-bold text-gray-900">New Arrivals</h2>
+        <h2 className="text-xl font-bold text-gray-900 sm:text-2xl">
+          New Arrivals
+        </h2>
+
         <p className="mt-1 text-sm text-gray-500">
           The latest products added by our suppliers.
         </p>
       </div>
 
-      <div className="flex flex-col gap-8 lg:flex-row">
+      {/* Content */}
+      <div className="flex flex-col gap-8 lg:flex-row lg:items-start">
+        {/* Sidebar */}
         <aside className="w-full shrink-0 lg:w-64">
           <ProductsAside onChange={setFilters} />
         </aside>
 
-        <main className="flex-1">
+        {/* Products */}
+        <main className="min-w-0 flex-1">
           {filteredItems.length === 0 ? (
-            <div className="rounded-lg border border-dashed border-gray-300 py-20 text-center text-sm text-gray-400">
-              No new arrivals match your filters.
+            <div className="flex min-h-[300px] items-center justify-center rounded-lg border border-dashed border-gray-300 px-4 text-center">
+              <div>
+                <h3 className="text-base font-semibold text-gray-700">
+                  No New Arrivals Found
+                </h3>
+
+                <p className="mt-1 text-sm text-gray-400">
+                  No new arrivals match your selected filters.
+                </p>
+              </div>
             </div>
           ) : (
-            <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-4">
+            <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4">
               {filteredItems.map((p) => (
                 <ProductCardSection key={p.id} product={p} />
               ))}

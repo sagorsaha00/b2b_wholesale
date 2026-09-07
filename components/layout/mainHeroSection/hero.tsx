@@ -288,10 +288,7 @@ export default function B2BHero() {
               return (
                 <Link
                   key={category.name}
-                  href={`/categories/${category.name
-                    .toLowerCase()
-                    .replaceAll(" ", "-")
-                    .replaceAll("&", "and")}`}
+                  href={`products/allProduct`}
                   className="
                     group
                     flex

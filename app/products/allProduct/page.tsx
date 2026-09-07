@@ -1,17 +1,10 @@
 "use client";
 
-import ProductsAside, { Filters } from "@/components/product/allProductaSide";
+import ProductsAside from "@/components/product/allProductaSide";
 import ProductGrid from "@/components/product/productGridSection";
+import { Filters } from "@/lib/constant/data.type";
+import { initialFilters } from "@/lib/constant/dummyData";
 import { useState } from "react";
-
-const initialFilters: Filters = {
-  countryCodes: [],
-  categorySlug: null,
-  verifiedOnly: false,
-  minRating: null,
-  minPrice: "",
-  maxPrice: "",
-};
 
 export default function AllProductsSection() {
   const [filters, setFilters] = useState<Filters>(initialFilters);
