@@ -11,13 +11,13 @@ export function ProductItem({ product }: { product: Product }) {
       <span className="ease absolute right-0 top-0 z-20 h-0 w-0 border-r-2 border-[#0055ff] transition-all duration-200 group-hover:h-full" />
       <span className="ease absolute bottom-0 right-0 z-20 h-0 w-0 border-b-2 border-[#febb13] transition-all duration-200 group-hover:w-full" />
       <span className="ease absolute bottom-0 left-0 z-20 h-0 w-0 border-l-2 border-[#0055ff] transition-all duration-200 group-hover:h-full" />
+
       {product.discount && (
         <span className="absolute right-3 top-3 z-10 rounded-full bg-[#FBBF24] px-2.5 py-1 text-[9px] font-black uppercase tracking-wide text-[#0F172A]">
           {product.discount}% OFF
         </span>
       )}
 
-      {/* Product Image */}
       <div className="relative flex h-24 w-24 shrink-0 items-center justify-center sm:h-28 sm:w-28">
         <Image
           src={product.image ?? ""}
@@ -28,13 +28,24 @@ export function ProductItem({ product }: { product: Product }) {
         />
       </div>
 
-      {/* Product Information */}
       <div className="min-w-0 flex-1">
+        {/* Product Name */}
         <h3 className="line-clamp-2 text-sm font-bold leading-5 text-[#0F172A] sm:text-base">
           {product.name}
         </h3>
 
-        <ProductRating rating={product.rating ?? 0} reviews={product.reviews} />
+        {product.description && (
+          <p className="mt-1 line-clamp-2 text-xs leading-5 text-gray-500 sm:text-sm">
+            {product.description}
+          </p>
+        )}
+
+        <div className="mt-2">
+          <ProductRating
+            rating={product.rating ?? 0}
+            reviews={product.reviews}
+          />
+        </div>
 
         <div className="mt-2 flex items-center gap-2">
           {product.oldPrice && (
@@ -54,12 +65,11 @@ export function ProductItem({ product }: { product: Product }) {
 
 export default function ProductCardSection({ product }: { product: Product }) {
   return (
-    <div className="group relative cursor-pointer flex min-w-0 flex-col overflow-hidden border border-gray-100 bg-white transition-all duration-300 hover:-translate-y-1 hover:shadow-lg">
+    <div className="group relative flex min-w-0 cursor-pointer flex-col overflow-hidden border border-gray-100 bg-white transition-all duration-300 hover:-translate-y-1 hover:shadow-lg">
       <span className="ease absolute left-0 top-0 z-20 h-0 w-0 border-t-2 border-[#febb13] transition-all duration-200 group-hover:w-full" />
       <span className="ease absolute right-0 top-0 z-20 h-0 w-0 border-r-2 border-[#0055ff] transition-all duration-200 group-hover:h-full" />
       <span className="ease absolute bottom-0 right-0 z-20 h-0 w-0 border-b-2 border-[#febb13] transition-all duration-200 group-hover:w-full" />
       <span className="ease absolute bottom-0 left-0 z-20 h-0 w-0 border-l-2 border-[#0055ff] transition-all duration-200 group-hover:h-full" />
-
       <div className="relative flex h-[190px] items-center justify-center overflow-hidden bg-white p-5 sm:h-[210px]">
         {product.sale && (
           <span className="absolute right-3 top-3 z-10 rounded-sm bg-[#0055ff] px-2.5 py-1 text-[10px] font-bold uppercase tracking-wide text-white">
@@ -81,7 +91,18 @@ export default function ProductCardSection({ product }: { product: Product }) {
           {product.name}
         </h3>
 
-        <ProductRating rating={product.rating || 0} reviews={product.reviews} />
+        {product.description && (
+          <p className="mt-1.5 line-clamp-2 text-xs leading-5 text-gray-500">
+            {product.description}
+          </p>
+        )}
+
+        <div className="mt-2">
+          <ProductRating
+            rating={product.rating || 0}
+            reviews={product.reviews}
+          />
+        </div>
 
         <div className="mt-2 flex items-center gap-2">
           {product.oldPrice && (
@@ -102,7 +123,6 @@ export default function ProductCardSection({ product }: { product: Product }) {
 export function SpecialProDuctItem({ product }: { product: Product }) {
   return (
     <div className="group relative min-w-0 overflow-hidden border border-[#eeeeee] bg-white transition-all duration-300 hover:-translate-y-1 hover:shadow-lg">
-      {/* Animated borders */}
       <span className="ease absolute left-0 top-0 z-20 h-0 w-0 border-t-2 border-[#febb13] transition-all duration-200 group-hover:w-full" />
       <span className="ease absolute right-0 top-0 z-20 h-0 w-0 border-r-2 border-[#0055ff] transition-all duration-200 group-hover:h-full" />
       <span className="ease absolute bottom-0 right-0 z-20 h-0 w-0 border-b-2 border-[#febb13] transition-all duration-200 group-hover:w-full" />
@@ -258,7 +278,6 @@ export function B2bMarketPlaceCard({
                 hover:shadow-[0_10px_25px_rgba(0,85,255,0.09)]
               "
             >
-              {/* Icon */}
               <div
                 className="
                   flex h-[68px] w-[68px]
@@ -283,7 +302,6 @@ export function B2bMarketPlaceCard({
                 />
               </div>
 
-              {/* Content */}
               <div className="min-w-0 flex-1">
                 <h3 className="text-[17px] font-bold text-[#071A3D] transition-colors group-hover/item:text-[#0055ff]">
                   {item.title}
@@ -294,7 +312,6 @@ export function B2bMarketPlaceCard({
                 </p>
               </div>
 
-              {/* Arrow */}
               <div
                 className="
                   flex h-9 w-9

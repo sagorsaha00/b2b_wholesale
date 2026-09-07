@@ -12,6 +12,7 @@ type Product = {
   oldPrice?: string;
   rating: number;
   sale?: boolean;
+  description?: string;
 };
 
 const products: Product[] = [
@@ -21,6 +22,7 @@ const products: Product[] = [
     image: "/product/product1.png",
     price: "$250.00",
     rating: 5,
+    description: "Save on Jack Link's Jerky, Teriyaki",
   },
   {
     id: 2,
@@ -28,6 +30,7 @@ const products: Product[] = [
     image: "/product/product2.png",
     price: "$45.00",
     rating: 3,
+    description: "Save on Jack Link's Jerky, Teriyaki",
   },
   {
     id: 3,
@@ -35,6 +38,7 @@ const products: Product[] = [
     image: "/product/product3.png",
     price: "$150.00",
     rating: 2,
+    description: "Save on Jack Link's Jerky, Teriyaki",
   },
   {
     id: 4,
@@ -44,6 +48,7 @@ const products: Product[] = [
     oldPrice: "$35.00",
     rating: 0,
     sale: true,
+    description: "Save on Jack Link's Jerky, Teriyaki",
   },
   {
     id: 5,
@@ -51,6 +56,7 @@ const products: Product[] = [
     image: "/product/product5.png",
     price: "$65.00",
     rating: 5,
+    description: "Save on Jack Link's Jerky, Teriyaki",
   },
   {
     id: 6,
@@ -58,6 +64,7 @@ const products: Product[] = [
     image: "/product/product6.png",
     price: "$45.00",
     rating: 4,
+    description: "Save on Jack Link's Jerky, Teriyaki",
   },
   {
     id: 7,
@@ -65,6 +72,7 @@ const products: Product[] = [
     image: "/product/product7.png",
     price: "$20.00",
     rating: 5,
+    description: "Save on Jack Link's Jerky, Teriyaki",
   },
   {
     id: 8,
@@ -72,6 +80,7 @@ const products: Product[] = [
     image: "/product/product3.png",
     price: "$55.00",
     rating: 4,
+    description: "Save on Jack Link's Jerky, Teriyaki",
   },
 ];
 
@@ -79,8 +88,7 @@ export default function HandpickedItems() {
   return (
     <section className="w-full bg-white py-16 sm:py-20 lg:py-24">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-       
-        <div className="mb-10 text-center sm:mb-12"> 
+        <div className="mb-10 text-center sm:mb-12">
           <span className="mb-2 block text-[10px] font-bold uppercase tracking-[0.3em] text-blue-600">
             For Your Business
           </span>

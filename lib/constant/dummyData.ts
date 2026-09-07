@@ -8,7 +8,6 @@ import {
 } from "./data.type";
 
 export const products: Product[] = [
-  // B2C Retail Products
   {
     id: 1,
     name: "BetterBody Foods Organic Chia",
@@ -18,6 +17,7 @@ export const products: Product[] = [
     rating: 0,
     discount: 40,
     sale: true,
+    description: "Save on Jack Link's Jerky, Teriyaki",
   },
   {
     id: 2,
@@ -27,6 +27,7 @@ export const products: Product[] = [
     oldPrice: "$32.00",
     rating: 5,
     discount: 40,
+    description: "Save on Jack Link's Jerky, Teriyaki",
   },
   {
     id: 3,
@@ -36,6 +37,7 @@ export const products: Product[] = [
     oldPrice: "$15.00",
     rating: 4,
     discount: 40,
+    description: "Save on Jack Link's Jerky, Teriyaki",
   },
   {
     id: 4,
@@ -46,6 +48,7 @@ export const products: Product[] = [
     rating: 0,
     discount: 40,
     sale: true,
+    description: "Save on Jack Link's Jerky, Teriyaki",
   },
   {
     id: 5,
@@ -56,6 +59,7 @@ export const products: Product[] = [
     rating: 0,
     discount: 40,
     sale: true,
+    description: "Save on Jack Link's Jerky, Teriyaki",
   },
   {
     id: 6,
@@ -66,23 +70,26 @@ export const products: Product[] = [
     rating: 0,
     discount: 40,
     sale: true,
+    description: "Save on Jack Link's Jerky, Teriyaki",
   },
-  // B2B Wholesale Products
   {
     id: "p1",
     title: "Fresh Organic Carrots — Bulk Export Grade A",
     price: "$ 38.00 / kg",
+    image: "/product/product6.png",
     moq: "Min. order: 500 kg",
     supplier: "GreenField Agro Traders",
     countryCode: "bd",
     years: 4,
     verified: true,
     category: "vegetables",
+    description: "Save on Jack Link's Jerky, Teriyaki",
   },
   {
     id: "p2",
     title: "Wireless Bluetooth Earbuds — OEM Custom Branding",
     price: "$ 620.00",
+    image: "/product/product6.png",
     oldPrice: "$ 780.00",
     moq: "Min. order: 100 pieces",
     supplier: "Shenzhen Voxtech Electronics",
@@ -93,11 +100,13 @@ export const products: Product[] = [
     super: true,
     verified: true,
     category: "electronics",
+    description: "Save on Jack Link's Jerky, Teriyaki",
   },
   {
     id: "p3",
     title: "Cotton Woven Fabric Roll — Wholesale Textile Supply",
     price: "$ 210.00 / m",
+    image: "/product/product2.png",
     moq: "Min. order: 1,000 m",
     supplier: " Textile Mills Ltd.",
     countryCode: "bd",
@@ -106,17 +115,20 @@ export const products: Product[] = [
     reviews: 54,
     verified: true,
     category: "textiles",
+    description: "Save on Jack Link's Jerky, Teriyaki",
   },
   {
     id: "p4",
     title: "Industrial CNC Milling Machine — Heavy Duty",
     price: "$ 1,240,000.00",
+    image: "/product/product3.png",
     moq: "Min. order: 1 unit",
     supplier: "Precision Tools Manufacturing",
     countryCode: "cn",
     years: 15,
     verified: true,
     category: "machinery",
+    description: "Save on Jack Link's Jerky, Teriyaki",
   },
   {
     id: "p5",
@@ -125,28 +137,33 @@ export const products: Product[] = [
     moq: "Min. order: 50 sets",
     supplier: "Homeline Kitchenware Co.",
     countryCode: "in",
+    image: "/product/product1.png",
     years: 6,
     rating: 4.5,
     reviews: 41,
     verified: true,
     category: "home-kitchen",
+    description: "Save on Jack Link's Jerky, Teriyaki",
   },
   {
     id: "p6",
     title: "NPK Fertilizer Granules — Agricultural Grade",
     price: "$ 42.00 / kg",
     moq: "Min. order: 2,000 kg",
+    image: "/product/product5.png",
     supplier: "AgroChem Solutions",
     countryCode: "pk",
     years: 9,
     verified: false,
     category: "agriculture",
+    description: "Save on Jack Link's Jerky, Teriyaki",
   },
   {
     id: "p7",
     title: "LED Headlight Assembly — Universal Fit Auto Parts",
     price: "$ 1,120.00",
     moq: "Min. order: 200 pieces",
+    image: "/product/product3.png",
     supplier: "AutoBright Components",
     countryCode: "th",
     years: 5,
@@ -154,6 +171,7 @@ export const products: Product[] = [
     reviews: 23,
     verified: true,
     category: "automotive",
+    description: "Save on Jack Link's Jerky, Teriyaki",
   },
   {
     id: "p8",
@@ -161,12 +179,14 @@ export const products: Product[] = [
     price: "$ 340.00",
     moq: "Min. order: 300 units",
     supplier: "Botanix Beauty Labs",
+    image: "/product/product4.png",
     countryCode: "vn",
     years: 3,
     rating: 4.9,
     reviews: 18,
     verified: true,
     category: "beauty",
+    description: "Save on Jack Link's Jerky, Teriyaki",
   },
 ];
 

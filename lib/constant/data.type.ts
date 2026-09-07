@@ -16,6 +16,7 @@ export interface Product {
   verified?: boolean;
   super?: boolean;
   category?: string;
+  description: string;
 }
 
 export type MarketplaceItem = {

@@ -13,7 +13,7 @@ import {
   Store,
   
 } from "lucide-react";
-import { MarketplaceSection, NavItem, SellerTab } from "./data.type";
+import { MarketplaceSection,  SellerTab } from "./data.type";
 
 export const NAVIGATION_ITEMS = [
   {
