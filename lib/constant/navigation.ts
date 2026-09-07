@@ -11,8 +11,9 @@ import {
   Warehouse,
   Building2,
   Store,
+  
 } from "lucide-react";
-import { MarketplaceSection } from "./data.type";
+import { MarketplaceSection, NavItem, SellerTab } from "./data.type";
 
 export const NAVIGATION_ITEMS = [
   {
@@ -156,3 +157,14 @@ export const sections: MarketplaceSection[] = [
     ],
   },
 ];
+
+ 
+
+export interface SellerSidebarProps {
+  activeTab: SellerTab;
+  setActiveTab: (tab: SellerTab) => void;
+  productCount: number;
+  pendingOrderCount: number;
+  isOpen: boolean;
+  setIsOpen: (open: boolean) => void;
+}

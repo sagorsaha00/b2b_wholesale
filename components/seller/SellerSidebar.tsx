@@ -10,30 +10,8 @@ import {
   Store,
   ExternalLink,
 } from "lucide-react";
-
-export type SellerTab =
-  | "overview"
-  | "products"
-  | "add-product"
-  | "orders"
-  | "settings";
-
-interface SellerSidebarProps {
-  activeTab: SellerTab;
-  setActiveTab: (tab: SellerTab) => void;
-  productCount: number;
-  pendingOrderCount: number;
-  isOpen: boolean;
-  setIsOpen: (open: boolean) => void;
-}
-
-interface NavItem {
-  id: SellerTab;
-  label: string;
-  icon: React.ElementType;
-  badge: string | number | null;
-  badgeColor?: string;
-}
+import { SellerSidebarProps } from "@/lib/constant/navigation";
+import { NavItem, SellerTab } from "@/lib/constant/data.type";
 
 export default function SellerSidebar({
   activeTab,

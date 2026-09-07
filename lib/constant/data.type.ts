@@ -90,3 +90,17 @@ export type Category = {
   name: string;
   icon: string;
 };
+
+export type SellerTab =
+  | "overview"
+  | "products"
+  | "add-product"
+  | "orders"
+  | "settings";
+export interface NavItem {
+  id: SellerTab;
+  label: string;
+  icon: React.ElementType;
+  badge: string | number | null;
+  badgeColor?: string;
+}
