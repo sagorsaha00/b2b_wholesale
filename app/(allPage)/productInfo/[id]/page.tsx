@@ -25,6 +25,7 @@ import {
   thumbnails,
 } from "../../../../lib/constant/dummyData";
 import ReviewsSection from "@/components/review/ReviewsSection";
+import SupplierDetails from "@/components/product/SupplierDetails";
 
 export default function ProductDetails() {
   const [selectedImage, setSelectedImage] = useState(SingleProduct.image);
@@ -492,7 +493,7 @@ export default function ProductDetails() {
                   </div>
 
                   <Link
-                    href="/providers"
+                    href="/storeFront"
                     className="
                       mt-5
                       flex
@@ -550,6 +551,7 @@ export default function ProductDetails() {
 
       <B2BRelated />
       <ReviewsSection />
+      <SupplierDetails />
     </>
   );
 }

@@ -140,7 +140,7 @@ export default function AllProviders() {
                 }}
               >
                 <Link
-                  href={`/provider/${provider.slug}`}
+                  href={`/storeFront`}
                   className="group block h-full rounded-2xl border border-gray-100 bg-white p-5 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:border-[#2563EB]/20 hover:shadow-lg"
                 >
                   <div className="flex items-start gap-4">

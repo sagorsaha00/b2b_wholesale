@@ -101,8 +101,9 @@ const categories = [
 export default function ProviderStorefrontPage() {
   const [activeCategory, setActiveCategory] = useState("All Products");
   const [search, setSearch] = useState("");
+  //  const router = useRouter()
   const [view, setView] = useState<"grid" | "list">("grid");
-
+  const handlePushChat = () => {};
   const filteredProducts = useMemo(() => {
     return products.filter((product) => {
       const matchesCategory =
@@ -192,6 +193,7 @@ export default function ProviderStorefrontPage() {
             <div className="flex gap-2">
               <button
                 type="button"
+                onClick={handlePushChat}
                 className="
                   flex h-10 cursor-pointer items-center justify-center gap-2
                   rounded-lg border border-gray-200
@@ -202,19 +204,6 @@ export default function ProviderStorefrontPage() {
               >
                 <MessageCircle size={17} />
                 Contact
-              </button>
-
-              <button
-                type="button"
-                className="
-                  flex h-10 items-center justify-center gap-2
-                  rounded-lg bg-blue-600 px-4
-                  text-sm font-semibold text-white
-                  transition hover:bg-blue-700
-                "
-              >
-                Visit Store
-                <ArrowRight size={17} />
               </button>
             </div>
           </div>
