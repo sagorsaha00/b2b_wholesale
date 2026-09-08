@@ -8,6 +8,8 @@ import {
   PRODUCT_IMAGE_FALLBACK,
   SUPPLIER_IMAGE_FALLBACK,
 } from "@/lib/constant/imageFallBack";
+import { MessageCircle, ShoppingCart } from "lucide-react";
+import { useRouter } from "next/navigation";
 export default function ProductCardSection({
   product,
   onAddToCart,
@@ -18,10 +20,13 @@ export default function ProductCardSection({
   onChatNow?: (product: AllProduct) => void;
 }) {
   const [imgSrc, setImgSrc] = useState(product.image || PRODUCT_IMAGE_FALLBACK);
+  const router = useRouter();
   const [supplierImgSrc, setSupplierImgSrc] = useState(
     product.supplierImage || SUPPLIER_IMAGE_FALLBACK,
   );
-
+  const handlePushRoute = () => {
+    router.push("/productInfo/" + product.id);
+  };
   return (
     <div className="group relative cursor-pointer flex min-w-0 flex-col overflow-hidden border border-gray-100 bg-white transition-all duration-300 hover:-translate-y-1 hover:shadow-lg">
       <span className="ease absolute left-0 top-0 z-20 h-0 w-0 border-t-2 border-[#febb13] transition-all duration-200 group-hover:w-full" />
@@ -31,7 +36,7 @@ export default function ProductCardSection({
 
       <div className="relative flex h-[190px] items-center justify-center overflow-hidden bg-white p-5 sm:h-[210px]">
         {product.sale && (
-          <span className="absolute right-3 top-3 z-10 rounded-sm bg-[#0055ff] px-2.5 py-1 text-[10px] font-bold uppercase tracking-wide text-white">
+          <span className="absolute right-3 top-3 z-10 rounded-sm bg-red-600 px-2.5 py-1 text-[10px] font-bold uppercase tracking-wide text-white">
             Sale!
           </span>
         )}
@@ -89,22 +94,45 @@ export default function ProductCardSection({
               type="button"
               onClick={(e) => {
                 e.stopPropagation();
+                handlePushRoute();
                 onAddToCart?.(product);
               }}
-              className="flex-1 border-[1.5px] border-[#0055ff] py-2 text-[12.5px] font-semibold text-[#0055ff] transition-colors hover:bg-[#eef4ff]"
+              className=" cursor-pointer
+        flex flex-1 items-center justify-center gap-1.5
+        border-[1.5px] border-[#0055ff]
+        py-2 text-[12.5px] font-semibold
+        text-[#0055ff]
+        transition-all duration-200
+        hover:bg-[#eef4ff]
+        active:scale-[0.98]
+      "
             >
-              Add to cart
+              <ShoppingCart className="h-4 w-4 shrink-0" />
+
+              <span>Add to cart</span>
             </button>
           )}
+
           <button
             type="button"
             onClick={(e) => {
               e.stopPropagation();
               onChatNow?.(product);
             }}
-            className="flex-1 border-[1.5px] border-[#0055ff] bg-[#0055ff] py-2 text-[12.5px] font-semibold text-white transition-colors hover:bg-[#0044cc]"
+            className=" cursor-pointer
+      flex flex-1 items-center justify-center gap-1.5
+      border-[1.5px] border-[#0055ff]
+      bg-[#0055ff]
+      py-2 text-[12.5px] font-semibold
+      text-white
+      transition-all duration-200
+      hover:bg-[#0044cc]
+      active:scale-[0.98]
+    "
           >
-            Chat now
+            <MessageCircle className="h-4 w-4 shrink-0" />
+
+            <span>Chat now</span>
           </button>
         </div>
       </div>

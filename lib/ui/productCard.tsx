@@ -13,12 +13,12 @@ export function ProductItem({ product }: { product: Product }) {
       <span className="ease absolute bottom-0 left-0 z-20 h-0 w-0 border-l-2 border-[#0055ff] transition-all duration-200 group-hover:h-full" />
 
       {product.discount && (
-        <span className="absolute right-3 top-3 z-10 rounded-full bg-[#FBBF24] px-2.5 py-1 text-[9px] font-black uppercase tracking-wide text-[#0F172A]">
+        <span className="absolute right-3 top-3 z-10 rounded-full bg-red-600 px-2.5 py-1 text-[9px] font-black uppercase tracking-wide text-[#0F172A]">
           {product.discount}% OFF
         </span>
       )}
 
-      <div className="relative flex h-24 w-24 shrink-0 items-center justify-center sm:h-28 sm:w-28">
+      <div className="relative flex h-28 w-24 shrink-0 items-center justify-center sm:h-28 sm:w-28">
         <Image
           src={product.image ?? ""}
           alt={product.name ? "" + product.name : "Product Image"}
@@ -76,7 +76,7 @@ export default function ProductCardSection({ product }: { product: Product }) {
 
       <div className="relative flex h-[190px] items-center justify-center overflow-hidden bg-white p-5 sm:h-[210px]">
         {product.sale && (
-          <span className="absolute right-3 top-3 z-10 rounded-sm bg-[#0055ff] px-2.5 py-1 text-[10px] font-bold uppercase tracking-wide text-white">
+          <span className="absolute right-3 top-3 z-10 rounded-sm bg-red-600 px-2.5 py-1 text-[10px] font-bold uppercase tracking-wide text-white">
             Sale!
           </span>
         )}
