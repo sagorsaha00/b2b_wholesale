@@ -11,9 +11,9 @@ import {
   Warehouse,
   Building2,
   Store,
-  
+  Package,
 } from "lucide-react";
-import { MarketplaceSection,  SellerTab } from "./data.type";
+import { MarketplaceSection, SellerTab } from "./data.type";
 
 export const NAVIGATION_ITEMS = [
   {
@@ -90,75 +90,101 @@ export const recentSearches = [
 export const sections: MarketplaceSection[] = [
   {
     title: "BUY",
-    description: "Find the best products for your business",
+    subtitle: "Procurement & Sourcing",
+    description:
+      "Source verified products & wholesale inventory directly from top manufacturers",
     icon: ShoppingBag,
     type: "blue",
     items: [
       {
-        title: "New",
-        description: "Buy brand new products for your business",
+        title: "New Wholesale Products",
+        description: "Source factory-direct inventory at competitive rates",
         icon: ShoppingBag,
         href: "/products/newArrivals",
+        badge: "Verified",
       },
       {
-        title: "Second Hand",
-        description: "Quality used products at better prices",
+        title: "Surplus & Used Equipment",
+        description: "Quality pre-owned commercial goods & machinery",
         icon: RefreshCcw,
-        href: "/products/allProduct ",
+        href: "/products/allProduct",
+        badge: "Value",
+      },
+      {
+        title: "Bulk Purchase Deals",
+        description: "Volume tier pricing & consolidated shipping discounts",
+        icon: Package,
+        href: "/deal/BulkPurchaseDeals",
+        badge: "Best Rates",
       },
     ],
   },
 
   {
     title: "SELL",
-    description: "Sell your products or stock to other businesses",
+    subtitle: "Merchant & Liquidation",
+    description:
+      "Reach qualified B2B buyers and monetize your business inventory fast",
     icon: Tags,
-    type: "yellow",
+    type: "amber",
     items: [
       {
-        title: "Sell as B2B",
-        description: "Sell products in bulk to other businesses",
-        icon: Handshake,
-        href: " /",
+        title: "B2B Merchant Console",
+        description: "Post products, manage orders & grow commercial sales",
+        icon: Store,
+        href: "/seller",
+        badge: "Portal",
       },
       {
-        title: "Sell Second Hand",
-        description: "Sell used products to businesses",
+        title: "Sell Surplus & Equipment",
+        description: "Liquidate used business machinery & excess goods",
         icon: RefreshCcw,
-        href: "/",
+        href: "/seller",
+        badge: "Direct",
       },
       {
-        title: "Clearance Stock",
-        description: "Sell excess or old stock at great prices",
+        title: "Clearance Stock Lots",
+        description: "Offload overstock inventory rapidly to volume buyers",
         icon: Warehouse,
-        href: " /",
+        href: "/deal/Clearance",
+        badge: "Hot Deals",
       },
     ],
   },
 
   {
     title: "BUSINESS",
-    description: "Buy or sell established businesses",
+    subtitle: "Enterprises & M&A",
+    description:
+      "Explore enterprise acquisitions, turnkey franchises & strategic partnerships",
     icon: Building2,
-    type: "blue",
+    type: "purple",
     items: [
       {
-        title: "Sell Your Business",
-        description: "List your business for sale and reach serious buyers",
+        title: "List Business For Sale",
+        description: "Connect confidentially with serious institutional buyers",
         icon: Store,
-        href: "/business/sell",
+        href: "/seller",
+        badge: "M&A",
       },
       {
-        title: "Buy Business",
-        description: "Find and acquire running businesses that fit your goals",
+        title: "Acquire Running Business",
+        description:
+          "Discover operating businesses matching your target criteria",
         icon: Handshake,
         href: "/deal/Clearance",
+        badge: "Turnkey",
+      },
+      {
+        title: "Verified Supplier Directory",
+        description: "Form long-term supply agreements & strategic B2B pacts",
+        icon: Building2,
+        href: "/provider/AllProviders",
+        badge: "Partners",
       },
     ],
   },
 ];
-
- 
 
 export interface SellerSidebarProps {
   activeTab: SellerTab;

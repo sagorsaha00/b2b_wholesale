@@ -22,8 +22,8 @@ export default function SellerInvoiceModal({
   if (!order) return null;
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/50 backdrop-blur-xs overflow-y-auto">
-      <div className="relative w-full max-w-3xl rounded-3xl bg-white p-6 sm:p-8 shadow-2xl animate-in fade-in zoom-in-95 duration-200">
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-4 bg-black/50 backdrop-blur-xs overflow-y-auto">
+      <div className="relative w-full max-w-3xl my-auto max-h-[92vh] overflow-y-auto rounded-3xl bg-white p-5 sm:p-8 shadow-2xl animate-in fade-in zoom-in-95 duration-200">
         {/* Top bar with actions */}
         <div className="flex items-center justify-between border-b border-slate-100 pb-5">
           <div className="flex items-center gap-3">

@@ -9,6 +9,7 @@ import {
   Settings,
   Store,
   ExternalLink,
+  X,
 } from "lucide-react";
 import { SellerSidebarProps } from "@/lib/constant/navigation";
 import { NavItem, SellerTab } from "@/lib/constant/data.type";
@@ -91,6 +92,22 @@ export default function SellerSidebar({
     lg:shadow-none
   `}
       >
+        {/* Mobile Header with Close Button */}
+        <div className="flex items-center justify-between border-b border-slate-100 p-4 lg:hidden">
+          <div className="flex items-center gap-2">
+            <Store className="h-5 w-5 text-blue-600" />
+            <span className="font-bold text-slate-900 text-sm">Merchant Portal</span>
+          </div>
+          <button
+            type="button"
+            onClick={() => setIsOpen(false)}
+            className="rounded-lg p-1.5 text-slate-500 hover:bg-slate-100 hover:text-slate-900"
+            aria-label="Close menu"
+          >
+            <X className="h-5 w-5" />
+          </button>
+        </div>
+
         {/* Sidebar Content */}
         <div className="flex-1 overflow-y-auto px-4 py-6">
           {/* Seller Management */}

@@ -24,13 +24,15 @@ export type MarketplaceItem = {
   description: string;
   icon: React.ElementType;
   href: string;
+  badge?: string;
 };
 
 export type MarketplaceSection = {
   title: string;
+  subtitle?: string;
   description: string;
   icon: React.ElementType;
-  type: "blue" | "yellow";
+  type: "blue" | "yellow" | "amber" | "purple" | string;
   items: MarketplaceItem[];
 };
 export type AllProduct = {

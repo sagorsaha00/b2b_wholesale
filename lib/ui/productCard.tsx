@@ -95,11 +95,9 @@ export default function ProductCardSection({ product }: { product: Product }) {
           {product.name}
         </h3>
 
-        
-          <p className="mt-1.5 line-clamp-2 text-xs leading-5 text-gray-500">
-            {product.description}
-          </p>
-      
+        <p className="mt-1.5 line-clamp-2 text-xs leading-5 text-gray-500">
+          {product.description}
+        </p>
 
         <div className="mt-2">
           <ProductRating
@@ -152,7 +150,9 @@ export function SpecialProDuctItem({ product }: { product: Product }) {
         <h3 className="line-clamp-2 min-h-[48px] text-[16px] font-bold leading-6 text-[#222222]">
           {product.name}
         </h3>
-
+        <p className="mt-1.5 line-clamp-2 text-xs leading-5 text-gray-500">
+          {product.description}
+        </p>
         <ProductRating rating={product.rating ?? 0} reviews={product.reviews} />
 
         <div className="mt-3 flex items-center gap-2">
@@ -177,161 +177,126 @@ export function B2bMarketPlaceCard({
   section: MarketplaceSection;
 }) {
   const SectionIcon = section.icon;
-  const isYellow = section.type === "yellow";
+
+  // Theme configuration based on pillar type
+  const theme = (() => {
+    switch (section.type) {
+      case "amber":
+      case "yellow":
+        return {
+          topBar: "from-amber-500 via-orange-500 to-amber-600",
+          iconBg: "bg-amber-50 border-amber-200/80 text-amber-600",
+          badge: "bg-amber-50 text-amber-800 border-amber-200/80",
+          itemHoverBorder: "hover:border-amber-300",
+          itemIconHover:
+            "group-hover/item:bg-amber-50 group-hover/item:text-amber-600 group-hover/item:border-amber-200",
+          itemTitleHover: "group-hover/item:text-amber-700",
+          arrowHover:
+            "group-hover/item:bg-amber-600 group-hover/item:text-white",
+        };
+      case "purple":
+        return {
+          topBar: "from-purple-600 via-indigo-600 to-violet-600",
+          iconBg: "bg-purple-50 border-purple-200/80 text-purple-600",
+          badge: "bg-purple-50 text-purple-800 border-purple-200/80",
+          itemHoverBorder: "hover:border-purple-300",
+          itemIconHover:
+            "group-hover/item:bg-purple-50 group-hover/item:text-purple-600 group-hover/item:border-purple-200",
+          itemTitleHover: "group-hover/item:text-purple-700",
+          arrowHover:
+            "group-hover/item:bg-purple-600 group-hover/item:text-white",
+        };
+      case "blue":
+      default:
+        return {
+          topBar: "from-blue-600 via-indigo-600 to-blue-500",
+          iconBg: "bg-blue-50 border-blue-200/80 text-blue-600",
+          badge: "bg-blue-50 text-blue-700 border-blue-200/80",
+          itemHoverBorder: "hover:border-blue-300",
+          itemIconHover:
+            "group-hover/item:bg-blue-50 group-hover/item:text-blue-600 group-hover/item:border-blue-200",
+          itemTitleHover: "group-hover/item:text-blue-600",
+          arrowHover:
+            "group-hover/item:bg-blue-600 group-hover/item:text-white",
+        };
+    }
+  })();
 
   return (
-    <div
-      className="
-        group relative overflow-hidden
-        rounded-[24px]
-        border border-slate-200
-        bg-white
-        p-5
-        sm:p-6
-        shadow-[0_8px_35px_rgba(7,26,61,0.05)]
-        transition-all duration-300
-        hover:-translate-y-1
-        hover:shadow-[0_18px_50px_rgba(7,26,61,0.10)]
-      "
-    >
-      {/* Top Line */}
+    <div className="group relative flex h-full flex-col justify-between overflow-hidden rounded-3xl border border-slate-200/90 bg-white p-6 sm:p-7 shadow-[0_4px_25px_rgba(15,23,42,0.04)] transition-all duration-300 hover:-translate-y-1.5 hover:border-slate-300 hover:shadow-[0_20px_45px_rgba(15,23,42,0.09)]">
+      {/* Top Accent Gradient Bar */}
       <div
-        className="
-          absolute left-0 top-0
-          h-[4px]
-          w-[85px]
-          rounded-br-full
-          transition-all duration-300
-          group-hover:w-full
-        "
-        style={{
-          backgroundColor: isYellow ? "#febb13" : "#0055ff",
-        }}
+        className={`absolute left-0 top-0 h-1.5 w-full bg-gradient-to-r ${theme.topBar} transition-all duration-300 group-hover:h-2`}
       />
 
-      {/* Header */}
-      <div className="mb-7 flex items-start gap-4 pt-2">
-        <div
-          className="
-            flex h-[78px] w-[78px]
-            shrink-0 items-center justify-center
-            rounded-2xl border
-          "
-          style={{
-            backgroundColor: isYellow
-              ? "rgba(254,187,19,0.08)"
-              : "rgba(0,85,255,0.07)",
-            borderColor: isYellow
-              ? "rgba(254,187,19,0.25)"
-              : "rgba(0,85,255,0.18)",
-          }}
-        >
-          <SectionIcon
-            size={38}
-            strokeWidth={1.8}
-            style={{
-              color: isYellow ? "#febb13" : "#0055ff",
-            }}
-          />
+      {/* Card Header */}
+      <div>
+        <div className="flex items-center justify-between gap-3 pt-1">
+          <div
+            className={`flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl border shadow-xs transition-transform duration-300 group-hover:scale-105 ${theme.iconBg}`}
+          >
+            <SectionIcon size={28} strokeWidth={2} />
+          </div>
+
+          {section.subtitle && (
+            <span
+              className={`rounded-full border px-3 py-1 text-[11px] font-bold uppercase tracking-wider ${theme.badge}`}
+            >
+              {section.subtitle}
+            </span>
+          )}
         </div>
 
-        <div className="min-w-0 pt-1">
-          <h2
-            className="
-              text-[25px]
-              font-extrabold
-              tracking-tight
-              text-[#0055ff]
-            "
-          >
+        <div className="mt-5">
+          <h2 className="text-2xl font-black tracking-tight text-slate-900 sm:text-[26px]">
             {section.title}
           </h2>
-
-          <p className="mt-1.5 max-w-[280px] text-[15px] leading-6 text-slate-600">
+          <p className="mt-1.5 text-sm leading-relaxed text-slate-600">
             {section.description}
           </p>
         </div>
       </div>
 
-      {/* Items */}
-      <div className="space-y-3">
+      {/* Action Items List */}
+      <div className="mt-6 flex-1 space-y-3">
         {section.items.map((item) => {
           const ItemIcon = item.icon;
-
-          const isClearance =
-            item.title === "Clearance Warehouse" ||
-            item.title === "Clearance Stock";
 
           return (
             <Link
               key={item.title}
               href={item.href}
-              className="
-                group/item
-                relative flex w-full
-                items-center gap-4
-                rounded-[18px]
-                border border-slate-100
-                bg-white
-                p-4
-                text-left
-                shadow-[0_4px_18px_rgba(7,26,61,0.045)]
-                transition-all duration-300
-                hover:-translate-y-0.5
-                hover:border-[#0055ff]/20
-                hover:shadow-[0_10px_25px_rgba(0,85,255,0.09)]
-              "
+              className={`group/item flex items-center gap-3.5 rounded-2xl border border-slate-100 bg-slate-50/70 p-3.5 text-left transition-all duration-200 hover:bg-white hover:shadow-md ${theme.itemHoverBorder}`}
             >
               <div
-                className="
-                  flex h-[68px] w-[68px]
-                  shrink-0
-                  items-center justify-center
-                  rounded-2xl
-                  transition-transform duration-300
-                  group-hover/item:scale-105
-                "
-                style={{
-                  backgroundColor: isClearance
-                    ? "rgba(254,187,19,0.10)"
-                    : "rgba(0,85,255,0.055)",
-                }}
+                className={`flex h-11 w-11 shrink-0 items-center justify-center rounded-xl border border-slate-200/80 bg-white text-slate-600 shadow-xs transition-all duration-200 ${theme.itemIconHover}`}
               >
-                <ItemIcon
-                  size={32}
-                  strokeWidth={1.8}
-                  style={{
-                    color: isClearance ? "#febb13" : "#0055ff",
-                  }}
-                />
+                <ItemIcon size={22} strokeWidth={1.9} />
               </div>
 
               <div className="min-w-0 flex-1">
-                <h3 className="text-[17px] font-bold text-[#071A3D] transition-colors group-hover/item:text-[#0055ff]">
-                  {item.title}
-                </h3>
+                <div className="flex items-center gap-2">
+                  <h3
+                    className={`truncate text-sm font-bold text-slate-900 transition-colors ${theme.itemTitleHover}`}
+                  >
+                    {item.title}
+                  </h3>
+                  {item.badge && (
+                    <span className="rounded-md bg-slate-200/70 px-1.5 py-0.5 text-[10px] font-bold text-slate-700">
+                      {item.badge}
+                    </span>
+                  )}
+                </div>
 
-                <p className="mt-1 text-[14px] leading-5 text-slate-600">
+                <p className="mt-0.5 line-clamp-1 text-xs text-slate-500">
                   {item.description}
                 </p>
               </div>
 
               <div
-                className="
-                  flex h-9 w-9
-                  shrink-0
-                  items-center justify-center
-                  rounded-full
-                  bg-[#0055ff]/[0.06]
-                  transition-all duration-300
-                  group-hover/item:translate-x-1
-                "
+                className={`flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-white text-slate-400 shadow-xs border border-slate-200/60 transition-all duration-200 group-hover/item:translate-x-0.5 ${theme.arrowHover}`}
               >
-                <ArrowRight
-                  size={19}
-                  strokeWidth={2}
-                  className="text-[#0055ff]"
-                />
+                <ArrowRight size={15} strokeWidth={2.2} />
               </div>
             </Link>
           );

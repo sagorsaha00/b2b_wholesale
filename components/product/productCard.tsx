@@ -66,7 +66,6 @@ export default function ProductCardSection({
           </span>
         </div>
 
-         
         {product.supplier && (
           <div className="mt-2.5 flex items-center gap-2">
             <Image
@@ -83,7 +82,7 @@ export default function ProductCardSection({
             </span>
           </div>
         )}
- 
+
         <div className="relative z-30 mt-3 flex gap-2">
           {product.buyable !== false && (
             <button

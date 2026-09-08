@@ -8,10 +8,10 @@ export default function B2BMarketplace() {
   return (
     <section className="relative overflow-hidden bg-white px-4 py-10 sm:px-6 lg:px-8">
       <div className="relative mx-auto max-w-[1310px]">
-        <div className="mx-auto mb-10 max-w-4xl text-center">
+        <div className="mx-auto mb-8 sm:mb-10 max-w-4xl text-center">
           <h1
             className="
-              text-4xl
+              text-3xl
               font-black
               tracking-tight
               text-[#071A3D]
@@ -25,12 +25,14 @@ export default function B2BMarketplace() {
           <p
             className="
               mx-auto
-              mt-4
+              mt-3
+              sm:mt-4
               max-w-2xl
-              text-base
-              leading-7
+              text-sm
+              leading-6
               text-slate-600
-              sm:text-lg
+              sm:text-base
+              lg:text-lg
             "
           >
             Find the right products, businesses or opportunities for your
@@ -38,7 +40,7 @@ export default function B2BMarketplace() {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 gap-6 lg:grid-cols-3">
+        <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
           {sections.map((section) => (
             <B2bMarketPlaceCard key={section.title} section={section} />
           ))}
@@ -47,3 +49,4 @@ export default function B2BMarketplace() {
     </section>
   );
 }
+  

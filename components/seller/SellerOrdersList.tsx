@@ -146,7 +146,7 @@ export default function SellerOrdersList({
           </div>
         ) : (
           <div className="overflow-x-auto">
-            <table className="w-full text-left text-sm">
+            <table className="w-full text-left text-sm min-w-[760px]">
               <thead className="border-b border-slate-200 bg-slate-50/70 text-[11px] font-bold uppercase tracking-wider text-slate-500">
                 <tr>
                   <th className="py-3.5 pl-6">Order ID & Date</th>

@@ -188,7 +188,7 @@ export default function MainHeader() {
           </button>
 
           <Link
-            href="/"
+            href="/auth/login"
             className="
               hidden
               shrink-0
