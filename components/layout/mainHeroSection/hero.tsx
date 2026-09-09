@@ -38,9 +38,12 @@ export default function B2BHero() {
         {/* ================= HERO CONTENT ================= */}
         <div
           className="
+            relative
+            lg:text-center
             mx-auto flex w-full max-w-5xl
             flex-col
             gap-8
+            lg:mx-0
             lg:flex-row
             lg:items-start
             lg:gap-10
@@ -84,7 +87,7 @@ export default function B2BHero() {
               </span>
             </div>
 
-            {/* Heading */}
+           
             <h1
               className="
                 max-w-3xl
@@ -107,19 +110,16 @@ export default function B2BHero() {
                 className="
                   ml-0
                   text-[#febb13]
-
                   sm:ml-4
-
-                  md:ml-8
-
-                  lg:ml-16
+                  md:ml-4
+                  lg:mr-12
                 "
               >
                 Grow Your Business.
               </span>
             </h1>
 
-            {/* Description */}
+        
             <p
               className="
                 mt-6
@@ -140,7 +140,7 @@ export default function B2BHero() {
               wholesale prices for your business.
             </p>
 
-            {/* Buttons */}
+          
             <div
               className="
                 mt-2

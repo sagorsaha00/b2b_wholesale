@@ -70,7 +70,7 @@ export default function Footer() {
             </div>
           </div>
 
-          {/* Why Markood */}
+          
           <div className="lg:col-span-2">
             <h3 className="text-sm font-black uppercase tracking-wider text-[#0F172A]">
               Why Markood
