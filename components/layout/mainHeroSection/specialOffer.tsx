@@ -5,71 +5,7 @@ import { useState } from "react";
 import ProductRating from "@/lib/ui/ratingCard";
 import { Product } from "@/lib/constant/data.type";
 import { SpecialProDuctItem } from "@/lib/ui/productCard";
-
-const products: Product[] = [
-  {
-    id: 1,
-    name: "BetterBody Foods Organic Chia",
-    image: "/vegitable/product1.png",
-    price: "$33.00",
-    oldPrice: "$55.00",
-    rating: 0,
-    discount: 40,
-    sale: true,
-    description: "Save on Jack Link's Jerky, Teriyaki",
-  },
-  {
-    id: 2,
-    name: "Birds Eye 22 Crispy Chicken Dippers",
-    image: "/vegitable/product2.png",
-    price: "$19.20",
-    oldPrice: "$32.00",
-    rating: 5,
-    discount: 40,
-    sale: true,
-    description: "Save on Jack Link's Jerky, Teriyaki",
-  },
-  {
-    id: 3,
-    name: "Goodfella’s Stone Baked Thin Pizza",
-    image: "/vegitable/product3.png",
-    price: "$9.00",
-    oldPrice: "$15.00",
-    rating: 4,
-    discount: 40,
-    description: "Save on Jack Link's Jerky, Teriyaki",
-  },
-  {
-    id: 4,
-    name: "Low Sodium Lightly Salted Snack Nuts",
-    image: "/vegitable/product4.png",
-    price: "$32.40",
-    oldPrice: "$54.00",
-    rating: 0,
-    discount: 40,
-    description: "Save on Jack Link's Jerky, Teriyaki",
-  },
-  {
-    id: 5,
-    name: "Morrisons The Best Jumbo King Prawns",
-    image: "/vegitable/product5.png",
-    price: "$13.80",
-    oldPrice: "$23.00",
-    rating: 0,
-    discount: 40,
-    description: "Save on Jack Link's Jerky, Teriyaki",
-  },
-  {
-    id: 6,
-    name: "Quaker Chewy Granola Bars",
-    image: "/vegitable/product6.png",
-    price: "$39.00",
-    oldPrice: "$65.00",
-    rating: 0,
-    discount: 40,
-    description: "Save on Jack Link's Jerky, Teriyaki",
-  },
-];
+import { products } from "@/lib/constant/dummyData";
 
 function SpecialOffer({ product }: { product: Product }) {
   return (

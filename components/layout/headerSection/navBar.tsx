@@ -140,7 +140,7 @@ export default function Navbar() {
                   <div
                     className="
                       invisible absolute left-0 top-full z-50
-                      w-[800px]
+                      w-[600px]
                       translate-y-2
                       rounded-b-xl
                       border border-gray-200
@@ -178,47 +178,6 @@ export default function Navbar() {
                           description="Recently added products"
                           href="/products/newArrivals"
                         />
-
-                      
-
-                        <MegaMenuItem
-                          icon={<Store />}
-                          title="Top Product"
-                          description="Top selling products from providers"
-                          href="/products/topProduct"
-                        />
-
-                        <MegaMenuItem
-                          icon={<Star />}
-                          title="Highly Rated"
-                          description="Top reviewed products"
-                          href="/products/highlyRated"
-                        />
-                      </div>
-
-                      <div className="mt-6 flex items-center justify-between rounded-lg bg-blue-50 px-5 py-4">
-                        <div>
-                          <p className="text-sm font-bold text-gray-900">
-                            Looking for something specific?
-                          </p>
-
-                          <p className="text-xs text-gray-500">
-                            Search our entire marketplace.
-                          </p>
-                        </div>
-
-                        <Link
-                          href="/"
-                          className="
-                            rounded-lg
-                            bg-blue-600
-                            px-4 py-2
-                            text-xs font-bold text-white
-                            hover:bg-blue-700
-                          "
-                        >
-                          View All
-                        </Link>
                       </div>
                     </div>
                   </div>
@@ -229,7 +188,7 @@ export default function Navbar() {
                   <div
                     className="
                       invisible absolute left-0 top-full z-50
-                      w-[800px]
+                      w-[600px]
                       translate-y-2
                       rounded-b-xl
                       border border-gray-200
@@ -260,14 +219,6 @@ export default function Navbar() {
                           description="Browse every provider"
                           href="/provider/AllProviders"
                         />
-
-                        <MegaMenuItem
-                          icon={<Star />}
-                          title="Top Rated"
-                          description="Highest rated providers"
-                          href="/provider/TopRatedProviders"
-                        />
-
                         <MegaMenuItem
                           icon={<Star />}
                           title="Verified Providers"
@@ -334,15 +285,7 @@ export default function Navbar() {
                         />
                       </div>
 
-                      <div className="mt-6 rounded-lg bg-yellow-50 p-5">
-                        <p className="text-sm font-black text-gray-900">
-                          🔥 Limited Time Offers
-                        </p>
-
-                        <p className="mt-1 text-xs text-gray-600">
-                          Don't miss today's wholesale deals.
-                        </p>
-                      </div>
+                      
                     </div>
                   </div>
                 )}
@@ -493,40 +436,17 @@ export default function Navbar() {
                     mobileMegaOpen === item.label && (
                       <div className="pb-4 pl-2">
                         <Link
-                          href="/"
+                          href="/products/allProduct"
                           className="block rounded-lg px-3 py-3 text-sm text-gray-600 hover:bg-blue-50 hover:text-blue-600"
                         >
                           All Products
                         </Link>
 
                         <Link
-                          href="/"
+                          href="/products/newArrivals"
                           className="block rounded-lg px-3 py-3 text-sm text-gray-600 hover:bg-blue-50 hover:text-blue-600"
                         >
                           New Arrivals
-                        </Link>
-
-                        
-
-                        <Link
-                          href="/"
-                          className="block rounded-lg px-3 py-3 text-sm text-gray-600 hover:bg-blue-50 hover:text-blue-600"
-                        >
-                          Wholesale Deals
-                        </Link>
-
-                        <Link
-                          href="/providers"
-                          className="block rounded-lg px-3 py-3 text-sm text-gray-600 hover:bg-blue-50 hover:text-blue-600"
-                        >
-                          Top Providers
-                        </Link>
-
-                        <Link
-                          href="/"
-                          className="block rounded-lg px-3 py-3 text-sm text-gray-600 hover:bg-blue-50 hover:text-blue-600"
-                        >
-                          Highly Rated
                         </Link>
                       </div>
                     )}
@@ -539,13 +459,6 @@ export default function Navbar() {
                           className="block rounded-lg px-3 py-3 text-sm text-gray-600 hover:bg-blue-50 hover:text-blue-600"
                         >
                           All Providers
-                        </Link>
-
-                        <Link
-                          href="/providers/top-rated"
-                          className="block rounded-lg px-3 py-3 text-sm text-gray-600 hover:bg-blue-50 hover:text-blue-600"
-                        >
-                          Top Rated
                         </Link>
 
                         <Link
@@ -602,24 +515,6 @@ export default function Navbar() {
                 </div>
               );
             })}
-
-            {/* Become Provider */}
-            <Link
-              href="/become-provider"
-              onClick={() => setMobileMenuOpen(false)}
-              className="
-                mt-3
-                flex items-center justify-center
-                rounded-lg
-                bg-blue-600
-                px-4 py-3
-                text-sm font-bold text-white
-                transition
-                hover:bg-blue-700
-              "
-            >
-              Become a Provider
-            </Link>
           </div>
         </div>
       )}
