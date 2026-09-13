@@ -22,7 +22,7 @@ import {
   BookOpen,
   type LucideIcon,
 } from "lucide-react";
-import { Category } from "@/lib/constant/data.type";
+import { Category } from "@/lib/constant/type/data.type";
 
 const iconMap: Record<string, LucideIcon> = {
   Cpu,

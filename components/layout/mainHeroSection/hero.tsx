@@ -218,7 +218,7 @@ export default function B2BHero() {
             sm:pb-8
           "
         >
-          {/* Category Header */}
+      
           <div
             className="
               mb-4

@@ -4,7 +4,7 @@ import { useState, useMemo } from "react";
 import ProductsAside from "@/components/product/allProductaSide";
 import ProductCardSection from "@/components/product/productCard";
 import { Allproducts, initialFilters } from "@/lib/constant/dummyData";
-import { Filters } from "@/lib/constant/data.type";
+import { Filters } from "@/lib/constant/type/data.type";
 
 export default function TopProductGrid() {
   const [filters, setFilters] = useState<Filters>(initialFilters);

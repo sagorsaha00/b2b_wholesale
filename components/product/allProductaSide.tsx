@@ -5,7 +5,7 @@ import {
   countries,
   initialFilters,
 } from "@/lib/constant/dummyData";
-import { Filters } from "@/lib/constant/data.type";
+import { Filters } from "@/lib/constant/type/data.type";
 import { useState } from "react";
 import { ChevronDown, SlidersHorizontal } from "lucide-react";
 

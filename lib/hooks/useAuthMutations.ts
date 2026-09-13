@@ -5,10 +5,14 @@ import {
   RegisterBuyerPayload,
   RegisterSellerPayload,
   RegSeller,
-} from "../constant/store.Type";
+} from "../constant/type/store.Type";
 import { useAuthStore } from "../dataStore/b2bStore";
 import { useRouter } from "next/navigation";
-import { LoginCredentials } from "../constant/userType";
+import { LoginCredentials } from "../constant/type/userType";
+import {
+  SellersApiResponse,
+  VerificationStatus,
+} from "../constant/type/seller.type";
 
 const API_URL = process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:5000";
 const registerBuyerApi = async (
@@ -63,7 +67,28 @@ const loginUser = async ({ email, password, role }: LoginCredentials) => {
 
   return data;
 };
+export async function fetchSellers(
+  status: VerificationStatus,
+  search: string,
+  page: number,
+): Promise<SellersApiResponse> {
+  const url = new URL(` ${API_URL}/api/seller/getPaginatedSellers`);
 
+  if (status !== "all") {
+    url.searchParams.append("verificationStatus", status);
+  }
+  if (search.trim()) {
+    url.searchParams.append("search", search.trim());
+  }
+  url.searchParams.append("page", String(page));
+  url.searchParams.append("limit", "10");
+
+  const res = await fetch(url.toString());
+  if (!res.ok) {
+    throw new Error("Failed to fetch backend data");
+  }
+  return res.json();
+}
 export function useLogin() {
   const router = useRouter();
   const { setUser } = useAuthStore();

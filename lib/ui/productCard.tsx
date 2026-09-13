@@ -1,6 +1,6 @@
 import Image from "next/image";
 import ProductRating from "./ratingCard";
-import { MarketplaceSection, Product } from "../constant/data.type";
+import { MarketplaceSection, Product } from "../constant/type/data.type";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import { DiscountBadge } from "./discount";

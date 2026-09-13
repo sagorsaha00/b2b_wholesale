@@ -12,7 +12,7 @@ import {
   X,
 } from "lucide-react";
 import { SellerSidebarProps } from "@/lib/constant/navigation";
-import { NavItem, SellerTab } from "@/lib/constant/data.type";
+import { NavItem, SellerTab } from "@/lib/constant/type/data.type";
 
 export default function SellerSidebar({
   activeTab,
@@ -72,7 +72,6 @@ export default function SellerSidebar({
         />
       )}
 
-       
       <aside
         className={`
     fixed inset-y-0 left-0 z-50
@@ -92,11 +91,12 @@ export default function SellerSidebar({
     lg:shadow-none
   `}
       >
-         
         <div className="flex items-center justify-between border-b border-slate-100 p-4 lg:hidden">
           <div className="flex items-center gap-2">
             <Store className="h-5 w-5 text-blue-600" />
-            <span className="font-bold text-slate-900 text-sm">Merchant Portal</span>
+            <span className="font-bold text-slate-900 text-sm">
+              Merchant Portal
+            </span>
           </div>
           <button
             type="button"
@@ -108,9 +108,7 @@ export default function SellerSidebar({
           </button>
         </div>
 
-       
         <div className="flex-1 overflow-y-auto px-4 py-6">
-           
           <p className="mb-3 px-3 text-[11px] font-bold uppercase tracking-wider text-slate-400">
             Seller Management
           </p>

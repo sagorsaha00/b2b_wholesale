@@ -18,7 +18,7 @@ import {
   useRegisterSeller,
   useRegisterBuyer,
 } from "@/lib/hooks/useAuthMutations";
-import { FormState } from "@/lib/constant/userType";
+import { FormState } from "@/lib/constant/type/userType";
 
 const initialFormState: FormState = {
   fullName: "",

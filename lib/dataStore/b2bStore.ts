@@ -1,6 +1,6 @@
 import { create } from "zustand";
 import { devtools, persist } from "zustand/middleware";
-import { RegBuyer, RegSeller } from "../constant/store.Type";
+import { RegBuyer, RegSeller } from "../constant/type/store.Type";
 
 type UserRole = "buyer" | "seller";
 

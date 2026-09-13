@@ -2,9 +2,15 @@
 
 import Link from "next/link";
 
-import { Heart, MapPin, Store, Truck } from "lucide-react"; 
+import { Heart, MapPin, Store, Truck } from "lucide-react";
+import { useAuthStore } from "@/lib/dataStore/b2bStore";
 
 export default function TopBar() {
+  const { isAuthenticated, user } = useAuthStore();
+  let role = "";
+  if (isAuthenticated) {
+    role = user?.role === "buyer" ? "buyer" : "seller";
+  }
   return (
     <div className="hidden border-b border-gray-100 bg-white lg:block">
       <div
@@ -32,14 +38,13 @@ export default function TopBar() {
           </span>
         </div>
 
-        
         <div className="flex shrink-0 items-center gap-4 lg:gap-6">
           <Link
-            href="/seller"
+            href="/admin"
             className="flex items-center gap-1.5 whitespace-nowrap text-blue-600 font-semibold transition hover:text-blue-700"
           >
             <Store className="h-4 w-4 shrink-0" />
-            <span>Seller Portal</span>
+            <span> {role} Portal</span>
             <span className="rounded-full bg-blue-100 px-1.5 py-0.2 text-[10px] font-bold text-blue-700">
               Admin
             </span>

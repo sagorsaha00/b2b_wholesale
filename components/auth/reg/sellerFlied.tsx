@@ -1,4 +1,4 @@
-import { SellerFormFieldsProps } from "@/lib/constant/userType";
+import { SellerFormFieldsProps } from "@/lib/constant/type/userType";
 import { motion } from "framer-motion";
 import { Building2, ImagePlus, Loader2, MapPin, X } from "lucide-react";
 
@@ -60,7 +60,7 @@ export function SellerFormFields({
           />
         </div>
       </div>
-      
+
       <div className="grid gap-4 sm:grid-cols-2">
         <div>
           <label className="mb-2 block text-sm font-semibold text-slate-700">

@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { AllProduct } from "@/lib/constant/data.type";
+import { AllProduct } from "@/lib/constant/type/data.type";
 import ProductRating from "@/lib/ui/ratingCard";
 import Image from "next/image";
 import {

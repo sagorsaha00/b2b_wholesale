@@ -5,7 +5,7 @@ import { useState } from "react";
 import ProductsAside from "@/components/product/allProductaSide";
 import ProductCardSection from "@/components/product/productCard";
 
-import { Filters } from "@/lib/constant/data.type";
+import { Filters } from "@/lib/constant/type/data.type";
 import { Allproducts, initialFilters } from "@/lib/constant/dummyData";
 
 const MIN_RATING = 4.5;

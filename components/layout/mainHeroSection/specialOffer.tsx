@@ -3,7 +3,7 @@
 import Image from "next/image";
 import { useState } from "react";
 import ProductRating from "@/lib/ui/ratingCard";
-import { Product } from "@/lib/constant/data.type";
+import { Product } from "@/lib/constant/type/data.type";
 import { SpecialProDuctItem } from "@/lib/ui/productCard";
 import { products } from "@/lib/constant/dummyData";
 

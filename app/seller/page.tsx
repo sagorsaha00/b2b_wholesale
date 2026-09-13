@@ -17,7 +17,7 @@ import SellerAddProductForm from "@/components/seller/SellerAddProductForm";
 import SellerOrdersList from "@/components/seller/SellerOrdersList";
 import SellerSettings from "@/components/seller/SellerSettings";
 import SellerInvoiceModal from "@/components/seller/SellerInvoiceModal";
-import { SellerTab } from "@/lib/constant/data.type";
+import { SellerTab } from "@/lib/constant/type/data.type";
 
 export default function SellerAdminPage() {
   const [activeTab, setActiveTab] = useState<SellerTab>("overview");

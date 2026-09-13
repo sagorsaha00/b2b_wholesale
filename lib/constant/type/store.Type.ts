@@ -16,6 +16,7 @@ export interface RegBuyer {
   phoneNumber: string;
   profilePic: string | null;
   location: string | null;
+  role: string;
   businessInfoId: number | null;
   businessInfo?: BusinessInfo | null;
   createdAt?: string;
@@ -28,6 +29,7 @@ export interface RegSeller {
   email: string;
   number: string;
   businessLocation: string;
+  role: string;
   logo: string | null;
   profilePic: string | null;
   coverPhoto: string | null;

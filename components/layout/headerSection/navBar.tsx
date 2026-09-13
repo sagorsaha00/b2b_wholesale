@@ -49,7 +49,6 @@ export default function Navbar() {
             />
           </button>
 
-          {/* Categories Dropdown */}
           <div
             className="
               invisible absolute left-0 top-full z-50
@@ -183,7 +182,6 @@ export default function Navbar() {
                   </div>
                 )}
 
-             
                 {item.megaMenu === "providers" && (
                   <div
                     className="
@@ -284,8 +282,6 @@ export default function Navbar() {
                           href="/deal/NewBuyerOffers"
                         />
                       </div>
-
-                      
                     </div>
                   </div>
                 )}
@@ -293,12 +289,8 @@ export default function Navbar() {
             );
           })}
         </div>
-
-      
-         
       </div>
 
-      
       <div className="flex h-14 items-center justify-between px-4 lg:hidden">
         {/* All Categories */}
         <button

@@ -2,7 +2,7 @@
 
 import ProductsAside from "@/components/product/allProductaSide";
 import ProductGrid from "@/components/product/productGridSection";
-import { Filters } from "@/lib/constant/data.type";
+import { Filters } from "@/lib/constant/type/data.type";
 import { initialFilters } from "@/lib/constant/dummyData";
 import { useState } from "react";
 

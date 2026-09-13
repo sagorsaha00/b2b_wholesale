@@ -5,7 +5,7 @@ import {
   Product,
   RatingSummary,
   WishlistItem,
-} from "./data.type";
+} from "./type/data.type";
 
 export const BUSINESS_CATEGORIES = [
   "Electronics",

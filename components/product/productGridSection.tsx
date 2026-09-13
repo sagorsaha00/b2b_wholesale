@@ -1,7 +1,7 @@
 "use client";
 
 import ProductCardSection from "@/components/product/productCard";
-import { Filters } from "@/lib/constant/data.type";
+import { Filters } from "@/lib/constant/type/data.type";
 import { Allproducts } from "@/lib/constant/dummyData";
 import { useMemo, useState } from "react";
 
