@@ -46,3 +46,8 @@ export interface SellerFormFieldsProps {
   onRemoveLogo: () => void;
   onRemoveCover: () => void;
 }
+export interface LoginCredentials {
+  email: string;
+  password: string;
+  role: "buyer" | "seller";
+}

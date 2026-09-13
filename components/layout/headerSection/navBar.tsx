@@ -298,7 +298,7 @@ export default function Navbar() {
          
       </div>
 
-      {/* ================= MOBILE NAVBAR ================= */}
+      
       <div className="flex h-14 items-center justify-between px-4 lg:hidden">
         {/* All Categories */}
         <button

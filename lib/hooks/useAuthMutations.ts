@@ -7,6 +7,8 @@ import {
   RegSeller,
 } from "../constant/store.Type";
 import { useAuthStore } from "../dataStore/b2bStore";
+import { useRouter } from "next/navigation";
+import { LoginCredentials } from "../constant/userType";
 
 const API_URL = process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:5000";
 const registerBuyerApi = async (
@@ -41,7 +43,42 @@ const registerSellerApi = async (
   return data;
 };
 
-// --- Custom Hooks ---
+const loginUser = async ({ email, password, role }: LoginCredentials) => {
+  const endpoint =
+    role === "buyer" ? "/api/buyer/loginBuyer" : "/api/seller/loginSeller";
+  const response = await fetch(`http://localhost:5000${endpoint}`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({ email, password }),
+  });
+  const result = await response.json();
+  let data = null;
+  if (role === "buyer") {
+    data = result.data.buyer;
+  } else {
+    data = result.data.seller;
+  }
+
+  return data;
+};
+
+export function useLogin() {
+  const router = useRouter();
+  const { setUser } = useAuthStore();
+
+  return useMutation({
+    mutationFn: loginUser,
+    onSuccess: (data) => {
+      if (setUser) {
+        console.log("Login Data", data);
+        setUser(data, data.role);
+      }
+      router.push("/");
+    },
+  });
+}
 export function useRegisterBuyer() {
   const setUser = useAuthStore((state) => state.setUser);
 

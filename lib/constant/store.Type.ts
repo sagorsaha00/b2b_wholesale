@@ -1,5 +1,3 @@
- 
-
 export type UserRole = "buyer" | "seller";
 
 export interface BusinessInfo {
@@ -11,9 +9,6 @@ export interface BusinessInfo {
   createdAt?: string;
   updatedAt?: string;
 }
-
- 
-
 export interface RegBuyer {
   id: number;
   name: string | null;
@@ -27,8 +22,6 @@ export interface RegBuyer {
   updatedAt?: string;
 }
 
- 
-
 export interface RegSeller {
   id: number;
   name: string;
@@ -36,12 +29,11 @@ export interface RegSeller {
   number: string;
   businessLocation: string;
   logo: string | null;
+  profilePic: string | null;
   coverPhoto: string | null;
   createdAt?: string;
   updatedAt?: string;
 }
-
- 
 
 export interface FormState {
   fullName: string;
@@ -53,7 +45,6 @@ export interface FormState {
   confirmPassword: string;
   agreeToTerms: boolean;
 }
- 
 
 export interface RegisterBuyerPayload {
   name: string;
@@ -85,5 +76,3 @@ export interface ApiResponse<T> {
   message: string;
   data: T;
 }
-
- 

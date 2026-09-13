@@ -9,26 +9,33 @@ import {
   LockKeyhole,
   Mail,
   ShieldCheck,
+  Loader2,
+  Store,
+  ShoppingBag,
 } from "lucide-react";
-import { useState } from "react";
-import { useAuthStore } from "@/lib/dataStore/b2bStore";
-import { useRouter } from "next/navigation";
+import { useState, FormEvent } from "react";
+import { useLogin } from "@/lib/hooks/useAuthMutations";
 
 export default function LoginPage() {
   const [showPassword, setShowPassword] = useState(false);
-  // const router = useRouter();
-  // const { isAuthenticated } = useAuthStore();
-  // if (isAuthenticated) {
-  //   return router.push("/");
-  // }
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [role, setRole] = useState<"buyer" | "seller">("buyer");
+  const { mutate: login, isPending, error } = useLogin();
+
+  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    login({ email, password, role });
+  };
+
   return (
-    <main className=" bg-white">
-      <div className="mx-auto grid   max-w-[1450px] lg:grid-cols-2">
+    <main className="bg-white">
+      <div className="mx-auto grid max-w-[1450px] lg:grid-cols-2">
         <motion.section
           initial={{ opacity: 0, x: -30 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.6 }}
-          className="relative hidden overflow-hidden bg-[#2563EB] lg:flex "
+          className="relative hidden overflow-hidden bg-[#2563EB] lg:flex"
         >
           <div className="relative z-10 flex w-full flex-col justify-between p-12 xl:p-16">
             <div className="max-w-xl">
@@ -69,7 +76,43 @@ export default function LoginPage() {
             </div>
 
             <div className="rounded-2xl border border-slate-200 bg-white p-6 shadow-[0_10px_40px_rgba(15,23,42,0.06)] sm:p-8">
-              <form className="space-y-5">
+              {/* Buyer / Seller Role Switcher */}
+              <div className="mb-6 grid grid-cols-2 gap-2 rounded-xl bg-slate-100 p-1">
+                <button
+                  type="button"
+                  onClick={() => setRole("buyer")}
+                  className={`flex items-center justify-center gap-2 rounded-lg py-2.5 text-xs font-semibold transition-all ${
+                    role === "buyer"
+                      ? "bg-white text-[#2563EB] shadow-sm"
+                      : "text-slate-500 hover:text-slate-900"
+                  }`}
+                >
+                  <ShoppingBag size={16} />
+                  Buyer Account
+                </button>
+
+                <button
+                  type="button"
+                  onClick={() => setRole("seller")}
+                  className={`flex items-center justify-center gap-2 rounded-lg py-2.5 text-xs font-semibold transition-all ${
+                    role === "seller"
+                      ? "bg-white text-[#2563EB] shadow-sm"
+                      : "text-slate-500 hover:text-slate-900"
+                  }`}
+                >
+                  <Store size={16} />
+                  Seller Account
+                </button>
+              </div>
+
+              {/* TanStack Query Error Alert */}
+              {error && (
+                <div className="mb-4 rounded-xl border border-red-200 bg-red-50 p-3 text-sm text-red-600">
+                  {error.message}
+                </div>
+              )}
+
+              <form onSubmit={handleSubmit} className="space-y-5">
                 <div>
                   <label className="mb-2 block text-sm font-semibold text-slate-700">
                     Email address
@@ -83,6 +126,9 @@ export default function LoginPage() {
 
                     <input
                       type="email"
+                      required
+                      value={email}
+                      onChange={(e) => setEmail(e.target.value)}
                       placeholder="you@company.com"
                       className="h-12 w-full rounded-xl border border-slate-200 bg-slate-50 pl-11 pr-4 text-sm text-slate-900 outline-none transition-all placeholder:text-slate-400 focus:border-[#2563EB] focus:bg-white focus:ring-4 focus:ring-blue-50"
                     />
@@ -111,6 +157,9 @@ export default function LoginPage() {
 
                     <input
                       type={showPassword ? "text" : "password"}
+                      required
+                      value={password}
+                      onChange={(e) => setPassword(e.target.value)}
                       placeholder="Enter your password"
                       className="h-12 w-full rounded-xl border border-slate-200 bg-slate-50 pl-11 pr-12 text-sm text-slate-900 outline-none transition-all placeholder:text-slate-400 focus:border-[#2563EB] focus:bg-white focus:ring-4 focus:ring-blue-50"
                     />
@@ -139,17 +188,23 @@ export default function LoginPage() {
 
                 <button
                   type="submit"
-                  className="group flex h-12 w-full items-center justify-center gap-2 rounded-xl bg-[#2563EB] text-sm font-semibold text-white shadow-lg shadow-blue-100 transition-all duration-300 hover:-translate-y-0.5 hover:bg-[#1D4ED8] hover:shadow-blue-200"
+                  disabled={isPending}
+                  className="group flex h-12 w-full items-center justify-center gap-2 rounded-xl bg-[#2563EB] text-sm font-semibold text-white shadow-lg shadow-blue-100 transition-all duration-300 hover:-translate-y-0.5 hover:bg-[#1D4ED8] hover:shadow-blue-200 disabled:opacity-70 disabled:hover:translate-y-0"
                 >
-                  Sign in
-                  <ArrowRight
-                    size={18}
-                    className="transition-transform duration-300 group-hover:translate-x-1"
-                  />
+                  {isPending ? (
+                    <Loader2 size={18} className="animate-spin" />
+                  ) : (
+                    <>
+                      Sign in as {role === "buyer" ? "Buyer" : "Seller"}
+                      <ArrowRight
+                        size={18}
+                        className="transition-transform duration-300 group-hover:translate-x-1"
+                      />
+                    </>
+                  )}
                 </button>
               </form>
 
-              {/* Register */}
               <div className="mt-7 border-t border-slate-100 pt-6 text-center">
                 <p className="text-sm text-slate-500">
                   Don't have a Markood account?{" "}

@@ -15,7 +15,7 @@ interface BuyerFormFieldsProps {
   businessName: string;
   location: string;
   profilePicUrl: string | null;
-  businessLogo: string | null;
+  businessLogoUrl: string | null; // Renamed to businessLogoUrl for clarity & consistency
   tradeLicenseUrl: string | null;
   nidUrl: string | null;
   uploadingProfilePic: boolean;
@@ -40,7 +40,7 @@ export function BuyerFormFields({
   businessName,
   location,
   profilePicUrl,
-  businessLogo,
+  businessLogoUrl,
   tradeLicenseUrl,
   nidUrl,
   uploadingProfilePic,
@@ -156,10 +156,10 @@ export function BuyerFormFields({
             <Loader2 className="h-5 w-5 animate-spin text-[#2563EB]" />
             Uploading business logo...
           </div>
-        ) : businessLogo ? (
+        ) : businessLogoUrl ? (
           <div className="relative h-20 w-full overflow-hidden rounded-xl border border-slate-200">
             <img
-              src={businessLogo}
+              src={businessLogoUrl}
               alt="Business Logo preview"
               className="h-full w-full object-cover"
             />

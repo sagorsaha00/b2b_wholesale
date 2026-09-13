@@ -19,7 +19,6 @@ import {
   useRegisterBuyer,
 } from "@/lib/hooks/useAuthMutations";
 import { FormState } from "@/lib/constant/userType";
-import { useAuthStore } from "@/lib/dataStore/b2bStore";
 
 const initialFormState: FormState = {
   fullName: "",
@@ -33,7 +32,6 @@ const initialFormState: FormState = {
 };
 
 export default function RegisterPage() {
-  // TanStack Query Mutations
   const buyerMutation = useRegisterBuyer();
   const sellerMutation = useRegisterSeller();
 
@@ -44,7 +42,7 @@ export default function RegisterPage() {
   const [validationError, setValidationError] = useState<string | null>(null);
 
   // Buyer Image States
-  const [businessLogo, setBusinessLogoUrl] = useState<string | null>(null);
+  const [businessLogoUrl, setBusinessLogoUrl] = useState<string | null>(null);
   const [profilePicUrl, setProfilePicUrl] = useState<string | null>(null);
   const [tradeLicenseUrl, setTradeLicenseUrl] = useState<string | null>(null);
   const [nidUrl, setNidUrl] = useState<string | null>(null);
@@ -59,15 +57,10 @@ export default function RegisterPage() {
   const [coverUrl, setCoverUrl] = useState<string | null>(null);
   const [uploadingLogo, setUploadingLogo] = useState(false);
   const [uploadingCover, setUploadingCover] = useState(false);
+
   const router = useRouter();
-  const { isAuthenticated } = useAuthStore();
-  if (isAuthenticated) {
-    return router.push("/");
-  }
-  const updateField = <K extends keyof FormState>(
-    key: K,
-    value: FormState[K],
-  ) => {
+
+  const updateField = (key: string, value: any) => {
     setForm((prev) => ({ ...prev, [key]: value }));
   };
 
@@ -128,7 +121,11 @@ export default function RegisterPage() {
           ...(form.businessName && {
             businessInfo: {
               name: form.businessName,
-              ...(businessLogo && { businessLogo }),
+              // Map state value correctly to expected backend key
+              ...(businessLogoUrl && {
+                businessLogoUrl,
+                businessLogo: businessLogoUrl,
+              }),
               ...(tradeLicenseUrl && { tradeLicense: tradeLicenseUrl }),
               ...(nidUrl && { userNationalId: nidUrl }),
             },
@@ -168,7 +165,7 @@ export default function RegisterPage() {
 
   return (
     <main className="bg-white">
-      <div className="mx-auto grid  max-w-[1450px] lg:grid-cols-2">
+      <div className="mx-auto grid max-w-[1450px] lg:grid-cols-2">
         <RegisterHero />
 
         <section className="flex items-center justify-center px-5 py-10 sm:px-8 lg:px-12">
@@ -211,7 +208,7 @@ export default function RegisterPage() {
                     businessName={form.businessName}
                     location={form.location}
                     profilePicUrl={profilePicUrl}
-                    businessLogo={businessLogo}
+                    businessLogoUrl={businessLogoUrl}
                     tradeLicenseUrl={tradeLicenseUrl}
                     nidUrl={nidUrl}
                     uploadingProfilePic={uploadingProfilePic}
@@ -338,7 +335,7 @@ export default function RegisterPage() {
               </div>
             </div>
 
-            <div className="mt-6 flex items-center justify-center gap-2 text-xs text-slate-400">
+            <div className="mt-6 flex items-center justify-center gap-[#0F172A] gap-2 text-xs text-slate-400">
               <ShieldCheck size={15} /> Secure registration for businesses
             </div>
           </motion.div>
