@@ -72,7 +72,7 @@ export default function SellerSidebar({
         />
       )}
 
-      {/* Sidebar */}
+       
       <aside
         className={`
     fixed inset-y-0 left-0 z-50
@@ -92,7 +92,7 @@ export default function SellerSidebar({
     lg:shadow-none
   `}
       >
-        {/* Mobile Header with Close Button */}
+         
         <div className="flex items-center justify-between border-b border-slate-100 p-4 lg:hidden">
           <div className="flex items-center gap-2">
             <Store className="h-5 w-5 text-blue-600" />
@@ -108,9 +108,9 @@ export default function SellerSidebar({
           </button>
         </div>
 
-        {/* Sidebar Content */}
+       
         <div className="flex-1 overflow-y-auto px-4 py-6">
-          {/* Seller Management */}
+           
           <p className="mb-3 px-3 text-[11px] font-bold uppercase tracking-wider text-slate-400">
             Seller Management
           </p>

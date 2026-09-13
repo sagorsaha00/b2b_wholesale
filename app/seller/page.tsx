@@ -123,11 +123,22 @@ export default function SellerAdminPage() {
         />
       )}
 
-      
+      {/* Mobile Top Bar — the missing piece */}
+      <header className="sticky top-0 z-30 flex items-center gap-3 border-b border-slate-200 bg-white px-4 py-3 lg:hidden">
+        <button
+          type="button"
+          onClick={() => setSidebarOpen(true)}
+          className="rounded-lg p-2 text-slate-600 hover:bg-slate-100 hover:text-slate-900"
+          aria-label="Open menu"
+        >
+          <Menu className="h-5 w-5" />
+        </button>
+        <span className="text-sm font-bold text-slate-900">
+          Merchant Portal
+        </span>
+      </header>
 
- 
-      <div className="flex">
-       
+      <div className="flex min-w-0">
         <SellerSidebar
           activeTab={activeTab}
           setActiveTab={setActiveTab}
@@ -138,7 +149,7 @@ export default function SellerAdminPage() {
         />
 
         {/* Content Area */}
-        <main className="flex-1 p-4 sm:p-6 lg:p-8 min-w-0 max-w-7xl mx-auto">
+        <main className="flex-1 min-w-0 w-full p-4 sm:p-6 lg:p-8 max-w-7xl mx-auto">
           {activeTab === "overview" && (
             <SellerStatsOverview
               stats={currentStats}

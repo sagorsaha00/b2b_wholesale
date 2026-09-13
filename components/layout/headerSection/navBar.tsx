@@ -183,7 +183,7 @@ export default function Navbar() {
                   </div>
                 )}
 
-                {/* ================= PROVIDERS ================= */}
+             
                 {item.megaMenu === "providers" && (
                   <div
                     className="
@@ -294,21 +294,8 @@ export default function Navbar() {
           })}
         </div>
 
-        {/* Become Provider */}
-        <Link
-          href="/become-provider"
-          className="
-            hidden h-14 items-center
-            border-l border-gray-100
-            px-5
-            text-sm font-bold text-blue-600
-            transition
-            hover:bg-blue-50
-            lg:flex
-          "
-        >
-          Become a Provider
-        </Link>
+      
+         
       </div>
 
       {/* ================= MOBILE NAVBAR ================= */}

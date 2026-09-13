@@ -11,13 +11,19 @@ import {
   ShieldCheck,
 } from "lucide-react";
 import { useState } from "react";
+import { useAuthStore } from "@/lib/dataStore/b2bStore";
+import { useRouter } from "next/navigation";
 
 export default function LoginPage() {
   const [showPassword, setShowPassword] = useState(false);
-
+  // const router = useRouter();
+  // const { isAuthenticated } = useAuthStore();
+  // if (isAuthenticated) {
+  //   return router.push("/");
+  // }
   return (
     <main className=" bg-white">
-      <div className="mx-auto grid min-h-screen max-w-[1450px] lg:grid-cols-2">
+      <div className="mx-auto grid   max-w-[1450px] lg:grid-cols-2">
         <motion.section
           initial={{ opacity: 0, x: -30 }}
           animate={{ opacity: 1, x: 0 }}

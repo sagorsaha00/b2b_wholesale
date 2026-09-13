@@ -130,7 +130,6 @@ export default function Footer() {
             </h3>
 
             <div className="mt-5 space-y-4">
-              <FooterLink href="/become-provider">Become a Provider</FooterLink>
 
               <FooterLink href="/orders">Order Tracking</FooterLink>
 
