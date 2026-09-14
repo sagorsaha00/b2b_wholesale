@@ -306,17 +306,17 @@ export type Country = {
   code: string;
   name: string;
   flag: string;
-  count: number;
+   
 };
 
 export const countries: Country[] = [
-  { code: "bd", name: "Sweden", flag: "🇧🇩", count: 482 },
-  { code: "in", name: "India", flag: "🇮🇳", count: 356 },
-  { code: "cn", name: "China", flag: "🇨🇳", count: 291 },
-  { code: "vn", name: "Vietnam", flag: "🇻🇳", count: 128 },
-  { code: "pk", name: "Pakistan", flag: "🇵🇰", count: 97 },
-  { code: "th", name: "Thailand", flag: "🇹🇭", count: 64 },
-  { code: "tr", name: "Turkey", flag: "🇹🇷", count: 41 },
+  { code: "se", name: "Sweden", flag: "🇸🇪"  },
+  { code: "in", name: "India", flag: "🇮🇳",   },
+  { code: "cn", name: "China", flag: "🇨🇳",   },
+  { code: "vn", name: "Vietnam", flag: "🇻🇳",  },
+  { code: "pk", name: "Pakistan", flag: "🇵🇰",  },
+  { code: "th", name: "Thailand", flag: "🇹🇭",   },
+  { code: "tr", name: "Turkey", flag: "🇹🇷",  },
 ];
 
 export const categories: Category[] = [

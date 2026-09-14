@@ -1,83 +1,79 @@
 "use client";
 
+import { useState, useMemo, useEffect } from "react";
 import ProductCardSection from "@/components/product/productCard";
 import { Filters } from "@/lib/constant/type/data.type";
-import { Allproducts } from "@/lib/constant/dummyData";
-import { useMemo, useState } from "react";
+import { ChevronLeft, ChevronRight, Loader2 } from "lucide-react";
+import { useProducts } from "@/lib/hooks/useAuthMutations";
 
-export default function ProductGrid({ filters }: { filters: Filters }) {
+interface ProductGridProps {
+  filters: Filters;
+  page: number;
+  setPage: (page: number | ((prev: number) => number)) => void;
+}
+
+export default function ProductGrid({
+  filters,
+  page,
+  setPage,
+}: ProductGridProps) {
   const [sort, setSort] = useState("Best match");
 
-  const filtered = useMemo(() => {
-    const result = Allproducts.filter((p) => {
-      // Country
-      if (
-        filters.countryCodes.length &&
-        !filters.countryCodes.includes(p.countryCode)
-      ) {
-        return false;
-      }
+  useEffect(() => {
+    setPage(1);
+  }, [filters, setPage]);
 
-      // Category
-      if (filters.categorySlug && p.category !== filters.categorySlug) {
-        return false;
-      }
+  const { data, isLoading, isError, isFetching } = useProducts({
+    page,
+    limit: 10,
+    category: filters.categorySlug,
+    minPrice: filters.minPrice,
+    maxPrice: filters.maxPrice,
+    countryCodes: filters.countryCodes?.join(","),
+  });
 
-      // Verified
-      if (filters.verifiedOnly && !p.verified) {
-        return false;
-      }
+  const rawProducts = data?.data || [];
+  const pagination = data?.pagination;
 
-      // Rating
-      if (filters.minRating && p.rating < filters.minRating) {
-        return false;
-      }
+  const sortedProducts = useMemo(() => {
+    const list = [...rawProducts];
 
-      // Min Price
-      if (filters.minPrice && Number(p.price) < Number(filters.minPrice)) {
-        return false;
-      }
-
-      // Max Price
-      if (filters.maxPrice && Number(p.price) > Number(filters.maxPrice)) {
-        return false;
-      }
-
-      return true;
-    });
-
-    // Sorting
     if (sort === "Price: low to high") {
-      result.sort((a, b) => Number(a.price) - Number(b.price));
+      list.sort((a, b) => Number(a.price) - Number(b.price));
+    } else if (sort === "Price: high to low") {
+      list.sort((a, b) => Number(b.price) - Number(a.price));
+    } else if (sort === "Newest") {
+      list.sort(
+        (a, b) =>
+          new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime(),
+      );
     }
 
-    if (sort === "Price: high to low") {
-      result.sort((a, b) => Number(b.price) - Number(a.price));
-    }
-
-    if (sort === "Newest") {
-      result.reverse();
-    }
-
-    return result;
-  }, [filters, sort]);
+    return list;
+  }, [rawProducts, sort]);
 
   return (
-    <div className="min-w-0 w-full">
+    <div className="w-full min-w-0">
+      {/* Top Bar */}
       <div className="mb-5 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
-        {/* Result Count */}
-        <div className="flex items-center justify-between sm:block">
+        <div className="flex items-center gap-3">
           <p className="text-sm font-medium text-gray-600">
-            <span className="font-bold text-gray-900">{filtered.length}</span>{" "}
+            <span className="font-bold text-gray-900">
+              {pagination?.total || 0}
+            </span>{" "}
             products found
           </p>
+          {isFetching && (
+            <span className="flex items-center gap-1 text-xs text-blue-600">
+              <Loader2 className="h-3.5 w-3.5 animate-spin" /> Updating...
+            </span>
+          )}
         </div>
 
         <div className="flex w-full items-center gap-2 sm:w-auto">
           <span className="hidden text-sm text-gray-500 sm:block">
             Sort by:
           </span>
-
           <select
             value={sort}
             onChange={(e) => setSort(e.target.value)}
@@ -91,56 +87,87 @@ export default function ProductGrid({ filters }: { filters: Filters }) {
         </div>
       </div>
 
-      {filtered.length === 0 ? (
+      {/* Loading Skeleton */}
+      {isLoading ? (
+        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 sm:gap-5 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-4">
+          {Array.from({ length: 8 }).map((_, i) => (
+            <div
+              key={i}
+              className="h-[320px] animate-pulse rounded-xl bg-gray-100"
+            />
+          ))}
+        </div>
+      ) : isError ? (
+        <div className="flex min-h-[300px] flex-col items-center justify-center rounded-xl border border-dashed border-red-200 bg-red-50/50 p-6 text-center">
+          <p className="text-base font-semibold text-red-600">
+            Something went wrong while fetching products.
+          </p>
+          <button
+            onClick={() => setPage(1)}
+            className="mt-3 text-sm font-medium text-blue-600 underline"
+          >
+            Try Again
+          </button>
+        </div>
+      ) : sortedProducts.length === 0 ? (
         <div className="flex min-h-[300px] items-center justify-center rounded-xl border border-dashed border-gray-300 bg-white px-5 text-center">
           <div>
             <p className="text-base font-semibold text-gray-700">
               No products found
             </p>
-
             <p className="mt-1 text-sm text-gray-400">
-              Try changing your filters.
+              Try changing your filters or price range.
             </p>
           </div>
         </div>
       ) : (
-        <div
-          className="
-            grid
-            grid-cols-1
-            gap-4
-            sm:grid-cols-2
-            sm:gap-5
-            md:grid-cols-3
-            lg:grid-cols-3
-            xl:grid-cols-4
-          "
-        >
-          {filtered.map((product) => (
+        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 sm:gap-5 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-4">
+          {sortedProducts.map((product) => (
             <ProductCardSection key={product.id} product={product} />
           ))}
         </div>
       )}
 
-      <div className="mt-8 flex items-center justify-center gap-1.5 overflow-x-auto pb-1 sm:gap-2">
-        {["‹", "1", "2", "3", "…", "42", "›"].map((label, index) => (
+      {/* Backend Pagination */}
+      {pagination && pagination.totalPages > 1 && (
+        <div className="mt-8 flex items-center justify-center gap-2">
           <button
-            key={`${label}-${index}`}
             type="button"
-            className={`
-                flex h-9 w-9 shrink-0 items-center justify-center rounded-lg
-                text-sm transition-all duration-200
-                ${
-                  label === "1"
+            disabled={!pagination.hasPrevPage}
+            onClick={() => setPage((prev) => Math.max(prev - 1, 1))}
+            className="flex h-9 w-9 items-center justify-center rounded-lg border border-gray-200 bg-white text-gray-700 transition hover:border-[#0055ff] hover:text-[#0055ff] disabled:opacity-40 disabled:hover:border-gray-200 disabled:hover:text-gray-700"
+          >
+            <ChevronLeft className="h-4 w-4" />
+          </button>
+
+          {Array.from({ length: pagination.totalPages }, (_, index) => {
+            const pageNum = index + 1;
+            return (
+              <button
+                key={pageNum}
+                type="button"
+                onClick={() => setPage(pageNum)}
+                className={`flex h-9 w-9 items-center justify-center rounded-lg text-sm transition-all duration-200 ${
+                  page === pageNum
                     ? "bg-[#0055ff] font-semibold text-white shadow-sm"
                     : "border border-gray-200 bg-white text-gray-700 hover:border-[#0055ff] hover:text-[#0055ff]"
-                }
-              `}
+                }`}
+              >
+                {pageNum}
+              </button>
+            );
+          })}
+
+          <button
+            type="button"
+            disabled={!pagination.hasNextPage}
+            onClick={() => setPage((prev) => prev + 1)}
+            className="flex h-9 w-9 items-center justify-center rounded-lg border border-gray-200 bg-white text-gray-700 transition hover:border-[#0055ff] hover:text-[#0055ff] disabled:opacity-40 disabled:hover:border-gray-200 disabled:hover:text-gray-700"
           >
-            {label}
+            <ChevronRight className="h-4 w-4" />
           </button>
-        ))}
-      </div>
+        </div>
+      )}
     </div>
   );
 }

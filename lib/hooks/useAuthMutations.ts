@@ -1,4 +1,4 @@
-import { useMutation } from "@tanstack/react-query";
+import { useMutation, useQuery } from "@tanstack/react-query";
 import {
   ApiResponse,
   RegBuyer,
@@ -13,6 +13,10 @@ import {
   SellersApiResponse,
   VerificationStatus,
 } from "../constant/type/seller.type";
+import {
+  FetchParams,
+  ProductsApiResponse,
+} from "../constant/type/product.type";
 
 const API_URL = process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:5000";
 const registerBuyerApi = async (
@@ -125,5 +129,40 @@ export function useRegisterSeller() {
       console.log("dataSeller", data.data);
       setUser(data.data, "seller");
     },
+  });
+}
+export const fetchProducts = async (
+  params: FetchParams,
+): Promise<ProductsApiResponse> => {
+  const query = new URLSearchParams();
+
+  query.append("page", params.page.toString());
+  query.append("limit", (params.limit || 10).toString());
+
+  if (params.category) query.append("category", params.category);
+  if (params.search) query.append("search", params.search);
+  if (params.minPrice) query.append("minPrice", params.minPrice.toString());
+  if (params.maxPrice) query.append("maxPrice", params.maxPrice.toString());
+
+  // FIXED: Add countryCodes to URL search params
+  if (params.countryCodes && params.countryCodes.trim() !== "") {
+    query.append("countryCodes", params.countryCodes);
+  }
+
+  const res = await fetch(
+    `${API_URL}/api/product/getProduct?${query.toString()}`,
+  );
+
+  if (!res.ok) {
+    throw new Error("Failed to fetch products");
+  }
+
+  return res.json();
+};
+export function useProducts(params: FetchParams) {
+  return useQuery({
+    queryKey: ["products", params],
+    queryFn: () => fetchProducts(params),
+    placeholderData: (previousData) => previousData,
   });
 }

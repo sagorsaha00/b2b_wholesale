@@ -59,13 +59,11 @@ export type AllProduct = {
 };
 
 export type Filters = {
-  countryCodes: string[];
-  categorySlug: string | null;
-  verifiedOnly: boolean;
-  minRating: number | null;
-  minPrice: string;
-  maxPrice: string;
-  categories: string;
+  countryCodes?: string[];
+  categorySlug?: string | null;
+  minPrice?: number | undefined;
+  maxPrice?: number | undefined;
+  minRating?: number | null;
 };
 export type RatingSummary = {
   overall: number;
