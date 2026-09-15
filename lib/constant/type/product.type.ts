@@ -25,6 +25,12 @@ export interface Product {
   id: number;
   sellerId: number;
   name: string;
+  image: string;
+  rating: number;
+  reviews: string;
+  sale: boolean;
+  reviewsCount: number;
+  oldPrice: number;
   description: string;
   category: string;
   price: number;
@@ -32,12 +38,37 @@ export interface Product {
   unit: string;
   minimumQty: number;
   createdAt: string;
+  discount: number;
   updatedAt: string;
   images: Image[];
   tiers: Tier[];
   seller: Seller;
+  sku: string;
 }
+export interface ProductCardProps {
+  product: Product;
+  id: number;
+  name: string;
+  price: number;
+  oldPrice?: number;
+  rating?: number;
+  reviews?: number;
+  sale?: boolean;
+  discount?: string | number;
+  description?: string;
+  buyable?: boolean;
+  images?: { id?: number; url: string }[];
+  seller?: {
+    name?: string;
+    logo?: string;
+  };
+  image?: string;
+  supplier?: string;
+  supplierImage?: string;
 
+  onAddToCart?: (product: Product) => void;
+  onChatNow?: (product: Product) => void;
+}
 export interface Pagination {
   total: number;
   page: number;

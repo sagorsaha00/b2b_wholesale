@@ -10,31 +10,7 @@ import {
 } from "@/lib/constant/imageFallBack";
 import { MessageCircle, ShoppingCart } from "lucide-react";
 import { useRouter } from "next/navigation";
-
-export interface ProductCardProps {
-  product: {
-    id: number;
-    name: string;
-    price: number;
-    oldPrice?: number;
-    rating?: number;
-    reviews?: number;
-    sale?: boolean;
-    discount?: string | number;
-    description?: string;
-    buyable?: boolean;
-    images?: { id?: number; url: string }[];
-    seller?: {
-      name?: string;
-      logo?: string;
-    };
-    image?: string;
-    supplier?: string;
-    supplierImage?: string;
-  };
-  onAddToCart?: (product: any) => void;
-  onChatNow?: (product: any) => void;
-}
+import { ProductCardProps } from "@/lib/constant/type/product.type";
 
 export default function ProductCardSection({
   product,
@@ -49,10 +25,9 @@ export default function ProductCardSection({
       ? product.images[0].url
       : product.image || PRODUCT_IMAGE_FALLBACK;
 
-  const initialSupplierImg =
-    product.seller?.logo || product.supplierImage || SUPPLIER_IMAGE_FALLBACK;
+  const initialSupplierImg = product.seller?.logo || SUPPLIER_IMAGE_FALLBACK;
 
-  const supplierName = product.seller?.name || product.supplier;
+  const supplierName = product.seller?.name;
 
   const [imgSrc, setImgSrc] = useState<string>(initialProductImg);
   const [supplierImgSrc, setSupplierImgSrc] =
@@ -75,7 +50,7 @@ export default function ProductCardSection({
       {/* Dynamic Badges */}
       <div className="absolute left-3 top-3 z-10 flex flex-col gap-1">
         {product.discount && (
-          <span className="rounded-full bg-[#2563EB] px-3 py-1 text-[11px] font-extrabold uppercase tracking-wider text-white shadow-sm">
+          <span className="rounded-full bg-red-500 px-3 py-1 text-[11px] font-extrabold uppercase tracking-wider text-white shadow-sm">
             {product.discount}% OFF
           </span>
         )}
@@ -155,7 +130,6 @@ export default function ProductCardSection({
           )}
         </div>
 
-        {/* Action Buttons */}
         <div className="relative z-30 mt-4 flex gap-2">
           {product.buyable !== false && (
             <button

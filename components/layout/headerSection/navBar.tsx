@@ -7,8 +7,7 @@ import {
   X,
   ChevronDown,
   ArrowRight,
-  Star,
-  Store,
+  
   ShoppingBag,
 } from "lucide-react";
 import { NAVIGATION_ITEMS, categories } from "@/lib/constant/navigation";
@@ -134,7 +133,6 @@ export default function Navbar() {
                   />
                 </Link>
 
-                {/* ================= PRODUCTS ================= */}
                 {item.megaMenu === "products" && (
                   <div
                     className="
@@ -182,53 +180,6 @@ export default function Navbar() {
                   </div>
                 )}
 
-                {item.megaMenu === "providers" && (
-                  <div
-                    className="
-                      invisible absolute left-0 top-full z-50
-                      w-[600px]
-                      translate-y-2
-                      rounded-b-xl
-                      border border-gray-200
-                      bg-white
-                      opacity-0
-                      shadow-2xl
-                      transition-all duration-200
-                      group-hover:visible
-                      group-hover:translate-y-0
-                      group-hover:opacity-100
-                    "
-                  >
-                    <div className="p-7">
-                      <div className="mb-6">
-                        <p className="text-xs font-bold uppercase tracking-wider text-blue-600">
-                          Trusted Businesses
-                        </p>
-
-                        <h2 className="mt-1 text-xl font-black text-gray-900">
-                          Find Providers
-                        </h2>
-                      </div>
-
-                      <div className="grid grid-cols-3 gap-4">
-                        <MegaMenuItem
-                          icon={<Store />}
-                          title="All Providers"
-                          description="Browse every provider"
-                          href="/provider/AllProviders"
-                        />
-                        <MegaMenuItem
-                          icon={<Star />}
-                          title="Verified Providers"
-                          description="Trusted businesses"
-                          href="/provider/VerifiedProviders"
-                        />
-                      </div>
-                    </div>
-                  </div>
-                )}
-
-                {/* ================= DEALS ================= */}
                 {item.megaMenu === "deals" && (
                   <div
                     className="
@@ -292,7 +243,6 @@ export default function Navbar() {
       </div>
 
       <div className="flex h-14 items-center justify-between px-4 lg:hidden">
-        {/* All Categories */}
         <button
           type="button"
           onClick={() => setMobileCategoryOpen((prev) => !prev)}
@@ -426,25 +376,6 @@ export default function Navbar() {
                           className="block rounded-lg px-3 py-3 text-sm text-gray-600 hover:bg-blue-50 hover:text-blue-600"
                         >
                           New Arrivals
-                        </Link>
-                      </div>
-                    )}
-
-                  {item.megaMenu === "providers" &&
-                    mobileMegaOpen === item.label && (
-                      <div className="pb-4 pl-2">
-                        <Link
-                          href="/providers"
-                          className="block rounded-lg px-3 py-3 text-sm text-gray-600 hover:bg-blue-50 hover:text-blue-600"
-                        >
-                          All Providers
-                        </Link>
-
-                        <Link
-                          href="/providers/verified"
-                          className="block rounded-lg px-3 py-3 text-sm text-gray-600 hover:bg-blue-50 hover:text-blue-600"
-                        >
-                          Verified Providers
                         </Link>
                       </div>
                     )}

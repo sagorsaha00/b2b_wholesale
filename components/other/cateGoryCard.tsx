@@ -1,67 +1,18 @@
-import Link from "next/link";
-import {
-  Cpu,
-  UtensilsCrossed,
-  Shirt,
-  Sofa,
-  Sparkles,
-  Wheat,
-  Car,
-  Cog,
-  Building2,
-  Armchair,
-  HeartPulse,
-  Dumbbell,
-  Baby,
-  Gem,
-  Package,
-  FlaskConical,
-  Scissors,
-  Briefcase,
-  PawPrint,
-  BookOpen,
-  type LucideIcon,
-} from "lucide-react";
-import { Category } from "@/lib/constant/type/data.type";
+"use client";
 
-const iconMap: Record<string, LucideIcon> = {
-  Cpu,
-  UtensilsCrossed,
-  Shirt,
-  Sofa,
-  Sparkles,
-  Wheat,
-  Car,
-  Cog,
-  Building2,
-  Armchair,
-  HeartPulse,
-  Dumbbell,
-  Baby,
-  Gem,
-  Package,
-  FlaskConical,
-  Scissors,
-  Briefcase,
-  PawPrint,
-  BookOpen,
-};
+import Link from "next/link";
+import { Category } from "@/lib/constant/type/data.type"; // or your Category interface path
 
 export default function CategoryCard({ category }: { category: Category }) {
-  const Icon = iconMap[category.icon] ?? Package;
-
   return (
     <Link
-      href={`/categories/${category.slug}`}
-      className="group flex flex-col items-center gap-3 rounded-xl border border-transparent p-4 text-center transition hover:-translate-y-0.5 hover:border-gray-100 hover:shadow-md"
+      href={`/products/allProduct?category=${category.slug}`}
+      className="group flex flex-col items-center justify-center rounded-xl border border-gray-100 bg-white p-3 text-center transition-all duration-200 hover:-translate-y-1 hover:border-blue-200 hover:shadow-md"
     >
-      <span className="flex h-14 w-14 items-center justify-center rounded-2xl bg-[#EFF6FF] transition-colors group-hover:bg-[#2563EB]">
-        <Icon
-          size={24}
-          className="text-[#2563EB] transition-colors group-hover:text-white"
-        />
-      </span>
-      <span className="text-xs font-semibold leading-snug text-[#0F172A] sm:text-sm">
+      <div className="mb-2 flex h-10 w-10 items-center justify-center rounded-lg bg-blue-50 text-blue-600 group-hover:bg-blue-600 group-hover:text-white transition-colors">
+        <span className="text-sm font-bold">{category.name.charAt(0)}</span>
+      </div>
+      <span className="text-xs font-semibold text-gray-700 line-clamp-1 group-hover:text-blue-600">
         {category.name}
       </span>
     </Link>

@@ -1,8 +1,8 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { keepPreviousData, useQuery } from "@tanstack/react-query";
-import { LayoutGrid, List, Search, Store, Filter } from "lucide-react";
+import { LayoutGrid, List, Search, Store, Filter, Loader2 } from "lucide-react";
 import {
   SellersApiResponse,
   VerificationStatus,
@@ -17,17 +17,27 @@ export default function AllProvidersPage() {
   const [selectedStatus, setSelectedStatus] =
     useState<VerificationStatus>("all");
   const [search, setSearch] = useState("");
+  const [debouncedSearch, setDebouncedSearch] = useState("");
   const [page, setPage] = useState(1);
   const [viewMode, setViewMode] = useState<"grid" | "list">("grid");
   const [mobileFilterOpen, setMobileFilterOpen] = useState(false);
 
-  const { data, isLoading, isFetching, isError } = useQuery<SellersApiResponse>(
-    {
-      queryKey: ["sellers", selectedStatus, search, page],
-      queryFn: () => fetchSellers(selectedStatus, search, page),
+  // Debounce search input by 400ms to prevent query spamming
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setDebouncedSearch(search);
+      setPage(1); // Reset page on query change
+    }, 400);
+
+    return () => clearTimeout(timer);
+  }, [search]);
+
+  const { data, isLoading, isFetching, isError, isPlaceholderData } =
+    useQuery<SellersApiResponse>({
+      queryKey: ["sellers", selectedStatus, debouncedSearch, page],
+      queryFn: () => fetchSellers(selectedStatus, debouncedSearch, page),
       placeholderData: keepPreviousData,
-    },
-  );
+    });
 
   const sellers = data?.data || [];
   const pagination = data?.pagination || { totalPages: 1 };
@@ -39,7 +49,6 @@ export default function AllProvidersPage() {
 
   const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSearch(e.target.value);
-    setPage(1);
   };
 
   return (
@@ -48,10 +57,10 @@ export default function AllProvidersPage() {
         {/* Header */}
         <div className="mb-6 flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
           <div>
-            <h1 className="text-xl sm:text-2xl font-bold text-gray-900">
+            <h1 className="text-xl font-bold text-gray-900 sm:text-2xl">
               All Registered Sellers
             </h1>
-            <p className="text-xs sm:text-sm text-gray-500">
+            <p className="text-xs text-gray-500 sm:text-sm">
               Discover and connect with verified businesses and suppliers.
             </p>
           </div>
@@ -65,8 +74,13 @@ export default function AllProvidersPage() {
               <span>Filter</span>
             </button>
 
+            {/* Search Bar with Inline Spinner */}
             <div className="relative flex-1 md:w-72">
-              <Search className="absolute left-3.5 top-1/2 h-4 w-4 -translate-y-1/2 text-gray-400" />
+              {isFetching ? (
+                <Loader2 className="absolute left-3.5 top-1/2 h-4 w-4 -translate-y-1/2 animate-spin text-blue-600" />
+              ) : (
+                <Search className="absolute left-3.5 top-1/2 h-4 w-4 -translate-y-1/2 text-gray-400" />
+              )}
               <input
                 type="text"
                 value={search}
@@ -119,7 +133,9 @@ export default function AllProvidersPage() {
               </div>
             ) : sellers.length > 0 ? (
               <div
-                className={`transition-opacity duration-150 ${isFetching ? "opacity-50" : "opacity-100"}`}
+                className={`transition-opacity duration-200 ${
+                  isPlaceholderData || isFetching ? "opacity-60" : "opacity-100"
+                }`}
               >
                 <div
                   className={

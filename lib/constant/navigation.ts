@@ -22,13 +22,12 @@ export const NAVIGATION_ITEMS = [
   },
   {
     label: "Products",
-    href: "/ ",
+    href: "/",
     megaMenu: "products",
   },
   {
     label: "Providers",
-    href: "/ ",
-    megaMenu: "providers",
+    href: "/provider/AllProviders",
   },
   {
     label: "Deals",
@@ -37,7 +36,7 @@ export const NAVIGATION_ITEMS = [
   },
   {
     label: "About",
-    href: "/ ",
+    href: "/",
   },
 ];
 

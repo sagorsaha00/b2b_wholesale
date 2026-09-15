@@ -7,6 +7,8 @@ import { useAuthStore } from "@/lib/dataStore/b2bStore";
 export default function AccountLink() {
   const { isAuthenticated, user } = useAuthStore();
 
+  const photo = user?.profilePic || user?.logo;
+  console.log("photo x", photo);
   if (isAuthenticated) {
     return (
       <Link
@@ -26,7 +28,7 @@ export default function AccountLink() {
       >
         {user?.profilePic ? (
           <img
-            src={user.profilePic}
+            src={photo ?? ""}
             alt={user?.name || "User Avatar"}
             className="h-8 w-8 shrink-0 rounded-full object-cover"
           />

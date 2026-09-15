@@ -1,4 +1,4 @@
-import { useMutation, useQuery } from "@tanstack/react-query";
+import { useMutation, useQuery, UseQueryOptions } from "@tanstack/react-query";
 import {
   ApiResponse,
   RegBuyer,
@@ -15,9 +15,13 @@ import {
 } from "../constant/type/seller.type";
 import {
   FetchParams,
+  Product,
   ProductsApiResponse,
 } from "../constant/type/product.type";
-
+interface FetchDiscountedProductsParams {
+  page?: number;
+  limit?: number;
+}
 const API_URL = process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:5000";
 const registerBuyerApi = async (
   payload: RegisterBuyerPayload,
@@ -34,7 +38,39 @@ const registerBuyerApi = async (
   }
   return data;
 };
+interface FetchDiscountedProductsParams {
+  page?: number;
+  limit?: number;
+  sortBy?: string;
+  sortOrder?: "asc" | "desc";
+}
 
+export const useDiscountedProducts = (
+  {
+    page = 1,
+    limit = 10,
+    sortBy = "createdAt",
+    sortOrder = "desc",
+  }: FetchDiscountedProductsParams = {},
+  options?: Omit<UseQueryOptions<any, Error>, "queryKey" | "queryFn">,
+) => {
+  return useQuery({
+    queryKey: ["discountedProducts", page, limit, sortBy, sortOrder],
+    queryFn: async () => {
+      const response = await fetch(
+        `${API_URL}/api/product/getDiscountedProducts?page=${page}&limit=${limit}&sortBy=${sortBy}&sortOrder=${sortOrder}`,
+      );
+
+      if (!response.ok) {
+        throw new Error("Failed to fetch discounted products");
+      }
+
+      return response.json();
+    },
+    staleTime: 1000 * 60 * 5,
+    ...options,
+  });
+};
 const registerSellerApi = async (
   payload: RegisterSellerPayload,
 ): Promise<ApiResponse<RegSeller>> => {
@@ -54,7 +90,7 @@ const registerSellerApi = async (
 const loginUser = async ({ email, password, role }: LoginCredentials) => {
   const endpoint =
     role === "buyer" ? "/api/buyer/loginBuyer" : "/api/seller/loginSeller";
-  const response = await fetch(`http://localhost:5000${endpoint}`, {
+  const response = await fetch(`https://b2b-backend-orcin.vercel.app${endpoint}`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -76,7 +112,8 @@ export async function fetchSellers(
   search: string,
   page: number,
 ): Promise<SellersApiResponse> {
-  const url = new URL(` ${API_URL}/api/seller/getPaginatedSellers`);
+  // Fix: Removed leading space inside URL constructor
+  const url = new URL(`${API_URL}/api/seller/getPaginatedSellers`);
 
   if (status !== "all") {
     url.searchParams.append("verificationStatus", status);
@@ -87,10 +124,22 @@ export async function fetchSellers(
   url.searchParams.append("page", String(page));
   url.searchParams.append("limit", "10");
 
-  const res = await fetch(url.toString());
+  const res = await fetch(url.toString(), {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+    },
+
+    cache: "no-store",
+  });
+
   if (!res.ok) {
-    throw new Error("Failed to fetch backend data");
+    const errorData = await res.json().catch(() => null);
+    throw new Error(
+      errorData?.message || `Failed to fetch backend data: ${res.statusText}`,
+    );
   }
+
   return res.json();
 }
 export function useLogin() {
@@ -166,3 +215,20 @@ export function useProducts(params: FetchParams) {
     placeholderData: (previousData) => previousData,
   });
 }
+export const useProductDetails = (productId: number) => {
+  return useQuery({
+    queryKey: ["product", productId],
+    queryFn: async (): Promise<Product> => {
+      const response = await fetch(
+        `${API_URL}/api/product/getProductById/${productId}`,
+      );
+      if (!response.ok) {
+        throw new Error("Failed to fetch product details");
+      }
+      const result = await response.json();
+      return result.data;
+    },
+    enabled: !!productId && !isNaN(productId),
+    staleTime: 1000 * 60 * 5,
+  });
+};

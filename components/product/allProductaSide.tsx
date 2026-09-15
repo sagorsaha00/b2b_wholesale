@@ -1,12 +1,13 @@
 "use client";
 
+import { useEffect, useState } from "react";
+import { useSearchParams, useRouter, usePathname } from "next/navigation";
 import {
   Allcategories,
   countries,
   initialFilters,
 } from "@/lib/constant/dummyData";
 import { Filters } from "@/lib/constant/type/data.type";
-import { useState } from "react";
 import { ChevronDown, SlidersHorizontal, RotateCcw } from "lucide-react";
 
 export default function ProductsAside({
@@ -14,18 +15,48 @@ export default function ProductsAside({
 }: {
   onChange?: (filters: Filters) => void;
 }) {
+  const searchParams = useSearchParams();
+  const router = useRouter();
+  const pathname = usePathname();
+
   const [filters, setFilters] = useState<Filters>(initialFilters);
   const [mobileOpen, setMobileOpen] = useState(false);
+
+  // Sync state when URL query parameter changes
+  useEffect(() => {
+    const categoryFromUrl = searchParams.get("category");
+    
+    setFilters((prev) => {
+      const updated = {
+        ...prev,
+        categorySlug: categoryFromUrl || null,
+      };
+      onChange?.(updated);
+      return updated;
+    });
+  }, [searchParams]);
 
   function update(next: Partial<Filters>) {
     const merged = { ...filters, ...next };
     setFilters(merged);
     onChange?.(merged);
+
+    // Update URL query params on category change
+    if ("categorySlug" in next) {
+      const params = new URLSearchParams(searchParams.toString());
+      if (next.categorySlug) {
+        params.set("category", next.categorySlug);
+      } else {
+        params.delete("category");
+      }
+      router.push(`${pathname}?${params.toString()}`, { scroll: false });
+    }
   }
 
   function resetFilters() {
     setFilters(initialFilters);
     onChange?.(initialFilters);
+    router.push(pathname, { scroll: false });
   }
 
   function toggleCountry(code: string) {
@@ -132,7 +163,7 @@ function FilterContent({
         </div>
       </div>
 
-      {/* Price Range (FIXED) */}
+      {/* Price Range */}
       <div className="border-t border-gray-100 pt-4">
         <h4 className="mb-3 text-sm font-bold text-gray-900">
           Price Range ($)
@@ -164,19 +195,6 @@ function FilterContent({
         </div>
       </div>
 
-      {/* Supplier Features */}
-      <div className="border-t border-gray-100 pt-4">
-        <label className="flex cursor-pointer items-center gap-2.5 text-sm font-medium text-gray-700">
-          <input
-            type="checkbox"
-            checked={!!filters.verifiedOnly}
-            onChange={(e) => update({ verifiedOnly: e.target.checked })}
-            className="h-4 w-4 rounded border-gray-300 text-[#0055ff] accent-[#0055ff] focus:ring-[#0055ff]"
-          />
-          <span>Verified Suppliers Only</span>
-        </label>
-      </div>
-
       {/* Country Filter */}
       <div className="border-t border-gray-100 pt-4">
         <h4 className="mb-2 text-sm font-bold text-gray-900">
@@ -198,7 +216,6 @@ function FilterContent({
                 <span>{country.flag}</span>
                 <span className="truncate font-medium">{country.name}</span>
               </span>
-               
             </label>
           ))}
         </div>

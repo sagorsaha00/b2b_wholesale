@@ -21,6 +21,7 @@ export interface RegBuyer {
   businessInfo?: BusinessInfo | null;
   createdAt?: string;
   updatedAt?: string;
+  logo?: string;
 }
 
 export interface RegSeller {

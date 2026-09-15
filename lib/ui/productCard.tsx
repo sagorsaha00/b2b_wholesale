@@ -1,54 +1,71 @@
 import Image from "next/image";
 import ProductRating from "./ratingCard";
-import { MarketplaceSection, Product } from "../constant/type/data.type";
+import { MarketplaceSection } from "../constant/type/data.type";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
-import { DiscountBadge } from "./discount";
+import { Product } from "../constant/type/product.type";
 
-export function ProductItem({ product }: { product: Product }) {
+function DiscountBadge({ discount }: { discount?: string | number }) {
+  if (!discount) return null;
   return (
-    <div className="group relative flex min-w-0 flex-col overflow-hidden rounded-2xl border border-gray-100 bg-white transition-all duration-300 ease-out hover:-translate-y-1 hover:border-[#2563EB]/15 hover:shadow-[0_12px_32px_rgb(37,99,235,0.10)]">
-      <DiscountBadge discount={product.discount} />
+    <span className="absolute left-2.5 top-2.5 z-10 rounded-md bg-black px-2 py-0.5 text-[10px] font-bold text-white">
+      {discount}% OFF
+    </span>
+  );
+}
 
-      <div className="relative flex h-[220px] items-center justify-center bg-gray-50/60 p-8 sm:h-[240px]">
+export function ProductItem({ product }: { product: any }) {
+  return (
+    <div className="group relative flex min-w-0 flex-col overflow-hidden rounded-xl border border-gray-100 bg-white transition-all duration-300 ease-out hover:-translate-y-1 hover:border-red-500/20 hover:shadow-lg">
+      {/* 1. Large Square Image Container */}
+      <div className="relative aspect-square w-full bg-gray-50/50 p-2 overflow-hidden">
         <Image
-          src={product.image ?? ""}
+          src={product.image || product.images?.[0]?.url || "/placeholder.png"}
           alt={product.name ?? "Product Image"}
-          width={200}
-          height={200}
-          className="h-full w-full object-contain transition-transform duration-500 ease-out group-hover:scale-[1.06]"
+          fill
+          sizes="(max-width: 768px) 50vw, (max-width: 1200px) 25vw, 20vw"
+          className="object-contain p-2 transition-transform duration-300 group-hover:scale-105"
         />
+
+        {/* Optional: Red Bottom Tag Banner (matches your screenshot) */}
+        {product.tag && (
+          <div className="absolute bottom-0 left-0 right-0 bg-red-600 px-2 py-1 text-center">
+            <p className="line-clamp-1 text-[11px] font-semibold text-white">
+              {product.tag}
+            </p>
+          </div>
+        )}
       </div>
 
-      <div className="flex flex-1 flex-col border-t border-gray-100 p-5 sm:p-6">
-        <Link href={"/"}>
-          <h3 className="line-clamp-2 min-h-[48px] text-base font-bold leading-6 text-[#0F172A] transition-colors duration-200 group-hover:text-[#2563EB]">
+      {/* 2. Text & Price Details Section */}
+      <div className="flex flex-1 flex-col p-3 text-left">
+        {/* Title */}
+        <Link href={`/productInfo/${product.id || "#"}`}>
+          <h3 className="line-clamp-2 text-sm font-medium leading-snug text-gray-900 transition-colors group-hover:text-blue-600 sm:text-base">
             {product.name}
           </h3>
         </Link>
 
-        {product.description && (
-          <p className="mt-1.5 line-clamp-2 text-sm leading-5 text-gray-500">
-            {product.description}
-          </p>
-        )}
-
-        <div className="mt-3">
-          <ProductRating
-            rating={product.rating ?? 0}
-            reviews={product.reviews}
-          />
-        </div>
-
-        <div className="mt-3 flex items-center gap-2">
-          {product.oldPrice && (
-            <span className="text-sm font-medium text-gray-400 line-through">
-              {product.oldPrice}
-            </span>
-          )}
-          <span className="text-xl font-black text-[#2563EB]">
-            {product.price}
+        {/* Price & Discount Row */}
+        <div className="mt-3 flex flex-col justify-end">
+          <span className="text-xl font-bold text-black sm:text-2xl">
+            ৳{product.price}
           </span>
+
+          {(product.oldPrice || product.discount) && (
+            <div className="mt-0.5 flex items-center gap-2">
+              {product.oldPrice && (
+                <span className="text-xs text-gray-400 line-through">
+                  ৳{product.oldPrice}
+                </span>
+              )}
+              {product.discount && (
+                <span className="text-xs font-semibold text-gray-800">
+                  -{product.discount}%
+                </span>
+              )}
+            </div>
+          )}
         </div>
       </div>
     </div>
@@ -75,7 +92,7 @@ export default function ProductCardSection({ product }: { product: Product }) {
       </div>
 
       <div className="flex flex-1 flex-col border-t border-gray-100 p-5 sm:p-6">
-        <Link href={"/"}>
+        <Link href={`/productInfo` + product.id}>
           <h3 className="line-clamp-2 min-h-[48px] text-base font-bold leading-6 text-[#0F172A] transition-colors duration-200 group-hover:text-[#2563EB]">
             {product.name}
           </h3>
@@ -87,7 +104,7 @@ export default function ProductCardSection({ product }: { product: Product }) {
         <div className="mt-3">
           <ProductRating
             rating={product.rating ?? 0}
-            reviews={product.reviews}
+            reviews={product.reviews ?? 0}
           />
         </div>
 
@@ -107,44 +124,50 @@ export default function ProductCardSection({ product }: { product: Product }) {
 }
 
 export function SpecialProDuctItem({ product }: { product: Product }) {
+  console.log("product", product);
+  console.log("image", product.images?.[0]?.url);
+
   return (
-    <div className="group relative min-w-0 overflow-hidden rounded-2xl border border-gray-100 bg-white transition-all duration-300 ease-out hover:-translate-y-1 hover:border-[#2563EB]/15 hover:shadow-[0_12px_32px_rgb(37,99,235,0.10)]">
+    <div className="group relative min-w-0 overflow-hidden rounded-2xl border border-gray-100 bg-white transition-all duration-300 ease-out hover:-translate-y-1 hover:border-blue-500 hover:shadow-[0_12px_32px_rgba(37,99,235,0.20)]">
       <DiscountBadge discount={product.discount} />
 
-      <div className="relative flex h-[240px] w-full items-center justify-center bg-gray-50/60 p-8 sm:h-[260px]">
+      {/* Image Container with subtle blue tint on hover */}
+      <div className="relative flex h-[240px] w-full items-center justify-center bg-gray-50/60 p-8 sm:h-[260px] transition-colors duration-300 group-hover:bg-blue-50/30">
         <Image
-          src={product.image ?? ""}
+          src={product.images?.[0]?.url || "/placeholder.png"}
           alt={product.name ? "" + product.name : "Product Image"}
           width={220}
           height={220}
-          className="h-full w-full object-contain transition-transform duration-500 ease-out group-hover:scale-[1.06]"
+          className="h-full w-full object-contain transition-transform duration-500 ease-out group-hover:scale-105"
         />
       </div>
 
-      <div className="border-t border-gray-100 p-5 sm:p-6">
-        <Link href={"/"}>
-          <h3 className="line-clamp-2 min-h-[56px] text-lg font-black leading-7 text-[#0F172A] transition-colors duration-200 group-hover:text-[#2563EB]">
+      {/* Content Box */}
+      <div className="border-t border-gray-100 p-5 sm:p-6 transition-colors duration-300 group-hover:border-blue-100">
+        <Link href={`/productInfo/${product.id}`}>
+          <h3 className="line-clamp-2 min-h-[56px] text-lg font-black leading-7 text-[#0F172A] transition-colors duration-200 group-hover:text-blue-600">
             {product.name}
           </h3>
         </Link>
-        <p className="mt-1.5 line-clamp-2 text-sm leading-5 text-gray-500">
+        <p className="mt-1.5 line-clamp-2 text-sm leading-5 text-gray-500 transition-colors duration-200 group-hover:text-gray-600">
           {product.description}
         </p>
 
         <div className="mt-3">
           <ProductRating
             rating={product.rating ?? 0}
-            reviews={product.reviews}
+            reviews={product.reviews ?? 0}
           />
         </div>
 
+        {/* Pricing */}
         <div className="mt-3 flex items-center gap-2">
           {product.oldPrice && (
             <span className="text-sm font-medium text-gray-400 line-through">
               {product.oldPrice}
             </span>
           )}
-          <span className="text-2xl font-black text-[#2563EB]">
+          <span className="text-2xl font-black text-blue-600 transition-transform duration-200 group-hover:scale-105">
             {product.price}
           </span>
         </div>

@@ -27,7 +27,13 @@ export default function BestSellersGrid() {
       ) : (
         <div className="grid grid-cols-2 gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
           {items.map((p) => (
-            <ProductCardSection key={p.id} product={p} />
+            <ProductCardSection
+              key={p.id}
+              product={p}
+              id={p.id}
+              name={p.name}
+              price={p.price}
+            />
           ))}
         </div>
       )}
