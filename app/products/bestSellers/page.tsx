@@ -8,9 +8,10 @@ export default function BestSellersGrid() {
     curated.length > 0
       ? curated
       : [...Allproducts]
-          .sort((a, b) => (b.reviews ?? 0) - (a.reviews ?? 0))
+          .sort((a, b) => (Number(b.reviews) ?? 0) - (Number(a.reviews) ?? 0))
           .slice(0, 4);
-
+  const handleAddToCart = () => {};
+  const handleChatNow = () => {};
   return (
     <section className="mx-auto max-w-[1400px] px-6 py-10 md:px-8">
       <div className="mb-6">
@@ -30,9 +31,8 @@ export default function BestSellersGrid() {
             <ProductCardSection
               key={p.id}
               product={p}
-              id={p.id}
-              name={p.name}
-              price={p.price}
+              onAddToCart={handleAddToCart}
+              onChatNow={handleChatNow}
             />
           ))}
         </div>

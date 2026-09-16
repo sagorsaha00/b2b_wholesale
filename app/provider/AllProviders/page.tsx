@@ -147,6 +147,7 @@ export default function AllProvidersPage() {
                   {sellers.map((provider) => (
                     <ProviderCard
                       key={provider.id}
+                      //@ts-ignore
                       provider={provider}
                       viewMode={viewMode}
                     />

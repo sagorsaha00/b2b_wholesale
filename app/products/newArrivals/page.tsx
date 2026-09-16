@@ -1,40 +1,60 @@
 "use client";
 
 import { useMemo, useState } from "react";
+
 import ProductsAside from "@/components/product/allProductaSide";
 import ProductCardSection from "@/components/product/productCard";
+
 import { Allproducts, initialFilters } from "@/lib/constant/dummyData";
-import { Filters } from "@/lib/constant/type/data.type";
+
+import type { Filters } from "@/lib/constant/type/data.type";
+import { Product } from "@/lib/constant/type/product.type";
 
 export default function NewArrivalsGrid() {
   const [filters, setFilters] = useState<Filters>(initialFilters);
 
   const filteredItems = useMemo(() => {
-    return Allproducts.filter((p) => {
+    return Allproducts.filter((p: Product) => {
       // Only show new arrival products
-      if (!p.isNew) return false;
+      if (!p.isNew) {
+        return false;
+      }
 
       // Category filter
       if (
-        filters.categories?.length > 0 &&
-        !filters.categories.includes(p.category)
+        filters!.categories!.length > 0 &&
+        !filters!.categories!.includes(p.category)
       ) {
         return false;
       }
 
-      // Minimum price filter
-      if (filters.minPrice !== undefined && p.price < filters.minPrice) {
+      if (
+        filters.maxPrice !== undefined &&
+        typeof filters.maxPrice === "number" &&
+        p.price > filters.maxPrice
+      ) {
         return false;
       }
 
-      // Maximum price filter
-      if (filters.maxPrice !== undefined && p.price > filters.maxPrice) {
+      if (
+        filters.maxPrice !== undefined &&
+        typeof filters.maxPrice === "number" &&
+        p.price > filters.maxPrice
+      ) {
         return false;
       }
 
       return true;
     });
   }, [filters]);
+
+  const handleAddToCart = (product: Product) => {
+    console.log("Add to cart:", product);
+  };
+
+  const handleChatNow = (product: Product) => {
+    console.log("Chat now:", product);
+  };
 
   return (
     <section className="mx-auto w-full max-w-[1400px] px-4 py-8 sm:px-6 md:px-8 md:py-10">
@@ -73,7 +93,12 @@ export default function NewArrivalsGrid() {
           ) : (
             <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4">
               {filteredItems.map((p) => (
-                <ProductCardSection key={p.id} product={p} />
+                <ProductCardSection
+                  key={p.id}
+                  product={p}
+                  onAddToCart={handleAddToCart}
+                  onChatNow={handleChatNow}
+                />
               ))}
             </div>
           )}

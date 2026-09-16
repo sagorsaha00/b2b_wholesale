@@ -27,8 +27,8 @@ export default function ProductGrid({
     page,
     limit: 10,
     category: filters.categorySlug,
-    minPrice: filters.minPrice,
-    maxPrice: filters.maxPrice,
+    minPrice: filters.minPrice?.toString() || undefined,
+    maxPrice: filters.maxPrice?.toString() || undefined,
     countryCodes: filters.countryCodes?.join(","),
   });
 

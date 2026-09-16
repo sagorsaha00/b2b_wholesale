@@ -14,7 +14,7 @@ function DiscountBadge({ discount }: { discount?: string | number }) {
   );
 }
 
-export function ProductItem({ product }: { product: any }) {
+export function ProductItem({ product }: { product: Product }) {
   return (
     <div className="group relative flex min-w-0 flex-col overflow-hidden rounded-xl border border-gray-100 bg-white transition-all duration-300 ease-out hover:-translate-y-1 hover:border-red-500/20 hover:shadow-lg">
       {/* 1. Large Square Image Container */}
@@ -31,7 +31,7 @@ export function ProductItem({ product }: { product: any }) {
         {product.tag && (
           <div className="absolute bottom-0 left-0 right-0 bg-red-600 px-2 py-1 text-center">
             <p className="line-clamp-1 text-[11px] font-semibold text-white">
-              {product.tag}
+              {product?.tag}
             </p>
           </div>
         )}
@@ -104,7 +104,7 @@ export default function ProductCardSection({ product }: { product: Product }) {
         <div className="mt-3">
           <ProductRating
             rating={product.rating ?? 0}
-            reviews={product.reviews ?? 0}
+            reviews={Number(product.reviews) ?? 0}
           />
         </div>
 
@@ -156,7 +156,7 @@ export function SpecialProDuctItem({ product }: { product: Product }) {
         <div className="mt-3">
           <ProductRating
             rating={product.rating ?? 0}
-            reviews={product.reviews ?? 0}
+            reviews={Number(product.reviews) ?? 0}
           />
         </div>
 

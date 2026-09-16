@@ -18,10 +18,11 @@ export type MarketplaceSection = {
 export type Filters = {
   countryCodes?: string[];
   categorySlug?: string | null;
-  minPrice?: number | undefined;
-  maxPrice?: number | undefined;
+  minPrice: string | number | undefined;
+  maxPrice?: string | number | undefined;
   minRating?: number | null;
   categories?: string;
+  verifiedOnly: boolean;
 };
 export type RatingSummary = {
   overall: number;

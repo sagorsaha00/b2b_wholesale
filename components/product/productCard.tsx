@@ -1,16 +1,21 @@
 "use client";
 
-import { useState, useEffect } from "react";
-import ProductRating from "@/lib/ui/ratingCard";
 import Image from "next/image";
 import Link from "next/link";
-import {
-  PRODUCT_IMAGE_FALLBACK,
-  SUPPLIER_IMAGE_FALLBACK,
-} from "@/lib/constant/imageFallBack";
-import { MessageCircle, ShoppingCart } from "lucide-react";
 import { useRouter } from "next/navigation";
-import { ProductCardProps } from "@/lib/constant/type/product.type";
+import { useEffect, useState } from "react";
+import { MessageCircle, ShoppingCart } from "lucide-react";
+import { Product } from "@/lib/constant/type/product.type";
+import ProductRating from "@/lib/ui/ratingCard";
+
+const PRODUCT_IMAGE_FALLBACK = "/images/product-placeholder.png";
+const SUPPLIER_IMAGE_FALLBACK = "/images/supplier-placeholder.png";
+
+interface ProductCardProps {
+  product: Product;
+  onAddToCart?: (product: Product) => void;
+  onChatNow?: (product: Product) => void;
+}
 
 export default function ProductCardSection({
   product,
@@ -19,7 +24,6 @@ export default function ProductCardSection({
 }: ProductCardProps) {
   const router = useRouter();
 
-  // ১. API Structure (product.images[0].url) এবং Fallback Image সেফটি
   const initialProductImg =
     product.images && product.images.length > 0
       ? product.images[0].url
@@ -30,13 +34,14 @@ export default function ProductCardSection({
   const supplierName = product.seller?.name;
 
   const [imgSrc, setImgSrc] = useState<string>(initialProductImg);
+
   const [supplierImgSrc, setSupplierImgSrc] =
     useState<string>(initialSupplierImg);
 
   useEffect(() => {
     setImgSrc(initialProductImg);
     setSupplierImgSrc(initialSupplierImg);
-  }, [product]);
+  }, [initialProductImg, initialSupplierImg]);
 
   const handlePushRoute = () => {
     router.push(`/productInfo/${product.id}`);
@@ -49,23 +54,36 @@ export default function ProductCardSection({
     >
       {/* Dynamic Badges */}
       <div className="absolute left-3 top-3 z-10 flex flex-col gap-1">
-        {product.discount && (
+        {product.discount > 0 && (
           <span className="rounded-full bg-red-500 px-3 py-1 text-[11px] font-extrabold uppercase tracking-wider text-white shadow-sm">
             {product.discount}% OFF
           </span>
         )}
+
         {product.sale && !product.discount && (
           <span className="rounded-full bg-red-600 px-3 py-1 text-[11px] font-extrabold uppercase tracking-wider text-white shadow-sm">
             Sale!
           </span>
         )}
+
+        {product.isNew && (
+          <span className="rounded-full bg-[#2563EB] px-3 py-1 text-[11px] font-extrabold uppercase tracking-wider text-white shadow-sm">
+            New
+          </span>
+        )}
+
+        {product.isBestSeller && (
+          <span className="rounded-full bg-[#febb13] px-3 py-1 text-[11px] font-extrabold uppercase tracking-wider text-gray-900 shadow-sm">
+            Best Seller
+          </span>
+        )}
       </div>
 
-      {/* Image Showcase */}
+      {/* Product Image */}
       <div className="relative flex h-[220px] items-center justify-center bg-gradient-to-b from-gray-50/80 to-gray-50/30 p-6 sm:h-[240px]">
         <Image
           src={imgSrc}
-          alt={product.name ? product.name : "Product Image"}
+          alt={product.name || "Product Image"}
           width={220}
           height={220}
           unoptimized={imgSrc === PRODUCT_IMAGE_FALLBACK}
@@ -74,8 +92,9 @@ export default function ProductCardSection({
         />
       </div>
 
-      {/* Product Content Details */}
+      {/* Product Content */}
       <div className="flex flex-1 flex-col border-t border-gray-100 p-5 sm:p-6">
+        {/* Product Name */}
         <Link
           href={`/productInfo/${product.id}`}
           onClick={(e) => e.stopPropagation()}
@@ -85,33 +104,37 @@ export default function ProductCardSection({
           </h3>
         </Link>
 
+        {/* Description */}
         {product.description && (
           <p className="mt-1.5 line-clamp-2 text-xs leading-5 text-gray-500">
             {product.description}
           </p>
         )}
 
-        {/* Rating Component */}
+        {/* Rating */}
         <div className="mt-2.5">
           <ProductRating
             rating={product.rating ?? 0}
-            reviews={product.reviews}
+            reviews={Number(product.reviews) ?? 0}
           />
         </div>
 
-        {/* Price & Seller Wrapper */}
+        {/* Price & Seller */}
         <div className="mt-3.5 flex flex-wrap items-baseline justify-between gap-2 border-t border-gray-50 pt-3">
+          {/* Price */}
           <div className="flex items-baseline gap-2">
             <span className="text-xl font-black text-[#2563EB]">
-              ${product.price}
+              ${product.price.toFixed(2)}
             </span>
-            {product.oldPrice && (
+
+            {product.oldPrice > 0 && (
               <span className="text-sm font-semibold text-gray-400 line-through">
-                ${product.oldPrice}
+                ${product.oldPrice.toFixed(2)}
               </span>
             )}
           </div>
 
+          {/* Seller */}
           {supplierName && (
             <div className="flex items-center gap-1.5 rounded-full bg-gray-50 px-2.5 py-1">
               <Image
@@ -123,6 +146,7 @@ export default function ProductCardSection({
                 onError={() => setSupplierImgSrc(SUPPLIER_IMAGE_FALLBACK)}
                 className="h-4.5 w-4.5 rounded-full border border-gray-200 object-cover"
               />
+
               <span className="max-w-[100px] truncate text-[11px] font-medium text-gray-600">
                 {supplierName}
               </span>
@@ -130,6 +154,7 @@ export default function ProductCardSection({
           )}
         </div>
 
+        {/* Buttons */}
         <div className="relative z-30 mt-4 flex gap-2">
           {product.buyable !== false && (
             <button
@@ -141,6 +166,7 @@ export default function ProductCardSection({
               className="flex flex-1 items-center justify-center gap-1.5 rounded-xl border border-[#2563EB] bg-white py-2.5 text-xs font-bold text-[#2563EB] transition-all duration-200 hover:bg-[#2563EB]/10 active:scale-[0.98]"
             >
               <ShoppingCart className="h-4 w-4 shrink-0" />
+
               <span>Add to cart</span>
             </button>
           )}
@@ -154,6 +180,7 @@ export default function ProductCardSection({
             className="flex flex-1 items-center justify-center gap-1.5 rounded-xl border border-[#2563EB] bg-[#2563EB] py-2.5 text-xs font-bold text-white shadow-sm transition-all duration-200 hover:bg-[#1d4ed8] hover:shadow-md active:scale-[0.98]"
           >
             <MessageCircle className="h-4 w-4 shrink-0" />
+
             <span>Chat now</span>
           </button>
         </div>

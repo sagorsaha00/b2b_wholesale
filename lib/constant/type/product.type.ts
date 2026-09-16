@@ -9,6 +9,7 @@ export interface Tier {
 export interface Image {
   id: number;
   url: string;
+  productId: number;
 }
 
 export interface Seller {
@@ -18,7 +19,13 @@ export interface Seller {
   number: string;
   businessLocation: string;
   logo: string;
+  location: string;
+  verified: boolean;
   verificationStatus: string;
+  coverPhoto: string;
+  years: number;
+  companyName?: string;
+  contactName?: string;
 }
 
 export interface Product {
@@ -44,6 +51,11 @@ export interface Product {
   tiers: Tier[];
   seller: Seller;
   sku: string;
+  supplierCountry: string;
+  isBestSeller?: boolean;
+  isNew?: boolean;
+  buyable?: boolean;
+  tag?: string;
 }
 export interface ProductCardProps {
   product: Product;
