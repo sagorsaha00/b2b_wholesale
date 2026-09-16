@@ -1,10 +1,11 @@
 "use client";
 
-import { useState, useMemo } from "react";
+import { useState, useMemo, Suspense } from "react";
 import ProductsAside from "@/components/product/allProductaSide";
 import ProductCardSection from "@/components/product/productCard";
 import { Allproducts, initialFilters } from "@/lib/constant/dummyData";
 import { Filters } from "@/lib/constant/type/data.type";
+import { ProductsAsideSkeleton } from "../allProduct/page";
 
 export default function TopProductGrid() {
   const [filters, setFilters] = useState<Filters>(initialFilters);
@@ -48,7 +49,9 @@ export default function TopProductGrid() {
 
       <div className="flex flex-col gap-8 lg:flex-row">
         <aside className="w-full shrink-0 lg:w-64">
-          <ProductsAside onChange={setFilters} />
+          <Suspense fallback={<ProductsAsideSkeleton />}>
+            <ProductsAside onChange={setFilters} />
+          </Suspense>
         </aside>
 
         <main className="flex-1">

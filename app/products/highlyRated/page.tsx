@@ -1,12 +1,13 @@
 "use client";
 
-import { useState } from "react";
+import { Suspense, useState } from "react";
 
 import ProductsAside from "@/components/product/allProductaSide";
 import ProductCardSection from "@/components/product/productCard";
 
 import { Filters } from "@/lib/constant/type/data.type";
 import { Allproducts, initialFilters } from "@/lib/constant/dummyData";
+import { ProductsAsideSkeleton } from "../allProduct/page";
 
 const MIN_RATING = 4.5;
 
@@ -39,7 +40,9 @@ export default function HighlyRatedGrid() {
         <div className="flex flex-col gap-6 lg:flex-row lg:items-start">
           {/* Sidebar */}
           <aside className="w-full shrink-0 lg:w-[250px]">
-            <ProductsAside onChange={setFilters} />
+            <Suspense fallback={<ProductsAsideSkeleton />}>
+              <ProductsAside onChange={setFilters} />
+            </Suspense>
           </aside>
 
           {/* Products */}

@@ -2,15 +2,18 @@
 
 import { useEffect, useState } from "react";
 import { useSearchParams, useRouter, usePathname } from "next/navigation";
+
 import {
   Allcategories,
   countries,
   initialFilters,
 } from "@/lib/constant/dummyData";
+
 import { Filters } from "@/lib/constant/type/data.type";
+
 import { ChevronDown, SlidersHorizontal, RotateCcw } from "lucide-react";
 
-export default function ProductsAside({
+function ProductsAsideContent({
   onChange,
 }: {
   onChange?: (filters: Filters) => void;
@@ -25,49 +28,62 @@ export default function ProductsAside({
   // Sync state when URL query parameter changes
   useEffect(() => {
     const categoryFromUrl = searchParams.get("category");
-    
+
     setFilters((prev) => {
       const updated = {
         ...prev,
         categorySlug: categoryFromUrl || null,
       };
+
       onChange?.(updated);
+
       return updated;
     });
-  }, [searchParams]);
+  }, [searchParams, onChange]);
 
   function update(next: Partial<Filters>) {
     const merged = { ...filters, ...next };
+
     setFilters(merged);
     onChange?.(merged);
 
-    // Update URL query params on category change
     if ("categorySlug" in next) {
       const params = new URLSearchParams(searchParams.toString());
+
       if (next.categorySlug) {
         params.set("category", next.categorySlug);
       } else {
         params.delete("category");
       }
-      router.push(`${pathname}?${params.toString()}`, { scroll: false });
+
+      router.push(`${pathname}?${params.toString()}`, {
+        scroll: false,
+      });
     }
   }
 
   function resetFilters() {
     setFilters(initialFilters);
     onChange?.(initialFilters);
-    router.push(pathname, { scroll: false });
+
+    router.push(pathname, {
+      scroll: false,
+    });
   }
 
   function toggleCountry(code: string) {
     const set = new Set(filters.countryCodes || []);
+
     set.has(code) ? set.delete(code) : set.add(code);
-    update({ countryCodes: Array.from(set) });
+
+    update({
+      countryCodes: Array.from(set),
+    });
   }
 
   return (
     <>
-      {/* Mobile Drawer Toggle */}
+      {/* Mobile */}
       <div className="lg:hidden">
         <button
           type="button"
@@ -78,6 +94,7 @@ export default function ProductsAside({
             <SlidersHorizontal className="h-4 w-4 text-[#0055ff]" />
             Filters
           </span>
+
           <ChevronDown
             className={`h-4 w-4 transition-transform ${
               mobileOpen ? "rotate-180" : ""
@@ -97,7 +114,7 @@ export default function ProductsAside({
         )}
       </div>
 
-      {/* Desktop Sidebar */}
+      {/* Desktop */}
       <aside className="hidden lg:block">
         <div className="sticky top-[88px] max-h-[calc(100vh-110px)] overflow-y-auto rounded-2xl border border-gray-100 bg-white p-5 shadow-sm">
           <FilterContent
@@ -125,30 +142,36 @@ function FilterContent({
 }) {
   return (
     <div className="space-y-5">
-      {/* Title & Reset */}
+      {/* Title */}
       <div className="flex items-center justify-between border-b border-gray-100 pb-3">
         <h3 className="text-base font-bold text-gray-900">Filters</h3>
+
         <button
           onClick={resetFilters}
           type="button"
           className="flex items-center gap-1 text-xs font-semibold text-gray-500 transition hover:text-red-500"
         >
-          <RotateCcw className="h-3.5 w-3.5" /> Reset
+          <RotateCcw className="h-3.5 w-3.5" />
+          Reset
         </button>
       </div>
 
       {/* Categories */}
       <div>
         <h4 className="mb-2 text-sm font-bold text-gray-900">Categories</h4>
+
         <div className="max-h-56 space-y-1 overflow-y-auto pr-1">
           {Allcategories.map((cat) => {
             const active = filters.categorySlug === cat.slug;
+
             return (
               <button
                 key={cat.slug}
                 type="button"
                 onClick={() =>
-                  update({ categorySlug: active ? null : cat.slug })
+                  update({
+                    categorySlug: active ? null : cat.slug,
+                  })
                 }
                 className={`block w-full rounded-lg px-2.5 py-1.5 text-left text-sm font-medium transition ${
                   active
@@ -163,11 +186,12 @@ function FilterContent({
         </div>
       </div>
 
-      {/* Price Range */}
+      {/* Price */}
       <div className="border-t border-gray-100 pt-4">
         <h4 className="mb-3 text-sm font-bold text-gray-900">
           Price Range ($)
         </h4>
+
         <div className="grid grid-cols-[1fr_auto_1fr] items-center gap-2">
           <input
             type="number"
@@ -176,11 +200,16 @@ function FilterContent({
             value={filters.minPrice ?? ""}
             onChange={(e) => {
               const val = e.target.value;
-              update({ minPrice: val !== "" ? Number(val) : undefined });
+
+              update({
+                minPrice: val !== "" ? Number(val) : undefined,
+              });
             }}
             className="w-full rounded-xl border border-gray-200 px-3 py-2 text-sm font-medium text-gray-900 outline-none transition focus:border-[#0055ff] focus:ring-2 focus:ring-blue-50"
           />
+
           <span className="text-gray-400">—</span>
+
           <input
             type="number"
             min="0"
@@ -188,18 +217,22 @@ function FilterContent({
             value={filters.maxPrice ?? ""}
             onChange={(e) => {
               const val = e.target.value;
-              update({ maxPrice: val !== "" ? Number(val) : undefined });
+
+              update({
+                maxPrice: val !== "" ? Number(val) : undefined,
+              });
             }}
             className="w-full rounded-xl border border-gray-200 px-3 py-2 text-sm font-medium text-gray-900 outline-none transition focus:border-[#0055ff] focus:ring-2 focus:ring-blue-50"
           />
         </div>
       </div>
 
-      {/* Country Filter */}
+      {/* Countries */}
       <div className="border-t border-gray-100 pt-4">
         <h4 className="mb-2 text-sm font-bold text-gray-900">
           Supplier Country
         </h4>
+
         <div className="max-h-48 space-y-1 overflow-y-auto pr-1">
           {countries.map((country) => (
             <label
@@ -213,7 +246,9 @@ function FilterContent({
                   onChange={() => toggleCountry(country.code)}
                   className="h-4 w-4 rounded border-gray-300 text-[#0055ff] accent-[#0055ff]"
                 />
+
                 <span>{country.flag}</span>
+
                 <span className="truncate font-medium">{country.name}</span>
               </span>
             </label>
@@ -223,3 +258,5 @@ function FilterContent({
     </div>
   );
 }
+
+export default ProductsAsideContent;

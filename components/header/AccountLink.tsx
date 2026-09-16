@@ -8,7 +8,7 @@ export default function AccountLink() {
   const { isAuthenticated, user } = useAuthStore();
 
   const photo = user?.profilePic || user?.logo;
-  console.log("photo x", photo);
+
   if (isAuthenticated) {
     return (
       <Link

@@ -1,3 +1,4 @@
+"use client";
 import ProductCardSection from "@/components/product/productCard";
 import { Allproducts } from "@/lib/constant/dummyData";
 
@@ -10,8 +11,12 @@ export default function BestSellersGrid() {
       : [...Allproducts]
           .sort((a, b) => (Number(b.reviews) ?? 0) - (Number(a.reviews) ?? 0))
           .slice(0, 4);
-  const handleAddToCart = () => {};
-  const handleChatNow = () => {};
+  const handleAddToCart = () => {
+    console.log("add to cart");
+  };
+  const handleChatNow = () => {
+    console.log("chat now");
+  };
   return (
     <section className="mx-auto max-w-[1400px] px-6 py-10 md:px-8">
       <div className="mb-6">

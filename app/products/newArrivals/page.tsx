@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { Suspense, useMemo, useState } from "react";
 
 import ProductsAside from "@/components/product/allProductaSide";
 import ProductCardSection from "@/components/product/productCard";
@@ -8,7 +8,7 @@ import ProductCardSection from "@/components/product/productCard";
 import { Allproducts, initialFilters } from "@/lib/constant/dummyData";
 
 import type { Filters } from "@/lib/constant/type/data.type";
-import { Product } from "@/lib/constant/type/product.type";
+import type { Product } from "@/lib/constant/type/product.type";
 
 export default function NewArrivalsGrid() {
   const [filters, setFilters] = useState<Filters>(initialFilters);
@@ -22,20 +22,23 @@ export default function NewArrivalsGrid() {
 
       // Category filter
       if (
-        filters!.categories!.length > 0 &&
-        !filters!.categories!.includes(p.category)
+        filters.categories &&
+        filters.categories.length > 0 &&
+        !filters.categories.includes(p.category)
       ) {
         return false;
       }
 
+      // Minimum price
       if (
-        filters.maxPrice !== undefined &&
-        typeof filters.maxPrice === "number" &&
-        p.price > filters.maxPrice
+        filters.minPrice !== undefined &&
+        typeof filters.minPrice === "number" &&
+        p.price < filters.minPrice
       ) {
         return false;
       }
 
+      // Maximum price
       if (
         filters.maxPrice !== undefined &&
         typeof filters.maxPrice === "number" &&
@@ -73,7 +76,9 @@ export default function NewArrivalsGrid() {
       <div className="flex flex-col gap-8 lg:flex-row lg:items-start">
         {/* Sidebar */}
         <aside className="w-full shrink-0 lg:w-64">
-          <ProductsAside onChange={setFilters} />
+          <Suspense fallback={<ProductsAsideSkeleton />}>
+            <ProductsAside onChange={setFilters} />
+          </Suspense>
         </aside>
 
         {/* Products */}
@@ -105,5 +110,27 @@ export default function NewArrivalsGrid() {
         </main>
       </div>
     </section>
+  );
+}
+
+/**
+ * Loading UI for ProductsAside
+ */
+function ProductsAsideSkeleton() {
+  return (
+    <div className="rounded-2xl border border-gray-100 bg-white p-5 shadow-sm">
+      <div className="h-5 w-20 animate-pulse rounded bg-gray-200" />
+
+      <div className="mt-5 space-y-3">
+        <div className="h-4 w-full animate-pulse rounded bg-gray-100" />
+        <div className="h-4 w-4/5 animate-pulse rounded bg-gray-100" />
+        <div className="h-4 w-3/5 animate-pulse rounded bg-gray-100" />
+      </div>
+
+      <div className="mt-6 space-y-3">
+        <div className="h-10 w-full animate-pulse rounded-xl bg-gray-100" />
+        <div className="h-10 w-full animate-pulse rounded-xl bg-gray-100" />
+      </div>
+    </div>
   );
 }
