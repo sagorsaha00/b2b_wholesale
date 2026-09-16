@@ -29,7 +29,7 @@ export default function TopProductGrid() {
       if (
         filters.maxPrice &&
         typeof filters.minPrice === "number" &&
-        p.price > filters.maxPrice
+        p.price > Number(filters.maxPrice)
       )
         return false;
 
